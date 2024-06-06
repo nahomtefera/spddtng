@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 // _components
 import Navbar from "./_components/navbar";
+import Footer from "./_components/footer";
 import Hero from "./_components/hero";
 import HowItWorks from "./_components/howItWorks";
 import UpcomingEvents from "./_components/upcomingEvents";
@@ -24,9 +25,7 @@ export default function Component() {
           <UpcomingEvents />
         </section>
       </main>
-      <footer className="bg-gray-100 p-6 md:py-12 w-full dark:bg-gray-800">
-        Footer
-      </footer>
+      <Footer />
     </div>
   )
 }
