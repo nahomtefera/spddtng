@@ -23,7 +23,7 @@ export default function HowItWorks() {
                         01
                         </div> */}
                         <img
-                        src="/marketing/signup.jpg"
+                        src="/images/marketing/signup.webp"
                         width={400}
                         height={300}
                         alt="Product 1"
@@ -43,7 +43,7 @@ export default function HowItWorks() {
                         02
                         </div> */}
                         <img
-                        src="/marketing/participate.jpg"
+                        src="/images/marketing/participate.webp"
                         width={400}
                         height={300}
                         alt="Product 2"
@@ -64,7 +64,7 @@ export default function HowItWorks() {
                             03
                             </div> */}
                             <img
-                            src="/marketing/match.jpg"
+                            src="/images/marketing/match.webp"
                             width={400}
                             height={300}
                             alt="Product 3"

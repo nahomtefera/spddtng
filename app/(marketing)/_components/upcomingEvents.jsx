@@ -3,8 +3,12 @@ import { Button } from "@/components/ui/button"
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select"
 import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover"
 import { Calendar } from "@/components/ui/calendar"
+// events
+import events from "@/lib/mockEvents"
 
 export default function UpcomingEvents() {
+
+
     return (
         <div className="container px-4 md:px-6">
           <div className="space-y-6 text-left">
@@ -58,112 +62,54 @@ export default function UpcomingEvents() {
           </div>
 
         {/* Events */}
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            <Card>
-              <img
-                src="/placeholder.svg"
-                alt="Event 1"
-                width={600}
-                height={400}
-                className="aspect-[3/2] w-full rounded-t-lg object-cover"
-              />
-              <CardContent className="space-y-3 p-4 sm:p-6">
-                <div className="space-y-1">
-                  <h3 className="text-xl font-semibold">Annual Music Festival</h3>
-                  <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
-                    <CalendarIcon className="h-4 w-4" />
-                    <span>June 15, 2024</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
-                    <MapPinIcon className="h-4 w-4" />
-                    <span>Central Park, New York</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
-                    <UserIcon className="h-4 w-4" />
-                    <span>All ages</span>
-                  </div>
-                </div>
-                <div className="flex items-center justify-between">
-                  <div className="text-lg font-semibold">$50</div>
-                  <Button variant="outline" size="sm">
-                    Buy Tickets
-                  </Button>
-                </div>
-                <p className="text-sm text-gray-500 dark:text-gray-400">
-                  Join us for a day of live music, food, and fun at our annual music festival in Central Park.
-                </p>
-              </CardContent>
-            </Card>
-            <Card>
-              <img
-                src="/placeholder.svg"
-                alt="Event 2"
-                width={600}
-                height={400}
-                className="aspect-[3/2] w-full rounded-t-lg object-cover"
-              />
-              <CardContent className="space-y-3 p-4 sm:p-6">
-                <div className="space-y-1">
-                  <h3 className="text-xl font-semibold">Outdoor Movie Night</h3>
-                  <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
-                    <CalendarIcon className="h-4 w-4" />
-                    <span>July 20, 2024</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
-                    <MapPinIcon className="h-4 w-4" />
-                    <span>Riverfront Park, San Francisco</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
-                    <UserIcon className="h-4 w-4" />
-                    <span>All ages</span>
-                  </div>
-                </div>
-                <div className="flex items-center justify-between">
-                  <div className="text-lg font-semibold">$15</div>
-                  <Button variant="outline" size="sm">
-                    Buy Tickets
-                  </Button>
-                </div>
-                <p className="text-sm text-gray-500 dark:text-gray-400">
-                  Enjoy a classic movie under the stars at our outdoor movie night in Riverfront Park.
-                </p>
-              </CardContent>
-            </Card>
-            <Card>
-              <img
-                src="/placeholder.svg"
-                alt="Event 3"
-                width={600}
-                height={400}
-                className="aspect-[3/2] w-full rounded-t-lg object-cover"
-              />
-              <CardContent className="space-y-3 p-4 sm:p-6">
-                <div className="space-y-1">
-                  <h3 className="text-xl font-semibold">Art in the Park</h3>
-                  <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
-                    <CalendarIcon className="h-4 w-4" />
-                    <span>August 5, 2024</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
-                    <MapPinIcon className="h-4 w-4" />
-                    <span>Balboa Park, San Diego</span>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
-                    <UserIcon className="h-4 w-4" />
-                    <span>All ages</span>
-                  </div>
-                </div>
-                <div className="flex items-center justify-between">
-                  <div className="text-lg font-semibold">Free</div>
-                  <Button variant="outline" size="sm">
-                    RSVP
-                  </Button>
-                </div>
-                <p className="text-sm text-gray-500 dark:text-gray-400">
-                  Explore the vibrant art scene at our annual Art in the Park event in Balboa Park.
-                </p>
-              </CardContent>
-            </Card>
+        <div className="grid gap-6 pt-10 md:grid-cols-2 lg:grid-cols-3">
+            {
+                events.map(event => {
+                    return( 
+                        <Card>
+                            <div className="relative">
+                                <div className="absolute top-4 left-4 bg-[#e91e63] font-semibold text-white px-3 py-1 rounded-md text-sm font-medium dark:bg-gray-50 dark:text-gray-900">
+                                    {event.city}
+                                </div>
+                                <img
+                                    src={event.imgSrc}
+                                    alt="Event 1"
+                                    width={600}
+                                    height={400}
+                                    className="aspect-[16/9] w-full rounded-t-lg object-cover"
+                                />
+                            </div>
+                            
+                            <CardContent className="space-y-3 p-4 sm:p-6">
+                              <div className="space-y-1">
+                                <h3 className="text-xl font-semibold">{event.title}</h3>
+                                <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+                                  <CalendarIcon className="h-4 w-4" />
+                                  <span>{event.date}</span>
+                                </div>
+                                <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+                                  <MapPinIcon className="h-4 w-4" />
+                                  <span>{event.address}</span>
+                                </div>
+                                <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+                                  <UserIcon className="h-4 w-4" />
+                                  <span>{event.ageRange}</span>
+                                </div>
+                              </div>
+                              <p className="text-sm text-gray-500 dark:text-gray-400">
+                                {event.description}
+                              </p>
+                              <div className="flex items-center justify-between">
+                                <div className="text-lg font-semibold">{event.price}</div>
+                                <Button variant="outline" size="sm">
+                                  Buy Tickets
+                                </Button>
+                              </div>
+                            </CardContent>
+                        </Card>
+                    )
+                })
+            }
           </div>
         </div>
     )
