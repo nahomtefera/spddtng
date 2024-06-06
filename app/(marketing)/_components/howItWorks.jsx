@@ -1,3 +1,4 @@
+import Image from "next/image";
 
 export default function HowItWorks() {
     return (
@@ -5,7 +6,7 @@ export default function HowItWorks() {
           <div className="space-y-6 text-left">
             <div className="flex items-center">
                 <h2 className="text-3xl font-light tracking-tighter sm:text-4xl md:text-5xl">We just love Love</h2>
-                <div class="w-[150px] h-[3px] bg-[#ffabab] ml-[20px]"></div>
+                <div className="w-[150px] h-[3px] bg-[#ffabab] ml-[20px]"></div>
             </div>
             <p className="mx-auto text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
               Discover a refined way to date, prioritizing calm and simplicity over the usual noisy and elaborate setups. Our events are designed to be comfortable and inviting, where finding a special connection is a serene experience..
@@ -22,7 +23,7 @@ export default function HowItWorks() {
                         {/* <div className="absolute top-4 left-4 bg-gray-900 text-white px-3 py-1 rounded-md text-sm font-medium dark:bg-gray-50 dark:text-gray-900">
                         01
                         </div> */}
-                        <img
+                        <Image
                         src="/images/marketing/signup.webp"
                         width={400}
                         height={300}
@@ -42,7 +43,7 @@ export default function HowItWorks() {
                         {/* <div className="absolute top-4 left-4 bg-gray-900 text-white px-3 py-1 rounded-md text-sm font-medium dark:bg-gray-50 dark:text-gray-900">
                         02
                         </div> */}
-                        <img
+                        <Image
                         src="/images/marketing/participate.webp"
                         width={400}
                         height={300}
@@ -63,7 +64,7 @@ export default function HowItWorks() {
                             {/* <div className="absolute top-4 left-4 bg-gray-900 text-white px-3 py-1 rounded-md text-sm font-medium dark:bg-gray-50 dark:text-gray-900">
                             03
                             </div> */}
-                            <img
+                            <Image
                             src="/images/marketing/match.webp"
                             width={400}
                             height={300}

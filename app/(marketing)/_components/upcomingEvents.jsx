@@ -1,3 +1,4 @@
+import Image from "next/image"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select"
@@ -14,7 +15,7 @@ export default function UpcomingEvents() {
           <div className="space-y-6 text-left">
             <div className="flex items-center">
                 <h2 className="text-3xl font-light tracking-tighter sm:text-4xl md:text-5xl">Upcoming Events</h2>
-                <div class="w-[150px] h-[3px] bg-[#ffabab] ml-[20px]"></div>
+                <div className="w-[150px] h-[3px] bg-[#ffabab] ml-[20px]"></div>
             </div>
             <p className="mx-auto text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
                 Our events provide a refined way to date, making it a comfortable and delightful experience to find a special connection.
@@ -62,16 +63,16 @@ export default function UpcomingEvents() {
           </div>
 
         {/* Events */}
-        <div className="grid gap-6 pt-10 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-10 pt-10 md:grid-cols-2 lg:grid-cols-3">
             {
                 events.map(event => {
                     return( 
-                        <Card>
+                        <Card key={event.id} className="overflow-hidden rounded-lg cursor-pointer shadow-xs hover:shadow-sm transition-transform duration-300 ease-in-out hover:-translate-y-2">
                             <div className="relative">
                                 <div className="absolute top-4 left-4 bg-[#e91e63] font-semibold text-white px-3 py-1 rounded-md text-sm font-medium dark:bg-gray-50 dark:text-gray-900">
                                     {event.city}
                                 </div>
-                                <img
+                                <Image
                                     src={event.imgSrc}
                                     alt="Event 1"
                                     width={600}
