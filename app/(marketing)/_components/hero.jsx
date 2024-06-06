@@ -17,14 +17,14 @@ export default function Hero() {
     
 
     const images = [
-        {src: "/marketing/couple1.jpg", bgColor: "#E098A2"},
-        {src: "/marketing/couple2.jpg", bgColor: "#de9b37"},
-        {src: "/marketing/couple3.jpg", bgColor: "#E3E3E3"},
-        {src: "/marketing/couple4.jpg", bgColor: "#F89FBA"},
-        {src: "/marketing/couple5.jpg", bgColor: "#9ED6DF"},
-        {src: "/marketing/couple6.jpg", bgColor: "#F4CB09"},
-        {src: "/marketing/couple7.jpg", bgColor: "#9ecee7"},
-        {src: "/marketing/couple8.jpg", bgColor: "#c96f42"},
+        {src: "/images/marketing/couple1.webp", bgColor: "#E098A2"},
+        {src: "/images/marketing/couple2.webp", bgColor: "#de9b37"},
+        {src: "/images/marketing/couple3.webp", bgColor: "#E3E3E3"},
+        {src: "/images/marketing/couple4.webp", bgColor: "#F89FBA"},
+        {src: "/images/marketing/couple5.webp", bgColor: "#9ED6DF"},
+        {src: "/images/marketing/couple6.webp", bgColor: "#F4CB09"},
+        {src: "/images/marketing/couple7.webp", bgColor: "#9ecee7"},
+        {src: "/images/marketing/couple8.webp", bgColor: "#c96f42"},
     ]
 
     const currentImage = images[currentIndex];

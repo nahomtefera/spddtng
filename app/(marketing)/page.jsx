@@ -1,12 +1,13 @@
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 // _components
-import Navbar from "./_components/navbar"
-import Hero from "./_components/hero"
-import HowItWorks from "./_components/howItWorks"
+import Navbar from "./_components/navbar";
+import Hero from "./_components/hero";
+import HowItWorks from "./_components/howItWorks";
+import UpcomingEvents from "./_components/upcomingEvents";
 //styles
-import "./_components/custom-css.css"
+import "./_components/custom-css.css";
 
 export default function Component() {
   return (
@@ -16,10 +17,12 @@ export default function Component() {
         <section id="hero" className="w-full pt-0">
           <Hero />
         </section>
-        <section id="features" className="w-full pt-12 pb-64 md:pt-24 lg:pt-32 dark:bg-gray-800">
+        <section id="features" className="w-full pt-12 pb-12 md:pt-24 lg:pt-32 dark:bg-gray-800">
           <HowItWorks/>
         </section>
-
+        <section id="upcoming-events" className="w-full pt-12 pb-64 md:pt-24 lg:pt-32 dark:bg-gray-800">
+          <UpcomingEvents />
+        </section>
       </main>
       <footer className="bg-gray-100 p-6 md:py-12 w-full dark:bg-gray-800">
         Footer
