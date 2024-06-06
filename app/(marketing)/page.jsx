@@ -14,7 +14,7 @@ import "./_components/custom-css.css"
 
 export default function Component() {
   return (
-    <div className="flex flex-col min-h-[100dvh]">
+    <div className="flex flex-col">
       <Navbar />
       <main className="flex-1 pt-0">
         <section id="hero" className="w-full pt-0">

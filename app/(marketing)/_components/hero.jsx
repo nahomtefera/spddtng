@@ -31,10 +31,23 @@ export default function Hero() {
 
     return (
         <div
-            className="flex items-center justify-center h-screen transition-colors duration-100 pt-40"
+            className="flex items-center justify-center transition-colors duration-100 pt-40 shadow-sm"
             style={{ backgroundColor: currentImage.bgColor }}
-        >
-            <Image src={currentImage.src} alt="Slideshow image" width={800} height={800} />
+        >   
+            <div className='relative'>
+                <h1 className='absolute -top-10 -left-10 text-6xl text-white font-semibold'>
+                    Spark new <br />
+                    connections this <br />
+                    spring
+                </h1>
+                <Image 
+                    className='hero-img'
+                    src={currentImage.src} 
+                    alt="Slideshow image" 
+                    width={900} 
+                    height={900}
+                />
+            </div>
         </div>
     )
 }
