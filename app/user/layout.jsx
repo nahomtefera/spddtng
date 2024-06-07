@@ -21,8 +21,10 @@ const MarketingLayout = ({children}) => {
                     <MenuIcon className="w-6 h-6" />
                 </Button>
                 {/* Sidebar */}
+                {/* box-shadow:-5px 0px 20px 12px #0813395c */}
                 <div 
-                    className={`bg-primary text-gray-900 py-6 px-4 md:px-6 lg:px-8 lg:pr-20 flex flex-col gap-6 shadow-lg transition-all duration-300 ${
+                    className={`shadow-[-5px_0px_20px_12px_rgba(157,157,157,0)]
+ bg-primary text-gray-900 py-6 px-4 md:px-6 lg:px-10 flex flex-col gap-6 z-10 shadow-gray-400/50 transition-all duration-300 ${
                         isSidebarOpen
                         ? "fixed z-50 w-full h-full sm:block sm:w-full sm:h-full md:static md:w-auto md:h-auto"
                         : "hidden sm:hidden md:block"
@@ -40,103 +42,103 @@ const MarketingLayout = ({children}) => {
 
                     {/* Logo */}
                     <div className="flex items-center justify-center gap-4 md:mt-10 mb-5">
-                    <Link href="/" className="flex items-center gap-2 font-bold text-lg" prefetch={false}>
-                        <MountainIcon className="h-6 w-6" />
-                        <span className="text-light text-white">Speed</span>
-                    </Link>
+                        <Link href="/" className="flex items-center gap-2 font-bold text-lg" prefetch={false}>
+                            <MountainIcon className="h-6 w-6" />
+                            <span className="text-light text-white">Speed</span>
+                        </Link>
                     </div>
                     {/* Avatar */}
                     <div className="flex flex-col items-center gap-4">
-                    <Avatar className="w-[150px] h-[150px] rounded-lg border">
-                        <img src="/images/users/user3.webp" alt="@username" />
-                        <AvatarFallback>JD</AvatarFallback>
-                    </Avatar>
-                    <Button variant="ghost"  className="rounded text-white hover:bg-red-600 hover:text-white">
-                        Logout
-                    </Button>
+                        <Avatar className="w-[150px] h-[150px] rounded-lg border">
+                            <img src="/images/users/user3.webp" alt="@username" />
+                            <AvatarFallback>JD</AvatarFallback>
+                        </Avatar>
+                        <Button variant="ghost"  className="rounded text-white hover:bg-red-600 hover:text-white">
+                            Logout
+                        </Button>
                     </div>
                     {/* Sidebar Links */}
                     <nav className="flex flex-col gap-2 mt-5">
-                    <Link
-                        href="#"
-                        className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors"
-                        prefetch={false}
-                    >
-                        <HomeIcon className="w-5 h-5" />
-                        <span className="text-white">Home</span>
-                    </Link>
-                    <Link
-                        href="#"
-                        className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors"
-                        prefetch={false}
-                    >
-                        <LayoutDashboardIcon className="w-5 h-5" />
-                        <span className="text-white">Dashboard</span>
-                    </Link>
-                    <Link
-                        href="#"
-                        className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors"
-                        prefetch={false}
-                    >
-                        <CalendarIcon className="w-5 h-5" />
-                        <span className="text-white">Attended Events</span>
-                    </Link>
-                    <Link
-                        href="#"
-                        className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors"
-                        prefetch={false}
-                    >
-                        <CalendarIcon className="w-5 h-5" />
-                        <span className="text-white">Upcoming Events</span>
-                    </Link>
-                    <Link
-                        href="#"
-                        className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors"
-                        prefetch={false}
-                    >
-                        <HeartIcon className="w-5 h-5" />
-                        <span className="text-white">Matches</span>
-                    </Link>
-                    <Link
-                        href="#"
-                        className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors"
-                        prefetch={false}
-                    >
-                        <UserIcon className="w-5 h-5" />
-                        <span className="text-white">Profile</span>
-                    </Link>
-                    <Link
-                        href="#"
-                        className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors"
-                        prefetch={false}
-                    >
-                        <CompassIcon className="w-5 h-5" />
-                        <span className="text-white">Matchmaking</span>
-                    </Link>
-                    <Link
-                        href="#"
-                        className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors"
-                        prefetch={false}
-                    >
-                        <BookIcon className="w-5 h-5" />
-                        <span className="text-white">Advice</span>
-                    </Link>
-                    <Link
-                        href="#"
-                        className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors"
-                        prefetch={false}
-                    >
-                        <InfoIcon className="w-5 h-5" />
-                        <span className="text-white">How It Works</span>
-                    </Link>
-                    <Link
-                        href="#"
-                        className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors"
-                        prefetch={false}
-                    >
-                        <SettingsIcon className="w-5 h-5" />
-                        <span className="text-white">Account Settings</span>
-                    </Link>
+                        <Link
+                            href="#"
+                            className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors"
+                            prefetch={false}
+                        >
+                            <HomeIcon className="w-5 h-5" />
+                            <span className="text-white">Home</span>
+                        </Link>
+                        <Link
+                            href="#"
+                            className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors"
+                            prefetch={false}
+                        >
+                            <LayoutDashboardIcon className="w-5 h-5" />
+                            <span className="text-white">Dashboard</span>
+                        </Link>
+                        <Link
+                            href="#"
+                            className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors"
+                            prefetch={false}
+                        >
+                            <CalendarIcon className="w-5 h-5" />
+                            <span className="text-white">Attended Events</span>
+                        </Link>
+                        <Link
+                            href="#"
+                            className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors"
+                            prefetch={false}
+                        >
+                            <CalendarIcon className="w-5 h-5" />
+                            <span className="text-white">Upcoming Events</span>
+                        </Link>
+                        <Link
+                            href="#"
+                            className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors"
+                            prefetch={false}
+                        >
+                            <HeartIcon className="w-5 h-5" />
+                            <span className="text-white">Matches</span>
+                        </Link>
+                        <Link
+                            href="#"
+                            className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors"
+                            prefetch={false}
+                        >
+                            <UserIcon className="w-5 h-5" />
+                            <span className="text-white">Profile</span>
+                        </Link>
+                        <Link
+                            href="#"
+                            className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors"
+                            prefetch={false}
+                        >
+                            <CompassIcon className="w-5 h-5" />
+                            <span className="text-white">Matchmaking</span>
+                        </Link>
+                        <Link
+                            href="#"
+                            className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors"
+                            prefetch={false}
+                        >
+                            <BookIcon className="w-5 h-5" />
+                            <span className="text-white">Advice</span>
+                        </Link>
+                        <Link
+                            href="#"
+                            className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors"
+                            prefetch={false}
+                        >
+                            <InfoIcon className="w-5 h-5" />
+                            <span className="text-white">How It Works</span>
+                        </Link>
+                        <Link
+                            href="#"
+                            className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors"
+                            prefetch={false}
+                        >
+                            <SettingsIcon className="w-5 h-5" />
+                            <span className="text-white">Account Settings</span>
+                        </Link>
                     </nav>
                 </div>
 
