@@ -42,7 +42,7 @@ export default function Hero() {
             <div 
                 className={`carousel-background absolute w-full h-full inset-0 bg-cover bg-center`}
                 style={{ backgroundColor: images[current].bgColor }}
-            ></div>
+            />
             <div 
                 className={`carousel-background absolute w-full h-full inset-0 bg-cover bg-center blur-[15px]`}
                 style={{ backgroundImage: `url(${images[current].src})`, backgroundColor: images[current].bgColor }}
@@ -55,18 +55,15 @@ export default function Hero() {
                     className="w-full h-full object-cover"
                 />
             </div>
+
             <Carousel 
-                plugins={[
-                    Autoplay({
-                    delay: 5000,
-                    }),
-                ]}
+                plugins={[Autoplay({delay: 5000,}),]}
                 setApi={setApi}
                 className="relative z-10 px-4 py-12 sm:px-6 lg:px-8 pb-0 max-w-6xl mx-auto"
-                
             >
                 
                 <div className="relative z-10 px-4 py-12 sm:px-6 lg:px-8 pb-0">
+                    
                     <CarouselContent>
                         {images.map((image, i) => (
                         <CarouselItem key={i}>
@@ -91,6 +88,11 @@ export default function Hero() {
                         <ChevronRightIcon className="w-6 h-6" />
                         <span className="sr-only">Next</span>
                     </CarouselNext> */}
+                    <h1 className='absolute md:text-6xl text-4xl bottom-10 left-10 sm:left-20 md:left-20   text-white font-semibold'>
+                        Spark new <br />
+                        connections this <br />
+                        summer
+                    </h1>
                 </div>
                 
             </Carousel>
