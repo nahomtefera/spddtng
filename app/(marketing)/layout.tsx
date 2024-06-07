@@ -4,7 +4,7 @@ import React from "react";
 const MarketingLayout = ({children}: {children: React.ReactNode}) => {
     return ( 
         <div className="h-full dark:dark-background">
-            <main className="h-full pt-40">
+            <main className="h-full">
                 {children}
             </main>
         </div>
