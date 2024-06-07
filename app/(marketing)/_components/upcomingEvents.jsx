@@ -69,9 +69,16 @@ export default function UpcomingEvents() {
                     return( 
                         <Card key={event.id} className="overflow-hidden rounded-lg cursor-pointer shadow-xs hover:shadow-sm transition-transform duration-300 ease-in-out hover:-translate-y-2">
                             <div className="relative">
-                                <div className="absolute top-4 left-4 bg-[#e91e63] font-semibold text-white px-3 py-1 rounded-md text-sm font-medium dark:bg-gray-50 dark:text-gray-900">
-                                    {event.city}
+                                <div className="absolute top-4 left-4 flex items-center gap-4">
+                                  <div className=" bg-[#fff] font-semibold text-black px-3 py-1 rounded-md text-sm font-medium dark:bg-gray-50 dark:text-gray-900">
+                                      {event.city}
+                                  </div>
+                                  <div className="flex items-center gap-2 bg-[#000000] font-semibold text-white px-3 py-1 rounded-md text-sm font-medium dark:bg-gray-50 dark:text-gray-900">
+                                      <UserIcon className="h-4 w-4" />
+                                      {event.ageRange}
+                                  </div>
                                 </div>
+                                
                                 <Image
                                     src={event.imgSrc}
                                     alt="Event 1"
