@@ -38,11 +38,14 @@ export default function Hero() {
     ]
 
     return (
-        <div className="relative w-full mx-auto pb-0">
+        <div className="relative w-full mx-auto pt-5 pb-0">
             <div 
-                className={`carousel-background absolute w-full h-full inset-0 bg-cover bg-center blur-[50px]`}
+                className={`carousel-background absolute w-full h-full inset-0 bg-cover bg-center`}
+                style={{ backgroundColor: images[current].bgColor }}
+            ></div>
+            <div 
+                className={`carousel-background absolute w-full h-full inset-0 bg-cover bg-center blur-[15px]`}
                 style={{ backgroundImage: `url(${images[current].src})`, backgroundColor: images[current].bgColor }}
-
             >
                 <img
                     // src={images[current].src}
