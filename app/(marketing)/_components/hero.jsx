@@ -79,15 +79,16 @@ export default function Hero() {
                         </CarouselItem>
                         ))}
                     </CarouselContent>
-                    <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 z-10">
+                    {/* navigation */}
+                    {/* <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 z-10">
                         <ChevronLeftIcon className="w-6 h-6" />
                         <span className="sr-only">Previous</span>
                     </CarouselPrevious>
                     <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 z-10">
                         <ChevronRightIcon className="w-6 h-6" />
                         <span className="sr-only">Next</span>
-                    </CarouselNext>
-                    </div>
+                    </CarouselNext> */}
+                </div>
                 
             </Carousel>
         </div>

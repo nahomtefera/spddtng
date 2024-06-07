@@ -9,6 +9,10 @@
     object-position: top;
 }
 
+.carousel-background {
+    transition: all 1.5s ease;
+}
+
 .carousel-background::before {
     content: "";
     position: absolute;
@@ -19,8 +23,8 @@
     background-size: cover;
     background-position: center;
     backdrop-filter: blur(50px);
-    z-index: -1; /* Ensure it's behind the content */
-    transition: all 1.5s ease;
+    z-index: -1;
+    transition: background-image 1.5s ease-in-out;
 }
 
 .blurred-background {
