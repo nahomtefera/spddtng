@@ -15,7 +15,7 @@ export default function Component() {
     <div className="flex flex-col">
       <Navbar />
       <main className="flex-1 pt-0">
-        <section id="hero" className="w-full pt-0">
+        <section id="hero" className="w-full pt-0 overflow-hidden">
           <Hero />
         </section>
         <section id="features" className="w-full pt-12 pb-12 md:pt-24 lg:pt-32 dark:bg-gray-800">

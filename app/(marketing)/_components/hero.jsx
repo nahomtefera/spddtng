@@ -1,20 +1,30 @@
 'use client';
-
+import React from 'react';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel"
+import Autoplay from "embla-carousel-autoplay";
+import useEmblaCarousel from "embla-carousel-react";
 
 export default function Hero() {
-
-    const [currentIndex, setCurrentIndex] = useState(0)
-
-    useEffect(() => {
-        const interval = setInterval(() => {
-          setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-        }, 5000); // Change image every 5 seconds
+    const [api, setApi] = React.useState(null)
+    const [current, setCurrent] = React.useState(0)
+    const [count, setCount] = React.useState(0)
     
-        return () => clearInterval(interval);
-      }, []);
+    React.useEffect(() => {
+        if (!api) {
+            return
+        }
     
+        setCount(api.scrollSnapList().length)
+        setCurrent(api.selectedScrollSnap())
+    
+        api.on("select", () => {
+            console.log('api slidesInView: ', api.slidesInView())
+            setCurrent(api.selectedScrollSnap())
+            console.log('api: ', api.selectedScrollSnap())
+        })
+    }, [api])
 
     const images = [
         {src: "/images/marketing/couple1.webp", bgColor: "#E098A2"},
@@ -27,27 +37,99 @@ export default function Hero() {
         {src: "/images/marketing/couple8.webp", bgColor: "#c96f42"},
     ]
 
-    const currentImage = images[currentIndex];
-
     return (
-        <div
-            className="flex items-center justify-center transition-colors duration-100 pt-40 shadow-sm"
-            style={{ backgroundColor: currentImage.bgColor }}
-        >   
-            <div className='relative'>
-                <h1 className='absolute -top-10 -left-10 text-6xl text-white font-semibold'>
-                    Spark new <br />
-                    connections this <br />
-                    spring
-                </h1>
-                <Image 
-                    className='hero-img'
-                    src={currentImage.src} 
-                    alt="Slideshow image" 
-                    width={900} 
-                    height={900}
+        <div className="relative w-full mx-auto pb-0">
+            <div 
+                className={`carousel-background absolute w-full h-full inset-0 bg-cover bg-center blur-[50px]`}
+                style={{ backgroundImage: `url(${images[current].src})`, backgroundColor: images[current].bgColor }}
+
+            >
+                <img
+                    // src={images[current].src}
+                    alt="Carousel background"
+                    width={800}
+                    height={800}
+                    className="w-full h-full object-cover"
                 />
             </div>
+            <Carousel 
+                plugins={[
+                    Autoplay({
+                    delay: 5000,
+                    }),
+                ]}
+                setApi={setApi}
+                className="relative z-10 px-4 py-12 sm:px-6 lg:px-8 pb-0 max-w-6xl mx-auto"
+                
+            >
+                
+                <div className="relative z-10 px-4 py-12 sm:px-6 lg:px-8 pb-0">
+                    <CarouselContent>
+                        {images.map((image, i) => (
+                        <CarouselItem key={i}>
+                            <div className="flex flex-col items-center justify-center h-[500px] sm:h-[600px] rounded-lg rounded-b-none overflow-hidden">
+                            <img
+                                src={image.src}
+                                alt={`Carousel image ${i + 1}`}
+                                width={800}
+                                height={800}
+                                className="w-full h-full object-cover"
+                            />
+                            </div>
+                        </CarouselItem>
+                        ))}
+                    </CarouselContent>
+                    <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 z-10">
+                        <ChevronLeftIcon className="w-6 h-6" />
+                        <span className="sr-only">Previous</span>
+                    </CarouselPrevious>
+                    <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 z-10">
+                        <ChevronRightIcon className="w-6 h-6" />
+                        <span className="sr-only">Next</span>
+                    </CarouselNext>
+                    </div>
+                
+            </Carousel>
         </div>
+    )
+}
+
+
+function ChevronLeftIcon(props) {
+    return (
+      <svg
+        {...props}
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="m15 18-6-6 6-6" />
+      </svg>
+    )
+}
+  
+  
+function ChevronRightIcon(props) {
+    return (
+        <svg
+        {...props}
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        >
+        <path d="m9 18 6-6-6-6" />
+        </svg>
     )
 }
