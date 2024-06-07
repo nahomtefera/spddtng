@@ -3,9 +3,8 @@ import React from "react";
 
 const MarketingLayout = ({children}: {children: React.ReactNode}) => {
     return ( 
-        <div className="dark:dark-background">
-            {/* <Navbar /> */}
-            <main >
+        <div className="h-full dark:dark-background">
+            <main className="h-full pt-40">
                 {children}
             </main>
         </div>

@@ -1,7 +1,3 @@
-'use client';
-
-import { useState } from "react";
-
 import Link from "next/link"
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
@@ -9,140 +5,9 @@ import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuLab
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 
 export default function Component() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
 
   return (
-    <div className="flex min-h-screen">
-        {/* Toggle Sidebar button */}
-        <Button
-            variant="ghost"
-            size="icon"
-            className="rounded-full md:hidden absolute top-0 right-0"
-            onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-        >
-            <MenuIcon className="w-6 h-6" />
-        </Button>
-
-      <div 
-          className={`bg-black text-gray-900 py-6 px-4 md:px-6 lg:px-8 flex flex-col gap-6 shadow-lg transition-all duration-300 ${
-            isSidebarOpen
-              ? "fixed z-50 w-full h-full sm:block sm:w-full sm:h-full md:static md:w-auto md:h-auto"
-              : "hidden sm:hidden md:block"
-          }`}
-      >
-        <Button
-            variant="ghost"
-            size="icon"
-            className="rounded-full md:hidden absolute top-1 right-1"
-            onClick={() => setIsSidebarOpen(false)}
-        >
-            <XIcon className="w-6 h-6" /> {/* Replace with an appropriate close icon */}
-        </Button>
-
-        {/* Logo */}
-        <div className="flex items-center justify-center gap-4 mb-5">
-          <Link href="#" className="flex items-center gap-2 font-bold text-lg" prefetch={false}>
-            <MountainIcon className="h-6 w-6" />
-            <span className="text-light text-white">Speed</span>
-          </Link>
-        </div>
-        {/* Avatar */}
-        <div className="flex flex-col items-center gap-4">
-          <Avatar className="w-[150px] h-[150px] rounded-lg border">
-            <img src="/images/users/user5.webp" alt="@username" />
-            <AvatarFallback>JD</AvatarFallback>
-          </Avatar>
-          <Button variant="ghost" size="icon" className="rounded-full text-white">
-            Logout
-          </Button>
-        </div>
-        {/* Sidebar Links */}
-        <nav className="flex flex-col gap-2">
-          <Link
-            href="#"
-            className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors"
-            prefetch={false}
-          >
-            <HomeIcon className="w-5 h-5" />
-            <span className="text-white">Home</span>
-          </Link>
-          <Link
-            href="#"
-            className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors"
-            prefetch={false}
-          >
-            <LayoutDashboardIcon className="w-5 h-5" />
-            <span className="text-white">Dashboard</span>
-          </Link>
-          <Link
-            href="#"
-            className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors"
-            prefetch={false}
-          >
-            <CalendarIcon className="w-5 h-5" />
-            <span className="text-white">Attended Events</span>
-          </Link>
-          <Link
-            href="#"
-            className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors"
-            prefetch={false}
-          >
-            <CalendarIcon className="w-5 h-5" />
-            <span className="text-white">Upcoming Events</span>
-          </Link>
-          <Link
-            href="#"
-            className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors"
-            prefetch={false}
-          >
-            <UsersIcon className="w-5 h-5" />
-            <span className="text-white">Matches</span>
-          </Link>
-          <Link
-            href="#"
-            className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors"
-            prefetch={false}
-          >
-            <UserIcon className="w-5 h-5" />
-            <span className="text-white">Profile</span>
-          </Link>
-          <Link
-            href="#"
-            className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors"
-            prefetch={false}
-          >
-            <CompassIcon className="w-5 h-5" />
-            <span className="text-white">Matchmaking</span>
-          </Link>
-          <Link
-            href="#"
-            className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors"
-            prefetch={false}
-          >
-            <BookIcon className="w-5 h-5" />
-            <span className="text-white">Advice</span>
-          </Link>
-          <Link
-            href="#"
-            className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors"
-            prefetch={false}
-          >
-            <InfoIcon className="w-5 h-5" />
-            <span className="text-white">How It Works</span>
-          </Link>
-          <Link
-            href="#"
-            className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors"
-            prefetch={false}
-          >
-            <SettingsIcon className="w-5 h-5" />
-            <span className="text-white">Account Settings</span>
-          </Link>
-        </nav>
-      </div>
-
-      {/* Content */}
-      <div className="flex-1 bg-gray-100 dark:bg-gray-950 py-6 px-4 md:px-6 lg:px-8 overflow-y-auto">
+    <div className="flex-1 bg-[#fbfbfb] dark:bg-gray-950 py-6 px-4 md:px-6 lg:px-8 overflow-y-auto">
         <div className="max-w-6xl mx-auto">
           <div className="flex items-center justify-between mb-6">
             <div className="flex flex-col items-start">
@@ -150,56 +15,26 @@ export default function Component() {
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Upcoming Events */}
-            <Card>
-              <CardHeader className="flex items-baseline justify-between">
-                <CardTitle className="text-left">Upcoming Events</CardTitle>
-                <Link href="#" className="text-primary" prefetch={false}>
-                  View All
-                </Link>
-              </CardHeader>
-              <CardContent>
-                <div className="grid gap-4">
-                  <div className="flex items-center gap-4">
-                    <img src="/images/app/restaurant2.webp" width="64" height="64" className="object-cover rounded-md" alt="Event" />
-                    <div className="flex-1">
-                      <h3 className="font-semibold">Speed Dating Event</h3>
-                      <p className="text-sm text-gray-500 dark:text-gray-400">June 15, 2023 - 7:00 PM</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-4">
-                    <img src="/images/app/restaurant1.webp" width="64" height="64" className="object-cover rounded-md" alt="Event" />
-                    <div className="flex-1">
-                      <h3 className="font-semibold">Cocktail Mixer</h3>
-                      <p className="text-sm text-gray-500 dark:text-gray-400">July 1, 2023 - 8:00 PM</p>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
             {/* Matches */}
             <Card>
               <CardHeader className="flex items-baseline justify-between">
-                <CardTitle className="text-left">Matches</CardTitle>
-                <Link href="#" className="text-primary" prefetch={false}>
-                  View All
-                </Link>
+                <CardTitle className="text-left">Recent Matches</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="grid gap-4">
                   <div className="flex items-center gap-4">
-                    <Avatar className="w-12 h-12 rounded-lg border">
-                      <img src="/images/users/user7.webp" alt="@username" />
+                    <Avatar className="w-16 h-16 rounded-lg border">
+                      <img src="/images/users/user2.webp" alt="@username" />
                       <AvatarFallback>JD</AvatarFallback>
                     </Avatar>
                     <div className="flex-1">
-                      <h3 className="font-semibold">John Doe</h3>
+                      <h3 className="font-semibold">Jada Doe</h3>
                       <p className="text-sm text-gray-500 dark:text-gray-400">Matched on June 1, 2023</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-4">
-                    <Avatar className="w-12 h-12 rounded-lg border">
-                      <img src="/images/users/user3.webp" alt="@username" />
+                    <Avatar className="w-16 h-16 rounded-lg border">
+                      <img src="/images/users/user4.webp" alt="@username" />
                       <AvatarFallback>JS</AvatarFallback>
                     </Avatar>
                     <div className="flex-1">
@@ -207,55 +42,111 @@ export default function Component() {
                       <p className="text-sm text-gray-500 dark:text-gray-400">Matched on May 15, 2023</p>
                     </div>
                   </div>
+                  <div className="flex items-center gap-4">
+                    <Avatar className="w-16 h-16 rounded-lg border">
+                      <img src="/images/users/user1.webp" alt="@username" />
+                      <AvatarFallback>JS</AvatarFallback>
+                    </Avatar>
+                    <div className="flex-1">
+                      <h3 className="font-semibold">Sara Smith</h3>
+                      <p className="text-sm text-gray-500 dark:text-gray-400">Matched on May 15, 2023</p>
+                    </div>
+                  </div>
                 </div>
+
+                <Link href="#" className="text-primary" prefetch={false}>
+                    <Button className="w-full mt-5">All Matches</Button>
+                </Link>
               </CardContent>
+            </Card>
+            {/* Upcoming Events */}
+            <Card>
+              <CardHeader className="flex items-baseline justify-between">
+                <CardTitle className="text-left">Upcoming Events</CardTitle>
+                
+              </CardHeader>
+              <CardContent>
+                <div className="grid gap-4">
+                  <div className="flex items-center gap-4">
+                    <img src="/images/app/restaurant2.webp" width="64" height="64" className="object-cover rounded-md w-16 h-16" alt="Event" />
+                    <div className="flex-1">
+                      <h3 className="font-semibold">Speed Dating Event</h3>
+                      <p className="text-sm text-gray-500 dark:text-gray-400">June 15, 2023 - 7:00 PM</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <img src="/images/app/restaurant1.webp" width="64" height="64" className="object-cover rounded-md w-16 h-16" alt="Event" />
+                    <div className="flex-1">
+                      <h3 className="font-semibold">Cocktail Mixer</h3>
+                      <p className="text-sm text-gray-500 dark:text-gray-400">July 1, 2023 - 8:00 PM</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <img src="/images/app/restaurant3.webp" width="64" height="64" className="object-cover rounded-md w-16 h-16" alt="Event" />
+                    <div className="flex-1">
+                      <h3 className="font-semibold">Rooftop Mixer</h3>
+                      <p className="text-sm text-gray-500 dark:text-gray-400">July 20, 2023 - 8:00 PM</p>
+                    </div>
+                  </div>
+                </div>
+                
+                <Link href="#" className="text-primary" prefetch={false}>
+                    <Button className="w-full mt-5">All Upcoming Events</Button>
+                </Link>
+              </CardContent>
+              
             </Card>
             {/* Attended Events */}
             <Card>
               <CardHeader className="flex items-baseline justify-between">
                 <CardTitle className="text-left">Attended Events</CardTitle>
-                <Link href="#" className="text-primary" prefetch={false}>
-                  View All
-                </Link>
               </CardHeader>
               <CardContent>
                 <div className="grid gap-4">
                   <div className="flex items-center gap-4">
-                    <img src="/images/app/restaurant4.webp" width="64" height="64" className="rounded-md" alt="Event" />
+                    <img src="/images/app/restaurant4.webp" width="64" height="64" className="object-cover rounded-md w-16 h-16" alt="Event" />
                     <div className="flex-1">
                       <h3 className="font-semibold">Rooftop Mixer</h3>
                       <p className="text-sm text-gray-500 dark:text-gray-400">May 20, 2023</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-4">
-                    <img src="/images/app/restaurant5.webp" width="64" height="64" className="rounded-md" alt="Event" />
+                    <img src="/images/app/restaurant5.webp" width="64" height="64" className="object-cover rounded-md w-16 h-16" alt="Event" />
                     <div className="flex-1">
                       <h3 className="font-semibold">Wine Tasting</h3>
                       <p className="text-sm text-gray-500 dark:text-gray-400">April 10, 2023</p>
                     </div>
                   </div>
+                  <div className="flex items-center gap-4">
+                    <img src="/images/app/restaurant2.webp" width="64" height="64" className="object-cover rounded-md w-16 h-16" alt="Event" />
+                    <div className="flex-1">
+                      <h3 className="font-semibold">Wine Tasting</h3>
+                      <p className="text-sm text-gray-500 dark:text-gray-400">March 12, 2023</p>
+                    </div>
+                  </div>
                 </div>
+
+                <Link href="#" className="text-primary" prefetch={false}>
+                    <Button className="w-full mt-5">All Past Events</Button>
+                </Link>
               </CardContent>
             </Card>
             {/* Advice */}
             <Card>
               <CardHeader className="flex items-baseline justify-between">
                 <CardTitle className="text-left">Advice</CardTitle>
-                <Link href="#" className="text-primary" prefetch={false}>
-                  View All
-                </Link>
               </CardHeader>
               <CardContent>
                 <div className="grid gap-4">
                   <div className="flex items-center gap-4">
-                    <img src="/images/marketing/couple1.webp" width="64" height="64" className="rounded-md" alt="Advice" />
+                    <img src="/images/marketing/couple1.webp" width="64" height="64" className="object-cover rounded-md w-16 h-16" alt="Advice" />
                     <div className="flex-1">
                       <h3 className="font-semibold">How to Make a Great First Impression</h3>
                       <p className="text-sm text-gray-500 dark:text-gray-400">Tips for a successful first date</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-4">
-                    <img src="/images/marketing/couple2.webp" width="64" height="64" className="rounded-md" alt="Advice" />
+                    <img src="/images/marketing/couple2.webp" width="64" height="64" className="object-cover rounded-md w-16 h-16" alt="Advice" />
                     <div className="flex-1">
                       <h3 className="font-semibold">Navigating the Modern Dating Landscape</h3>
                       <p className="text-sm text-gray-500 dark:text-gray-400">
@@ -264,288 +155,14 @@ export default function Component() {
                     </div>
                   </div>
                 </div>
+
+                <Link href="#" className="text-primary" prefetch={false}>
+                    <Button className="w-full mt-5">See All</Button>
+                </Link>
               </CardContent>
             </Card>
           </div>
         </div>
       </div>
-    </div>
   )
 }
-
-function BookIcon(props) {
-    return (
-      <svg
-        {...props}
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="white"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" />
-      </svg>
-    )
-  }
-  
-  
-  function CalendarIcon(props) {
-    return (
-      <svg
-        {...props}
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="white"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M8 2v4" />
-        <path d="M16 2v4" />
-        <rect width="18" height="18" x="3" y="4" rx="2" />
-        <path d="M3 10h18" />
-      </svg>
-    )
-  }
-  
-  
-  function CompassIcon(props) {
-    return (
-      <svg
-        {...props}
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="white"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z" />
-        <circle cx="12" cy="12" r="10" />
-      </svg>
-    )
-  }
-  
-  
-  function HomeIcon(props) {
-    return (
-      <svg
-        {...props}
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="white"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-        <polyline points="9 22 9 12 15 12 15 22" />
-      </svg>
-    )
-  }
-  
-  
-  function InfoIcon(props) {
-    return (
-      <svg
-        {...props}
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="white"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <circle cx="12" cy="12" r="10" />
-        <path d="M12 16v-4" />
-        <path d="M12 8h.01" />
-      </svg>
-    )
-  }
-  
-  
-  function LayoutDashboardIcon(props) {
-    return (
-      <svg
-        {...props}
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="white"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <rect width="7" height="9" x="3" y="3" rx="1" />
-        <rect width="7" height="5" x="14" y="3" rx="1" />
-        <rect width="7" height="9" x="14" y="12" rx="1" />
-        <rect width="7" height="5" x="3" y="16" rx="1" />
-      </svg>
-    )
-  }
-  
-  
-  function MenuIcon(props) {
-    return (
-      <svg
-        {...props}
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="black"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <line x1="4" x2="20" y1="12" y2="12" />
-        <line x1="4" x2="20" y1="6" y2="6" />
-        <line x1="4" x2="20" y1="18" y2="18" />
-      </svg>
-    )
-  }
-  
-  function XIcon(props) {
-    return (
-      <svg
-        {...props}
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="white"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M18 6 6 18" />
-        <path d="m6 6 12 12" />
-      </svg>
-    )
-  }
-  
-  function Package2Icon(props) {
-    return (
-      <svg
-        {...props}
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="white"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M3 9h18v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9Z" />
-        <path d="m3 9 2.45-4.9A2 2 0 0 1 7.24 3h9.52a2 2 0 0 1 1.8 1.1L21 9" />
-        <path d="M12 3v6" />
-      </svg>
-    )
-  }
-  
-  
-  function SettingsIcon(props) {
-    return (
-      <svg
-        {...props}
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="white"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" />
-        <circle cx="12" cy="12" r="3" />
-      </svg>
-    )
-  }
-  
-  
-  function UserIcon(props) {
-    return (
-      <svg
-        {...props}
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="white"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
-        <circle cx="12" cy="7" r="4" />
-      </svg>
-    )
-  }
-  
-  
-  function UsersIcon(props) {
-    return (
-      <svg
-        {...props}
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="white"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-        <circle cx="9" cy="7" r="4" />
-        <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-      </svg>
-    )
-  }
-
-  
-function MountainIcon(props) {
-    return (
-      <svg
-        {...props}
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="white"
-        stroke="white"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="m8 3 4 8 5-5 5 15H2L8 3z" />
-      </svg>
-    )
-  }
