@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
+import Link from "next/link"
 
 export default function Component() {
   const events = [
@@ -290,9 +291,11 @@ export default function Component() {
               </div>
             </div>
             <div className="mt-auto align-bottom">
-              <Button variant="default" className="w-full">
-                View Scorecard
-              </Button>
+              <Link href="/user/attended-events/scorecard" prefetch={false}>
+                <Button variant="default" className="w-full">
+                    View Scorecard
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
