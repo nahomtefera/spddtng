@@ -98,7 +98,7 @@ const MarketingLayout = ({children}) => {
                             <span className="text-white">Dashboard</span>
                         </Link> */}
                         <Link
-                            href="#"
+                            href="/user/attended-events"
                             className={`flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors ${isActive('/user/attended-events') ? 'bg-gray-800' : 'hover:bg-gray-800'}`}
                             prefetch={false}
                         >
