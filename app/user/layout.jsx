@@ -3,10 +3,14 @@
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button"
 import Link from "next/link";
+import { usePathname } from 'next/navigation';
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 const MarketingLayout = ({children}) => {
-    const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    const pathname = usePathname();
+
+    const isActive = (path) => pathname === path;
 
     return ( 
         <div className="dark:dark-background">
@@ -60,24 +64,26 @@ const MarketingLayout = ({children}) => {
                     {/* Sidebar Links */}
                     <nav className="flex flex-col gap-2 mt-5">
                         <Link
-                            href="#"
-                            className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors"
+                            href="/user"
+                            className={`flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors ${isActive('/user') ? 'bg-gray-800' : 'hover:bg-gray-800'}`}
+                            
                             prefetch={false}
                         >
                             <HomeIcon className="w-5 h-5" />
                             <span className="text-white">Home</span>
                         </Link>
                         <Link
-                            href="#"
-                            className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors"
+                            href="/user/my-profile"
+                            className={`flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors ${isActive('/user/my-profile') ? 'bg-gray-800' : 'hover:bg-gray-800'}`}
+                            
                             prefetch={false}
                         >
                             <UserIcon className="w-5 h-5" />
                             <span className="text-white">My Profile</span>
                         </Link>
                         <Link
-                            href="#"
-                            className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors"
+                            href="/user/matches"
+                            className={`flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors ${isActive('/user/matches') ? 'bg-gray-800' : 'hover:bg-gray-800'}`}
                             prefetch={false}
                         >
                             <HeartIcon className="w-5 h-5" />
@@ -93,7 +99,7 @@ const MarketingLayout = ({children}) => {
                         </Link> */}
                         <Link
                             href="#"
-                            className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors"
+                            className={`flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors ${isActive('/user/attended-events') ? 'bg-gray-800' : 'hover:bg-gray-800'}`}
                             prefetch={false}
                         >
                             <CalendarCheckIcon className="w-5 h-5" />
@@ -101,7 +107,7 @@ const MarketingLayout = ({children}) => {
                         </Link>
                         <Link
                             href="#"
-                            className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors"
+                            className={`flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors ${isActive('/user/upcoming-events') ? 'bg-gray-800' : 'hover:bg-gray-800'}`}
                             prefetch={false}
                         >
                             <CalendarIcon className="w-5 h-5" />
@@ -109,7 +115,7 @@ const MarketingLayout = ({children}) => {
                         </Link>
                         <Link
                             href="#"
-                            className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors"
+                            className={`flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors ${isActive('/user/matchmaking') ? 'bg-gray-800' : 'hover:bg-gray-800'}`}
                             prefetch={false}
                         >
                             <CompassIcon className="w-5 h-5" />
@@ -117,7 +123,7 @@ const MarketingLayout = ({children}) => {
                         </Link>
                         <Link
                             href="#"
-                            className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors"
+                            className={`flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors ${isActive('/user/advice') ? 'bg-gray-800' : 'hover:bg-gray-800'}`}
                             prefetch={false}
                         >
                             <BookIcon className="w-5 h-5" />
@@ -125,7 +131,7 @@ const MarketingLayout = ({children}) => {
                         </Link>
                         <Link
                             href="#"
-                            className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors"
+                            className={`flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors ${isActive('/user/how-it-works') ? 'bg-gray-800' : 'hover:bg-gray-800'}`}
                             prefetch={false}
                         >
                             <InfoIcon className="w-5 h-5" />
@@ -133,7 +139,7 @@ const MarketingLayout = ({children}) => {
                         </Link>
                         <Link
                             href="#"
-                            className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors"
+                            className={`flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors ${isActive('/user/account-settings') ? 'bg-gray-800' : 'hover:bg-gray-800'}`}
                             prefetch={false}
                         >
                             <SettingsIcon className="w-5 h-5" />
