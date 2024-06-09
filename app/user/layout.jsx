@@ -66,7 +66,7 @@ const MarketingLayout = ({children}) => {
                         <Link
                             href="/user"
                             className={`flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors ${isActive('/user') ? 'bg-gray-800' : 'hover:bg-gray-800'}`}
-                            
+                            onClick={() => setIsSidebarOpen(false)}
                             prefetch={false}
                         >
                             <HomeIcon className="w-5 h-5" />
@@ -75,7 +75,7 @@ const MarketingLayout = ({children}) => {
                         <Link
                             href="/user/my-profile"
                             className={`flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors ${isActive('/user/my-profile') ? 'bg-gray-800' : 'hover:bg-gray-800'}`}
-                            
+                            onClick={() => setIsSidebarOpen(false)}
                             prefetch={false}
                         >
                             <UserIcon className="w-5 h-5" />
@@ -84,6 +84,7 @@ const MarketingLayout = ({children}) => {
                         <Link
                             href="/user/matches"
                             className={`flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors ${isActive('/user/matches') ? 'bg-gray-800' : 'hover:bg-gray-800'}`}
+                            onClick={() => setIsSidebarOpen(false)}
                             prefetch={false}
                         >
                             <HeartIcon className="w-5 h-5" />
@@ -100,6 +101,7 @@ const MarketingLayout = ({children}) => {
                         <Link
                             href="/user/attended-events"
                             className={`flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors ${isActive('/user/attended-events') ? 'bg-gray-800' : 'hover:bg-gray-800'}`}
+                            onClick={() => setIsSidebarOpen(false)}
                             prefetch={false}
                         >
                             <CalendarCheckIcon className="w-5 h-5" />
@@ -108,6 +110,7 @@ const MarketingLayout = ({children}) => {
                         <Link
                             href="#"
                             className={`flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors ${isActive('/user/upcoming-events') ? 'bg-gray-800' : 'hover:bg-gray-800'}`}
+                            onClick={() => setIsSidebarOpen(false)}
                             prefetch={false}
                         >
                             <CalendarIcon className="w-5 h-5" />
@@ -140,6 +143,7 @@ const MarketingLayout = ({children}) => {
                         <Link
                             href="#"
                             className={`flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors ${isActive('/user/account-settings') ? 'bg-gray-800' : 'hover:bg-gray-800'}`}
+                            onClick={() => setIsSidebarOpen(false)}
                             prefetch={false}
                         >
                             <SettingsIcon className="w-5 h-5" />
