@@ -23,7 +23,12 @@ export default function Navbar() {
                 Events
               </Link>
             </nav>
-            <Button>Get Started</Button>
+            <div className="flex gap-2">
+              <Link href="/user" className="text-md font-semibold hover:text-[#bd744b]" prefetch={false}>
+                <Button variant="default">Login</Button>
+              </Link>
+              <Button variant="outline">Get Started</Button>
+            </div>
         </div>
       </header>
     )
