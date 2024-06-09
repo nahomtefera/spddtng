@@ -172,13 +172,25 @@ export default function Component() {
             className="bg-white dark:bg-gray-950 rounded-lg overflow-hidden shadow-lg cursor-pointer hover:shadow-xl transition-shadow"
             onClick={() => handleEventClick(event)}
           >
-            <img
-              src={event.image}
-              alt={event.title}
-              width={400}
-              height={225}
-              className="w-full h-48 object-cover"
-            />
+            <div className="relative">
+                <div className="absolute top-4 left-4 flex items-center gap-4">
+                    <div className=" bg-[#fff] font-semibold text-black px-3 py-1 rounded-md text-sm  dark:bg-gray-50 dark:text-gray-900">
+                        {event.city}
+                    </div>
+                    <div className="flex items-center gap-2 bg-[#26309f] font-semibold text-white px-3 py-1 rounded-md text-sm  dark:bg-gray-50 dark:text-gray-900">
+                        <UserIcon className="h-4 w-4" />
+                        {event.ageRange}
+                    </div>
+                </div>
+                <img
+                    src={event.image}
+                    alt={event.title}
+                    width={400}
+                    height={225}
+                    className="w-full h-48 object-cover"
+                    />
+            </div>
+            
             <div className="p-4">
               <h2 className="text-lg font-bold mb-2">{event.title}</h2>
               <div className="flex items-center mb-2">
