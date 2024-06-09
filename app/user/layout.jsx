@@ -14,7 +14,7 @@ const MarketingLayout = ({children}) => {
 
     return ( 
         <div className="dark:dark-background">
-            <div className="flex min-h-screen">
+            <div className="flex min-h-screen max-h-screen">
                 {/* Toggle Sidebar button */}
                 <Button
                     variant="ghost"
@@ -113,30 +113,30 @@ const MarketingLayout = ({children}) => {
                             <CalendarIcon className="w-5 h-5" />
                             <span className="text-white">Upcoming Events</span>
                         </Link>
-                        <Link
+                        {/* <Link
                             href="#"
                             className={`flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors ${isActive('/user/matchmaking') ? 'bg-gray-800' : 'hover:bg-gray-800'}`}
                             prefetch={false}
                         >
                             <CompassIcon className="w-5 h-5" />
                             <span className="text-white">Matchmaking</span>
-                        </Link>
-                        <Link
+                        </Link> */}
+                        {/* <Link
                             href="#"
                             className={`flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors ${isActive('/user/advice') ? 'bg-gray-800' : 'hover:bg-gray-800'}`}
                             prefetch={false}
                         >
                             <BookIcon className="w-5 h-5" />
                             <span className="text-white">Advice</span>
-                        </Link>
-                        <Link
+                        </Link> */}
+                        {/* <Link
                             href="#"
                             className={`flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors ${isActive('/user/how-it-works') ? 'bg-gray-800' : 'hover:bg-gray-800'}`}
                             prefetch={false}
                         >
                             <InfoIcon className="w-5 h-5" />
                             <span className="text-white">How It Works</span>
-                        </Link>
+                        </Link> */}
                         <Link
                             href="#"
                             className={`flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors ${isActive('/user/account-settings') ? 'bg-gray-800' : 'hover:bg-gray-800'}`}
@@ -150,7 +150,11 @@ const MarketingLayout = ({children}) => {
 
                 {/* Content */}
                 <div className="flex-1 bg-[#fbfbfb] dark:bg-gray-950 md:pt-20 py-6 px-4 md:px-6 lg:px-8 overflow-y-auto">
-                    {children}
+                  <section className="w-full py-6 md:py-6 lg:py-6">
+                    <div className="container px-4 md:px-6">
+                      {children}
+                    </div>
+                  </section>
                 </div>
             </div>
         </div>
