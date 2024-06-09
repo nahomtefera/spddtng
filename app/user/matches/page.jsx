@@ -73,13 +73,14 @@ export default function Component() {
   return (
     <>
      <div className="flex flex-col space-y-6 md:space-y-8 lg:space-y-10">
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-6">
         <div>
           <h1 className="text-2xl font-bold tracking-tight">Matches</h1>
           <p className="text-gray-500 dark:text-gray-400">Find your perfect match</p>
         </div>
-        <div className="flex items-center gap-4 mt-4 md:mt-0">
-          <Input type="text" placeholder="Search matches..." className="w-96" />
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-6">
+        
+        <div className="flex flex-wrap items-center gap-4 mt-4 md:mt-0">
+          <Input type="text" placeholder="Search matches..." className="w-full md:w-96" />
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline" className="flex items-center gap-2">
