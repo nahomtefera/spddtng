@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import Link from "next/link";
 import { usePathname } from 'next/navigation';
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import './styles.css'
 
 const MarketingLayout = ({children}) => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -27,7 +28,7 @@ const MarketingLayout = ({children}) => {
                 {/* Sidebar */}
                 {/* box-shadow:-5px 0px 20px 12px #0813395c */}
                 <div 
-                    className={`shadow-[-5px_0px_20px_12px_rgba(157,157,157,0)]
+                    className={`sidebar-background shadow-[-5px_0px_20px_12px_rgba(157,157,157,0)]
  bg-primary text-gray-900 py-6 px-4 md:px-6 lg:px-10 flex flex-col gap-6 z-10 shadow-gray-400/50 transition-all duration-300 ${
                         isSidebarOpen
                         ? "fixed z-50 w-full h-full sm:block sm:w-full sm:h-full md:static md:w-auto md:h-auto"
@@ -65,7 +66,7 @@ const MarketingLayout = ({children}) => {
                     <nav className="flex flex-col gap-2 mt-5">
                         <Link
                             href="/user"
-                            className={`flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors ${isActive('/user') ? 'bg-gray-800' : 'hover:bg-gray-800'}`}
+                            className={`flex items-center gap-2 px-3 py-2 rounded-md hover:bg-[#222783] transition-colors ${isActive('/user') ? 'bg-[#222783]' : 'hover:bg-[#222783]'}`}
                             onClick={() => setIsSidebarOpen(false)}
                             prefetch={false}
                         >
@@ -74,7 +75,7 @@ const MarketingLayout = ({children}) => {
                         </Link>
                         <Link
                             href="/user/my-profile"
-                            className={`flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors ${isActive('/user/my-profile') ? 'bg-gray-800' : 'hover:bg-gray-800'}`}
+                            className={`flex items-center gap-2 px-3 py-2 rounded-md hover:bg-[#222783] transition-colors ${isActive('/user/my-profile') ? 'bg-[#222783]' : 'hover:bg-[#222783]'}`}
                             onClick={() => setIsSidebarOpen(false)}
                             prefetch={false}
                         >
@@ -83,7 +84,7 @@ const MarketingLayout = ({children}) => {
                         </Link>
                         <Link
                             href="/user/matches"
-                            className={`flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors ${isActive('/user/matches') ? 'bg-gray-800' : 'hover:bg-gray-800'}`}
+                            className={`flex items-center gap-2 px-3 py-2 rounded-md hover:bg-[#222783] transition-colors ${isActive('/user/matches') ? 'bg-[#222783]' : 'hover:bg-[#222783]'}`}
                             onClick={() => setIsSidebarOpen(false)}
                             prefetch={false}
                         >
@@ -92,7 +93,7 @@ const MarketingLayout = ({children}) => {
                         </Link>
                         {/* <Link
                             href="#"
-                            className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors"
+                            className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-[#222783] transition-colors"
                             prefetch={false}
                         >
                             <LayoutDashboardIcon className="w-5 h-5" />
@@ -100,7 +101,7 @@ const MarketingLayout = ({children}) => {
                         </Link> */}
                         <Link
                             href="/user/attended-events"
-                            className={`flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors ${isActive('/user/attended-events') ? 'bg-gray-800' : 'hover:bg-gray-800'}`}
+                            className={`flex items-center gap-2 px-3 py-2 rounded-md hover:bg-[#222783] transition-colors ${isActive('/user/attended-events') ? 'bg-[#222783]' : 'hover:bg-[#222783]'}`}
                             onClick={() => setIsSidebarOpen(false)}
                             prefetch={false}
                         >
@@ -109,7 +110,7 @@ const MarketingLayout = ({children}) => {
                         </Link>
                         <Link
                             href="#"
-                            className={`flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors ${isActive('/user/upcoming-events') ? 'bg-gray-800' : 'hover:bg-gray-800'}`}
+                            className={`flex items-center gap-2 px-3 py-2 rounded-md hover:bg-[#222783] transition-colors ${isActive('/user/upcoming-events') ? 'bg-[#222783]' : 'hover:bg-[#222783]'}`}
                             onClick={() => setIsSidebarOpen(false)}
                             prefetch={false}
                         >
@@ -118,7 +119,7 @@ const MarketingLayout = ({children}) => {
                         </Link>
                         {/* <Link
                             href="#"
-                            className={`flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors ${isActive('/user/matchmaking') ? 'bg-gray-800' : 'hover:bg-gray-800'}`}
+                            className={`flex items-center gap-2 px-3 py-2 rounded-md hover:bg-[#222783] transition-colors ${isActive('/user/matchmaking') ? 'bg-[#222783]' : 'hover:bg-[#222783]'}`}
                             prefetch={false}
                         >
                             <CompassIcon className="w-5 h-5" />
@@ -126,7 +127,7 @@ const MarketingLayout = ({children}) => {
                         </Link> */}
                         {/* <Link
                             href="#"
-                            className={`flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors ${isActive('/user/advice') ? 'bg-gray-800' : 'hover:bg-gray-800'}`}
+                            className={`flex items-center gap-2 px-3 py-2 rounded-md hover:bg-[#222783] transition-colors ${isActive('/user/advice') ? 'bg-[#222783]' : 'hover:bg-[#222783]'}`}
                             prefetch={false}
                         >
                             <BookIcon className="w-5 h-5" />
@@ -134,7 +135,7 @@ const MarketingLayout = ({children}) => {
                         </Link> */}
                         {/* <Link
                             href="#"
-                            className={`flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors ${isActive('/user/how-it-works') ? 'bg-gray-800' : 'hover:bg-gray-800'}`}
+                            className={`flex items-center gap-2 px-3 py-2 rounded-md hover:bg-[#222783] transition-colors ${isActive('/user/how-it-works') ? 'bg-[#222783]' : 'hover:bg-[#222783]'}`}
                             prefetch={false}
                         >
                             <InfoIcon className="w-5 h-5" />
@@ -142,7 +143,7 @@ const MarketingLayout = ({children}) => {
                         </Link> */}
                         <Link
                             href="#"
-                            className={`flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-800 transition-colors ${isActive('/user/account-settings') ? 'bg-gray-800' : 'hover:bg-gray-800'}`}
+                            className={`flex items-center gap-2 px-3 py-2 rounded-md hover:bg-[#222783] transition-colors ${isActive('/user/account-settings') ? 'bg-[#222783]' : 'hover:bg-[#222783]'}`}
                             onClick={() => setIsSidebarOpen(false)}
                             prefetch={false}
                         >
