@@ -358,7 +358,7 @@ const [sortBy, setSortBy] = useState("newest")
                     <div className=" bg-[#fff] font-semibold text-black px-3 py-1 rounded-md text-sm  dark:bg-gray-50 dark:text-gray-900">
                         {event.city}
                     </div>
-                    <div className="flex items-center gap-2 bg-[#fff]  text-black font-semibold text-white px-3 py-1 rounded-md text-sm  dark:bg-gray-50 dark:text-gray-900">
+                    <div className="flex items-center gap-2 bg-[#fff]  text-black font-semibold px-3 py-1 rounded-md text-sm  dark:bg-gray-50 dark:text-gray-900">
                         <UserIcon className="h-4 w-4" />
                         {event.ageRange}
                     </div>
