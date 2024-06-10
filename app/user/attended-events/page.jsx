@@ -346,7 +346,7 @@ const [sortBy, setSortBy] = useState("newest")
         </div>
       </div>
       
-      <div className={`${selectedEvent && 'w-1/3 sm:grid-cols-1 md:grid-cols-1  lg:grid-cols-1'} transition-all ease-in-out grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6`}>
+      <div className={`${selectedEvent && 'w-1/3'} transition-all ease-in-out grid w-full gap-4 gap-y-12 grid-cols-[repeat(auto-fit,minmax(250px,300px))]`}>
         {events.map((event) => (
           <div
             key={event.id}

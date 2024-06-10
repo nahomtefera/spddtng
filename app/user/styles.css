@@ -1,4 +1,8 @@
 .sidebar-background {
+    background: #00003d;
+}
+/* Sidebar animated background */
+/* .sidebar-background {
     background: linear-gradient(273deg, #050d9e, #000331, #00003d);
     background-size: 600% 600%;
 
@@ -21,4 +25,4 @@
     0%{background-position:79% 0%}
     50%{background-position:22% 100%}
     100%{background-position:79% 0%}
-}
+} */

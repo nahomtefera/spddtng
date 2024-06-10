@@ -44,6 +44,36 @@ export default function Component() {
       interests: ["Art", "Music", "Museums"],
       match: 92,
       image: "/images/users/user1.webp",
+    },
+    {
+      id: 1,
+      name: "Emily Wilkins",
+      age: 28,
+      location: "New York, NY",
+      bio: "Adventurous and outgoing, I love exploring new places and trying new things. Let's connect!",
+      interests: ["Travel", "Cooking", "Hiking"],
+      match: 90,
+      image: "/images/users/user3.webp",
+    },
+    {
+      id: 2,
+      name: "Michael Johnson",
+      age: 32,
+      location: "Los Angeles, CA",
+      bio: "I'm a passionate entrepreneur looking to meet someone who shares my drive and ambition.",
+      interests: ["Startups", "Technology", "Fitness"],
+      match: 85,
+      image: "/images/users/user5.webp",
+    },
+    {
+      id: 3,
+      name: "Sarah Lee",
+      age: 25,
+      location: "Chicago, IL",
+      bio: "I love the arts and culture. Let's explore the city together and see where it takes us.",
+      interests: ["Art", "Music", "Museums"],
+      match: 92,
+      image: "/images/users/user6.webp",
     }
   ];
 
@@ -135,7 +165,7 @@ export default function Component() {
           </DropdownMenu>
         </div>
       </div>
-          <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          <div className="grid w-full gap-4 gap-y-12 grid-cols-[repeat(auto-fit,minmax(250px,300px))]">
             {matches.map((match) => (
               <div
                 key={match.id}
@@ -170,7 +200,7 @@ export default function Component() {
                   </div>
                   <div className="mt-2 text-sm text-gray-500 dark:text-gray-400 line-clamp-2">{match.bio}</div>
                   <div className="mt-4 flex flex-wrap gap-2">
-                    {match.interests.map((interest, index) => (
+                    {match.interests.slice(0,2).map((interest, index) => (
                       <div
                         key={index}
                         className="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium dark:bg-gray-800"
@@ -179,10 +209,7 @@ export default function Component() {
                       </div>
                     ))}
                   </div>
-                  <div className="mt-4 flex justify-between">
-                    <Button variant="outline" size="sm">
-                      Message
-                    </Button>
+                  <div className="mt-8 flex justify-end">
                     <Button size="sm">Contact Details</Button>
                   </div>
                 </div>
