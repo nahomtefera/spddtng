@@ -109,7 +109,7 @@ const MarketingLayout = ({children}) => {
                             <span className="text-white">Attended Events</span>
                         </Link>
                         <Link
-                            href="#"
+                            href="/user/upcoming-events"
                             className={`flex items-center gap-2 px-3 py-2 rounded-md hover:bg-[#222783] transition-colors ${isActive('/user/upcoming-events') ? 'bg-[#222783]' : 'hover:bg-[#222783]'}`}
                             onClick={() => setIsSidebarOpen(false)}
                             prefetch={false}
