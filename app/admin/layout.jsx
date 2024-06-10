@@ -8,7 +8,7 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import './styles.css'
 import {CalendarCheckIcon, CalendarIcon, HomeIcon, MenuIcon, XIcon, SettingsIcon, UserIcon, MountainIcon, HeartIcon, UsersIcon} from '@/lib/customIcons'
 
-const MarketingLayout = ({children}) => {
+const Component = ({children}) => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const pathname = usePathname();
 
@@ -43,16 +43,18 @@ const MarketingLayout = ({children}) => {
                     >
                         <XIcon className="w-6 h-6" /> {/* Replace with an appropriate close icon */}
                     </Button>
+                    <div className="flex h-[60px] items-center border-b border-[#222783] px-6">
+                        <Link href="#" className="flex items-center gap-2" prefetch={false}>
+                        {/* <CalendarIcon className="h-6 w-6" /> */}
+                        <span className="text-white font-light tracking-widest">Admin Panel</span>
+                        </Link>
+                    </div>
                     {/* Logo */}
-                    <div className="flex items-center justify-center gap-4 md:mt-10 mb-5">
+                    <div className="flex items-center justify-center gap-4 md:mt-10 mb-10">
                         <Link href="/" className="flex items-center gap-2 font-bold text-lg" prefetch={false}>
                             <MountainIcon className="h-6 w-6" />
                             <span className="text-light text-white">Speed</span>
                         </Link>
-                    </div>
-
-                    <div className="tracking-widest rounded-md my-12 bg-blue-600 p-2 px-6 flex flex-col items-center font-bold gap-4 text-white">
-                        ADMIN MODE
                     </div>
 
                     {/* Sidebar Links */}
@@ -67,10 +69,10 @@ const MarketingLayout = ({children}) => {
                             <span className="text-white">Overview</span>
                         </Link>
                         <Link
-                            href="/user/upcoming-events"
+                            href="/admin/upcoming-events"
                             className={`flex items-center gap-2 px-3 py-2 rounded-md hover:bg-[#222783] transition-colors ${isActive('/admin/events') ? 'bg-[#222783]' : 'hover:bg-[#222783]'}`}
                             onClick={() => setIsSidebarOpen(false)}
-                            prefetch={false}
+                            // prefetch={false}
                         >
                             <CalendarIcon className="w-5 h-5" />
                             <span className="text-white">Events</span>
@@ -79,7 +81,7 @@ const MarketingLayout = ({children}) => {
                             href="/admin/users"
                             className={`flex items-center gap-2 px-3 py-2 rounded-md hover:bg-[#222783] transition-colors ${isActive('/admin/users') ? 'bg-[#222783]' : 'hover:bg-[#222783]'}`}
                             onClick={() => setIsSidebarOpen(false)}
-                            prefetch={false}
+                            // prefetch={false}
                         >
                             <UsersIcon className="w-5 h-5" />
                             <span className="text-white">Users</span>
@@ -88,9 +90,9 @@ const MarketingLayout = ({children}) => {
                 </div>
 
                 {/* Content */}
-                <div className="flex-1 bg-[#fbfbfb] dark:bg-gray-950 md:pt-20 py-6 px-4 md:px-6 lg:px-8 overflow-y-auto">
-                  <section className="w-full py-6 md:py-6 lg:py-6">
-                    <div className="container px-4 md:px-6">
+                <div className="flex-1 bg-[#fbfbfb] dark:bg-gray-950">
+                  <section className="w-full">
+                    <div className="">
                       {children}
                     </div>
                   </section>
@@ -101,4 +103,4 @@ const MarketingLayout = ({children}) => {
 }
 
  
-export default MarketingLayout;
+export default Component;

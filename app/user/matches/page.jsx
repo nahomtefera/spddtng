@@ -195,7 +195,7 @@ export default function Component() {
                       </div>
                     </div>
                     <div className="flex items-center gap-2 text-sm font-medium">
-                      <HeartIcon className="w-5 h-5 fill-primary" />
+                      <HeartIcon stroke="black" className="w-5 h-5 fill-primary" />
                       {match.match}%
                     </div>
                   </div>

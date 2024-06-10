@@ -1,289 +1,105 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
-import Link from "next/link"
 import { Input } from "@/components/ui/input"
-import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuRadioGroup, DropdownMenuRadioItem } from "@/components/ui/dropdown-menu"
-import { Checkbox } from "@/components/ui/checkbox"
-import { useMemo, useState } from "react"
-// Custom icons
-import {CalendarIcon, ClockIcon, DollarSignIcon, InfoIcon, LocateIcon, MailIcon, MapPinIcon, PhoneIcon, ShirtIcon, StarIcon, TagIcon, UserIcon, UsersIcon, XIcon, FilterIcon, ListOrderedIcon} from '@/lib/customIcons'
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuItem } from "@/components/ui/dropdown-menu"
+import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "@/components/ui/table"
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card"
+import { Label } from "@/components/ui/label"
+// custom icons
+import { CalendarIcon, SearchIcon } from '@/lib/customIcons';
+import { Link } from "lucide-react"
 
 export default function Component() {
-  const [filters, setFilters] = useState({
-    age: [18, 50],
-    distance: [0, 50],
-    interests: [],
-})  
-const [sortBy, setSortBy] = useState("newest")
 
-
-  const events = [
-    {
-      id: 1,
-      image: "/images/app/restaurant5.webp",
-      title: "Speed Dating Event",
-      date: "June 10, 2023",
-      time: "7:00 PM - 10:00 PM",
-      city: "New York City",
-      address: "123 Main St, New York, NY 10001",
-      ageRange: "25-35",
-      description:
-        "Join us for a fun and exciting speed dating event in the heart of the city. Meet new people and find your perfect match!",
-      price: 50,
-      host: "John Doe",
-      capacity: 100,
-      tags: ["Singles", "Networking", "Fun"],
-      dressCode: "Casual",
-      specialInstructions: "Please arrive on time and be ready to mingle.",
-      attendees: [
-        { id: 1, image: "/images/users/user1.webp", name: "Jane Doe" },
-        { id: 2, image: "/images/users/user2.webp", name: "Bob Smith" },
-        { id: 3, image: "/images/users/user3.webp", name: "Sarah Johnson" },
-        { id: 4, image: "/images/users/user4.webp", name: "Tom Wilson" },
-      ],
-      contact: {
-        email: "info@speeddate.com",
-        phone: "555-1234",
-      },
-      rating: 4.8,
-      reviews: [
-        { id: 1, user: "Jane Doe", rating: 5, comment: "Had a great time at this event!" },
-        { id: 2, user: "Bob Smith", rating: 4, comment: "Enjoyed the event, but could have been better organized." },
-      ],
-      schedule: [
-        { time: "7:00 PM", activity: "Check-in" },
-        { time: "7:30 PM", activity: "Speed Dating Rounds" },
-        { time: "9:00 PM", activity: "Networking" },
-        { time: "9:45 PM", activity: "Closing Remarks" },
-      ],
-      sponsors: [
-        { id: 1, image: "/placeholder.svg", name: "Acme Corp" },
-        { id: 2, image: "/placeholder.svg", name: "Widgets Inc" },
-      ],
-      partners: [
-        { id: 1, image: "/placeholder.svg", name: "Dating App" },
-        { id: 2, image: "/placeholder.svg", name: "Event Planner" },
-      ],
-    },
-    {
-      id: 2,
-      image: "/images/app/restaurant1.webp",
-      title: "Cocktail Mixer",
-      date: "July 15, 2023",
-      time: "8:00 PM - 11:00 PM",
-      city: "Los Angeles",
-      address: "456 Oak St, Los Angeles, CA 90001",
-      ageRange: "21-40",
-      description:
-        "Join us for a sophisticated cocktail mixer in the heart of LA. Mingle with like-minded professionals and enjoy delicious drinks.",
-      price: 75,
-      host: "Jane Smith",
-      capacity: 150,
-      tags: ["Networking", "Cocktails", "Professionals"],
-      dressCode: "Business Casual",
-      specialInstructions: "Please RSVP in advance to secure your spot.",
-      attendees: [
-        { id: 1, image: "/images/users/user1.webp", name: "John Doe" },
-        { id: 2, image: "/images/users/user2.webp", name: "Sarah Johnson" },
-        { id: 3, image: "/images/users/user3.webp", name: "Tom Wilson" },
-        { id: 4, image: "/images/users/user4.webp", name: "Emily Davis" },
-      ],
-      contact: {
-        email: "info@cocktailmixer.com",
-        phone: "555-5678",
-      },
-      rating: 4.5,
-      reviews: [
-        { id: 1, user: "John Doe", rating: 5, comment: "Fantastic event, great networking opportunities!" },
-        {
-          id: 2,
-          user: "Sarah Johnson",
-          rating: 4,
-          comment: "Enjoyed the drinks and atmosphere, but could have been more organized.",
-        },
-      ],
-      schedule: [
-        { time: "8:00 PM", activity: "Check-in and Welcome Drinks" },
-        { time: "8:30 PM", activity: "Networking" },
-        { time: "9:30 PM", activity: "Cocktail Tasting" },
-        { time: "10:30 PM", activity: "Closing Remarks" },
-      ],
-      sponsors: [
-        { id: 1, image: "/placeholder.svg", name: "Cocktail Bar" },
-        { id: 2, image: "/placeholder.svg", name: "Liquor Distributor" },
-      ],
-      partners: [
-        { id: 1, image: "/placeholder.svg", name: "Event Planner" },
-        { id: 2, image: "/placeholder.svg", name: "Catering Company" },
-      ],
-    },
-    {
-      id: 3,
-      image: "/images/app/restaurant2.webp",
-      title: "Singles Hike",
-      date: "August 20, 2023",
-      time: "10:00 AM - 2:00 PM",
-      city: "San Francisco",
-      address: "789 Pine St, San Francisco, CA 94101",
-      ageRange: "30-45",
-      description: "Explore the beautiful nature of San Francisco while meeting new people on this singles hike.",
-      price: 30,
-      host: "Emily Davis",
-      capacity: 75,
-      tags: ["Outdoors", "Fitness", "Singles"],
-      dressCode: "Active Wear",
-      specialInstructions: "Please bring water, snacks, and comfortable hiking shoes.",
-      attendees: [
-        { id: 1, image: "/images/users/user1.webp", name: "Bob Smith" },
-        { id: 2, image: "/images/users/user2.webp", name: "Jane Doe" },
-        { id: 3, image: "/images/users/user3.webp", name: "Tom Wilson" },
-        { id: 4, image: "/images/users/user4.webp", name: "Sarah Johnson" },
-      ],
-      contact: {
-        email: "info@singleshike.com",
-        phone: "555-9012",
-      },
-      rating: 4.7,
-      reviews: [
-        { id: 1, user: "Bob Smith", rating: 5, comment: "Had a great time on the hike and met some awesome people!" },
-        {
-          id: 2,
-          user: "Jane Doe",
-          rating: 4,
-          comment: "The hike was beautiful, but could have been better organized.",
-        },
-      ],
-      schedule: [
-        { time: "10:00 AM", activity: "Check-in and Warm-up" },
-        { time: "10:30 AM", activity: "Hike Begins" },
-        { time: "12:00 PM", activity: "Lunch Break" },
-        { time: "1:00 PM", activity: "Hike Continues" },
-        { time: "2:00 PM", activity: "Closing Remarks" },
-      ],
-      sponsors: [
-        { id: 1, image: "/placeholder.svg", name: "Outdoor Gear Store" },
-        { id: 2, image: "/placeholder.svg", name: "Hiking Club" },
-      ],
-      partners: [
-        { id: 1, image: "/placeholder.svg", name: "Adventure Tour Company" },
-        { id: 2, image: "/placeholder.svg", name: "Healthy Snacks" },
-      ],
-    },
-    {
-      id: 4,
-      image: "/images/app/restaurant3.webp",
-      title: "Rooftop Mixer",
-      date: "August 22, 2023",
-      time: "10:00 AM - 2:00 PM",
-      city: "San Francisco",
-      address: "789 Pine St, San Francisco, CA 94101",
-      ageRange: "30-45",
-      description: "Explore the beautiful nature of San Francisco while meeting new people on this singles hike.",
-      price: 30,
-      host: "Emily Davis",
-      capacity: 75,
-      tags: ["Outdoors", "Fitness", "Singles"],
-      dressCode: "Active Wear",
-      specialInstructions: "Please bring water, snacks, and comfortable hiking shoes.",
-      attendees: [
-        { id: 1, image: "/images/users/user1.webp", name: "Bob Smith" },
-        { id: 2, image: "/images/users/user2.webp", name: "Jane Doe" },
-        { id: 3, image: "/images/users/user3.webp", name: "Tom Wilson" },
-        { id: 4, image: "/images/users/user4.webp", name: "Sarah Johnson" },
-      ],
-      contact: {
-        email: "info@singleshike.com",
-        phone: "555-9012",
-      },
-      rating: 4.7,
-      reviews: [
-        { id: 1, user: "Bob Smith", rating: 5, comment: "Had a great time on the hike and met some awesome people!" },
-        {
-          id: 2,
-          user: "Jane Doe",
-          rating: 4,
-          comment: "The hike was beautiful, but could have been better organized.",
-        },
-      ],
-      schedule: [
-        { time: "10:00 AM", activity: "Check-in and Warm-up" },
-        { time: "10:30 AM", activity: "Hike Begins" },
-        { time: "12:00 PM", activity: "Lunch Break" },
-        { time: "1:00 PM", activity: "Hike Continues" },
-        { time: "2:00 PM", activity: "Closing Remarks" },
-      ],
-      sponsors: [
-        { id: 1, image: "/placeholder.svg", name: "Outdoor Gear Store" },
-        { id: 2, image: "/placeholder.svg", name: "Hiking Club" },
-      ],
-      partners: [
-        { id: 1, image: "/placeholder.svg", name: "Adventure Tour Company" },
-        { id: 2, image: "/placeholder.svg", name: "Healthy Snacks" },
-      ],
-    },
-    {
-      id: 5,
-      image: "/images/app/restaurant4.webp",
-      title: "Pool Mixer",
-      date: "August 22, 2023",
-      time: "10:00 AM - 2:00 PM",
-      city: "San Francisco",
-      address: "789 Pine St, San Francisco, CA 94101",
-      ageRange: "30-45",
-      description: "Explore the beautiful nature of San Francisco while meeting new people on this singles hike.",
-      price: 30,
-      host: "Emily Davis",
-      capacity: 75,
-      tags: ["Outdoors", "Fitness", "Singles"],
-      dressCode: "Active Wear",
-      specialInstructions: "Please bring water, snacks, and comfortable hiking shoes.",
-      attendees: [
-        { id: 1, image: "/images/users/user1.webp", name: "Bob Smith" },
-        { id: 2, image: "/images/users/user2.webp", name: "Jane Doe" },
-        { id: 3, image: "/images/users/user3.webp", name: "Tom Wilson" },
-        { id: 4, image: "/images/users/user4.webp", name: "Sarah Johnson" },
-      ],
-      contact: {
-        email: "info@singleshike.com",
-        phone: "555-9012",
-      },
-      rating: 4.7,
-      reviews: [
-        { id: 1, user: "Bob Smith", rating: 5, comment: "Had a great time on the hike and met some awesome people!" },
-        {
-          id: 2,
-          user: "Jane Doe",
-          rating: 4,
-          comment: "The hike was beautiful, but could have been better organized.",
-        },
-      ],
-      schedule: [
-        { time: "10:00 AM", activity: "Check-in and Warm-up" },
-        { time: "10:30 AM", activity: "Hike Begins" },
-        { time: "12:00 PM", activity: "Lunch Break" },
-        { time: "1:00 PM", activity: "Hike Continues" },
-        { time: "2:00 PM", activity: "Closing Remarks" },
-      ],
-      sponsors: [
-        { id: 1, image: "/placeholder.svg", name: "Outdoor Gear Store" },
-        { id: 2, image: "/placeholder.svg", name: "Hiking Club" },
-      ],
-      partners: [
-        { id: 1, image: "/placeholder.svg", name: "Adventure Tour Company" },
-        { id: 2, image: "/placeholder.svg", name: "Healthy Snacks" },
-      ],
-    },
-  ]
-  const [selectedEvent, setSelectedEvent] = useState(null)
-  const handleEventClick = (event) => {
-    setSelectedEvent(event)
-  }
   return (
     <>
-      <div className="flex flex-col space-y-6 md:space-y-8 lg:space-y-10">
-          Admin dashboard
+      <div className="flex flex-col">
+        <header className="flex h-[60px] lg:h-[60px] items-center gap-4 border-b bg-gray-100/40 px-6 dark:bg-gray-800/40">
+          <Link href="#" className="lg:hidden" prefetch={false}>
+            <CalendarIcon className="h-6 w-6" />
+            <span className="sr-only">Home</span>
+          </Link>
+          <div className="w-full flex-1">
+            <form>
+              <div className="relative">
+                <SearchIcon className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-500 dark:text-gray-400" />
+                <Input
+                  type="search"
+                  placeholder="Search events..."
+                  className="w-full bg-white shadow-none appearance-none pl-8 md:w-2/3 lg:w-1/3 dark:bg-gray-950"
+                />
+              </div>
+            </form>
+          </div>
+        </header>
+        <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-6">
+          <div className="flex items-center">
+            <h1 className="font-semibold text-lg md:text-2xl">Upcoming Events</h1>
+            <Button className="ml-auto" size="sm">
+              Create Event
+            </Button>
+          </div>
+          <div className="border shadow-sm rounded-lg">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead className="max-w-[150px]">Event Name</TableHead>
+                  <TableHead>Date</TableHead>
+                  <TableHead>Location</TableHead>
+                  <TableHead>Attendees</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                <TableRow>
+                  <TableCell className="font-medium">Tech Conference</TableCell>
+                  <TableCell>June 15, 2023</TableCell>
+                  <TableCell>San Francisco, CA</TableCell>
+                  <TableCell>500</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell className="font-medium">Product Launch</TableCell>
+                  <TableCell>August 1, 2023</TableCell>
+                  <TableCell>New York, NY</TableCell>
+                  <TableCell>250</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell className="font-medium">Charity Gala</TableCell>
+                  <TableCell>October 10, 2023</TableCell>
+                  <TableCell>Miami, FL</TableCell>
+                  <TableCell>1000</TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+          </div>
+          <Card>
+            <CardHeader>
+              <CardTitle>Create Event</CardTitle>
+              <CardDescription>Fill out the form below to create a new event.</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <form className="grid gap-4">
+                <div className="grid gap-2">
+                  <Label htmlFor="eventName">Event Name</Label>
+                  <Input id="eventName" />
+                </div>
+                <div className="grid gap-2">
+                  <Label htmlFor="eventDate">Event Date</Label>
+                  <Input id="eventDate" type="date" />
+                </div>
+                <div className="grid gap-2">
+                  <Label htmlFor="eventLocation">Location</Label>
+                  <Input id="eventLocation" />
+                </div>
+                <div className="grid gap-2">
+                  <Label htmlFor="eventAttendees">Expected Attendees</Label>
+                  <Input id="eventAttendees" type="number" />
+                </div>
+                <Button type="submit">Create Event</Button>
+              </form>
+            </CardContent>
+          </Card>
+        </main>
       </div>
     </>
   )
