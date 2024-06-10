@@ -1,11 +1,23 @@
 "use client"
 
-import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
 import Link from "next/link"
+import { Input } from "@/components/ui/input"
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuRadioGroup, DropdownMenuRadioItem } from "@/components/ui/dropdown-menu"
+import { Checkbox } from "@/components/ui/checkbox"
+
+import { useMemo, useState } from "react"
 
 export default function Component() {
+  const [filters, setFilters] = useState({
+    age: [18, 50],
+    distance: [0, 50],
+    interests: [],
+})  
+const [sortBy, setSortBy] = useState("newest")
+
+
   const events = [
     {
       id: 1,
@@ -158,6 +170,110 @@ export default function Component() {
         { id: 2, image: "/placeholder.svg", name: "Healthy Snacks" },
       ],
     },
+    {
+      id: 4,
+      image: "/images/app/restaurant3.webp",
+      title: "Rooftop Mixer",
+      date: "August 22, 2023",
+      time: "10:00 AM - 2:00 PM",
+      city: "San Francisco",
+      address: "789 Pine St, San Francisco, CA 94101",
+      ageRange: "30-45",
+      description: "Explore the beautiful nature of San Francisco while meeting new people on this singles hike.",
+      price: 30,
+      host: "Emily Davis",
+      capacity: 75,
+      tags: ["Outdoors", "Fitness", "Singles"],
+      dressCode: "Active Wear",
+      specialInstructions: "Please bring water, snacks, and comfortable hiking shoes.",
+      attendees: [
+        { id: 1, image: "/images/users/user1.webp", name: "Bob Smith" },
+        { id: 2, image: "/images/users/user2.webp", name: "Jane Doe" },
+        { id: 3, image: "/images/users/user3.webp", name: "Tom Wilson" },
+        { id: 4, image: "/images/users/user4.webp", name: "Sarah Johnson" },
+      ],
+      contact: {
+        email: "info@singleshike.com",
+        phone: "555-9012",
+      },
+      rating: 4.7,
+      reviews: [
+        { id: 1, user: "Bob Smith", rating: 5, comment: "Had a great time on the hike and met some awesome people!" },
+        {
+          id: 2,
+          user: "Jane Doe",
+          rating: 4,
+          comment: "The hike was beautiful, but could have been better organized.",
+        },
+      ],
+      schedule: [
+        { time: "10:00 AM", activity: "Check-in and Warm-up" },
+        { time: "10:30 AM", activity: "Hike Begins" },
+        { time: "12:00 PM", activity: "Lunch Break" },
+        { time: "1:00 PM", activity: "Hike Continues" },
+        { time: "2:00 PM", activity: "Closing Remarks" },
+      ],
+      sponsors: [
+        { id: 1, image: "/placeholder.svg", name: "Outdoor Gear Store" },
+        { id: 2, image: "/placeholder.svg", name: "Hiking Club" },
+      ],
+      partners: [
+        { id: 1, image: "/placeholder.svg", name: "Adventure Tour Company" },
+        { id: 2, image: "/placeholder.svg", name: "Healthy Snacks" },
+      ],
+    },
+    {
+      id: 5,
+      image: "/images/app/restaurant4.webp",
+      title: "Pool Mixer",
+      date: "August 22, 2023",
+      time: "10:00 AM - 2:00 PM",
+      city: "San Francisco",
+      address: "789 Pine St, San Francisco, CA 94101",
+      ageRange: "30-45",
+      description: "Explore the beautiful nature of San Francisco while meeting new people on this singles hike.",
+      price: 30,
+      host: "Emily Davis",
+      capacity: 75,
+      tags: ["Outdoors", "Fitness", "Singles"],
+      dressCode: "Active Wear",
+      specialInstructions: "Please bring water, snacks, and comfortable hiking shoes.",
+      attendees: [
+        { id: 1, image: "/images/users/user1.webp", name: "Bob Smith" },
+        { id: 2, image: "/images/users/user2.webp", name: "Jane Doe" },
+        { id: 3, image: "/images/users/user3.webp", name: "Tom Wilson" },
+        { id: 4, image: "/images/users/user4.webp", name: "Sarah Johnson" },
+      ],
+      contact: {
+        email: "info@singleshike.com",
+        phone: "555-9012",
+      },
+      rating: 4.7,
+      reviews: [
+        { id: 1, user: "Bob Smith", rating: 5, comment: "Had a great time on the hike and met some awesome people!" },
+        {
+          id: 2,
+          user: "Jane Doe",
+          rating: 4,
+          comment: "The hike was beautiful, but could have been better organized.",
+        },
+      ],
+      schedule: [
+        { time: "10:00 AM", activity: "Check-in and Warm-up" },
+        { time: "10:30 AM", activity: "Hike Begins" },
+        { time: "12:00 PM", activity: "Lunch Break" },
+        { time: "1:00 PM", activity: "Hike Continues" },
+        { time: "2:00 PM", activity: "Closing Remarks" },
+      ],
+      sponsors: [
+        { id: 1, image: "/placeholder.svg", name: "Outdoor Gear Store" },
+        { id: 2, image: "/placeholder.svg", name: "Hiking Club" },
+      ],
+      partners: [
+        { id: 1, image: "/placeholder.svg", name: "Adventure Tour Company" },
+        { id: 2, image: "/placeholder.svg", name: "Healthy Snacks" },
+      ],
+    },
   ]
   const [selectedEvent, setSelectedEvent] = useState(null)
   const handleEventClick = (event) => {
@@ -165,8 +281,72 @@ export default function Component() {
   }
   return (
     <>
-      <h1 className="text-2xl font-bold mb-6">Attended Events</h1>
-      <div className={`${selectedEvent && 'w-1/3 lg:grid-cols-1'} transition-all ease-in-out grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6`}>
+         <div className="flex flex-col space-y-6 md:space-y-8 lg:space-y-10">
+
+      <div>
+          <h1 className="text-2xl font-bold tracking-tight">Attended events</h1>
+          <p className="text-gray-500 dark:text-gray-400">Find your perfect match</p>
+        </div>
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-6">
+        
+        <div className="flex flex-wrap items-center gap-4 mt-4 md:mt-0">
+          <Input type="text" placeholder="Search matches..." className="w-full md:w-96" />
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline" className="flex items-center gap-2">
+                <FilterIcon className="w-4 h-4" />
+                Filters
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="w-[300px] p-4 space-y-4">
+              <div>
+                <h3 className="text-sm font-semibold mb-2">Age</h3>
+                <div />
+              </div>
+              <div>
+                <h3 className="text-sm font-semibold mb-2">Distance</h3>
+                <div />
+              </div>
+              <div>
+                <h3 className="text-sm font-semibold mb-2">Interests</h3>
+                <div className="grid gap-2">
+                  <Checkbox value="Hiking">Hiking</Checkbox>
+                  <Checkbox value="Travel">Travel</Checkbox>
+                  <Checkbox value="Cooking">Cooking</Checkbox>
+                  <Checkbox value="Technology">Technology</Checkbox>
+                  <Checkbox value="Outdoors">Outdoors</Checkbox>
+                  <Checkbox value="Networking">Networking</Checkbox>
+                  <Checkbox value="Art">Art</Checkbox>
+                  <Checkbox value="Music">Music</Checkbox>
+                  <Checkbox value="Food">Food</Checkbox>
+                  <Checkbox value="Fitness">Fitness</Checkbox>
+                  <Checkbox value="Sports">Sports</Checkbox>
+                  <Checkbox value="Social">Social</Checkbox>
+                  <Checkbox value="Sustainability">Sustainability</Checkbox>
+                  <Checkbox value="Books">Books</Checkbox>
+                </div>
+              </div>
+            </DropdownMenuContent>
+          </DropdownMenu>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline" className="flex items-center gap-2">
+                <ListOrderedIcon className="w-4 h-4" />
+                Sort by
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="w-[200px] p-2">
+              <DropdownMenuRadioGroup value={sortBy} onValueChange={setSortBy} className="space-y-2">
+                <DropdownMenuRadioItem value="newest">Newest</DropdownMenuRadioItem>
+                <DropdownMenuRadioItem value="highest">Match Percentage (Highest)</DropdownMenuRadioItem>
+                <DropdownMenuRadioItem value="lowest">Match Percentage (Lowest)</DropdownMenuRadioItem>
+              </DropdownMenuRadioGroup>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
+      </div>
+      
+      <div className={`${selectedEvent && 'w-1/3 sm:grid-cols-1 md:grid-cols-1  lg:grid-cols-1'} transition-all ease-in-out grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6`}>
         {events.map((event) => (
           <div
             key={event.id}
@@ -174,11 +354,11 @@ export default function Component() {
             onClick={() => handleEventClick(event)}
           >
             <div className="relative">
-                <div className="absolute top-4 left-4 flex items-center gap-4">
+                <div className="absolute top-4 right-4 flex items-center gap-4">
                     <div className=" bg-[#fff] font-semibold text-black px-3 py-1 rounded-md text-sm  dark:bg-gray-50 dark:text-gray-900">
                         {event.city}
                     </div>
-                    <div className="flex items-center gap-2 bg-[#26309f] font-semibold text-white px-3 py-1 rounded-md text-sm  dark:bg-gray-50 dark:text-gray-900">
+                    <div className="flex items-center gap-2 bg-[#fff]  text-black font-semibold text-white px-3 py-1 rounded-md text-sm  dark:bg-gray-50 dark:text-gray-900">
                         <UserIcon className="h-4 w-4" />
                         {event.ageRange}
                     </div>
@@ -215,7 +395,7 @@ export default function Component() {
         ))}
       </div>
       {selectedEvent && (
-        <div className="fixed top-0 right-0 w-full md:w-1/2 h-full bg-white dark:bg-gray-950 shadow-lg overflow-y-auto flex flex-col">
+        <div className="fixed top-0 right-0 w-full md:w-1/2 h-full bg-white dark:bg-gray-950 shadow-lg overflow-y-auto flex flex-col " style={{marginTop: 0}}>
           <div>
             <img
                 src={selectedEvent.image}
@@ -300,6 +480,7 @@ export default function Component() {
           </div>
         </div>
       )}
+      </div>
     </>
   )
 }
@@ -598,6 +779,50 @@ function XIcon(props) {
     >
       <path d="M18 6 6 18" />
       <path d="m6 6 12 12" />
+    </svg>
+  )
+}
+
+
+function FilterIcon(props) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
+    </svg>
+  )
+}
+
+function ListOrderedIcon(props) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <line x1="10" x2="21" y1="6" y2="6" />
+      <line x1="10" x2="21" y1="12" y2="12" />
+      <line x1="10" x2="21" y1="18" y2="18" />
+      <path d="M4 6h1v4" />
+      <path d="M4 10h2" />
+      <path d="M6 18H4c0-1 2-2 2-3s-1-1.5-2-1" />
     </svg>
   )
 }

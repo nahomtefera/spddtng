@@ -139,7 +139,7 @@ export default function Component() {
             {matches.map((match) => (
               <div
                 key={match.id}
-                className="relative group overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-transform duration-300 ease-in-out hover:-translate-y-2"
+                className="relative group overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-transform duration-300 ease-in-out"
               >
                 <Link href="#" className="absolute inset-0 z-10" prefetch={false}>
                   <span className="sr-only">View Profile</span>
@@ -183,7 +183,7 @@ export default function Component() {
                     <Button variant="outline" size="sm">
                       Message
                     </Button>
-                    <Button size="sm">Like</Button>
+                    <Button size="sm">Contact Details</Button>
                   </div>
                 </div>
               </div>
