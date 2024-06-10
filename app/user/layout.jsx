@@ -17,14 +17,12 @@ const MarketingLayout = ({children}) => {
         <div className="dark:dark-background">
             <div className="flex min-h-screen max-h-screen">
                 {/* Toggle Sidebar button */}
-                <Button
-                    variant="ghost"
-                    size="icon"
-                    className="rounded-full md:hidden absolute top-0 right-0"
-                    onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-                >
-                    <MenuIcon className="w-6 h-6" />
-                </Button>
+                <div className="relative">
+                  <button onClick={() => setIsSidebarOpen(true)} className="fixed md:hidden top-6 right-8 z-50 flex h-10 w-10 items-center justify-center rounded-md bg-gray-900 text-gray-50 transition-colors hover:bg-gray-900/80 focus:outline-none focus:ring-2 focus:ring-gray-950 focus:ring-offset-2 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/80 dark:focus:ring-gray-300">
+                    <MenuIcon className="h-6 w-6" />
+                    <span className="sr-only">Toggle navigation</span>
+                  </button>
+                </div>
                 {/* Sidebar */}
                 {/* box-shadow:-5px 0px 20px 12px #0813395c */}
                 <div 
@@ -327,7 +325,7 @@ function CalendarCheckIcon(props) {
         height="24"
         viewBox="0 0 24 24"
         fill="none"
-        stroke="black"
+        stroke="currentColor"
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
