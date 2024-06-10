@@ -346,7 +346,7 @@ const [sortBy, setSortBy] = useState("newest")
         </div>
       </div>
       
-      <div className={`${selectedEvent && 'w-1/3'} transition-all ease-in-out grid w-full gap-4 gap-y-12 grid-cols-[repeat(auto-fit,minmax(250px,300px))]`}>
+      <div className={`${selectedEvent && 'w-1/3'} transition-all ease-in-out grid w-full gap-4 gap-y-12 grid-cols-[repeat(auto-fit,minmax(300px,1fr))]`}>
         {events.slice(0,2).map((event) => (
           <div
             key={event.id}
@@ -485,7 +485,7 @@ const [sortBy, setSortBy] = useState("newest")
           <h1 className="text-2xl font-bold tracking-tight">Upcoming Events in your area</h1>
         </div>
 
-        <div className={`${selectedEvent && 'w-1/3'} transition-all ease-in-out grid w-full gap-4 gap-y-12 grid-cols-[repeat(auto-fit,minmax(250px,300px))]`}>
+        <div className={`${selectedEvent && 'w-1/3'} transition-all ease-in-out grid w-full gap-4 gap-y-12 grid-cols-[repeat(auto-fit,minmax(300px,1fr))]`}>
         {events.slice(2, events.length).map((event) => (
           <div
             key={event.id}
