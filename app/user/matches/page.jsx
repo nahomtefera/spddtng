@@ -165,7 +165,7 @@ export default function Component() {
           </DropdownMenu>
         </div>
       </div>
-          <div className="grid w-full gap-4 gap-y-12 grid-cols-[repeat(auto-fit,minmax(300px,1fr))]">
+          <div className="grid w-full gap-4 gap-y-12 grid-cols-[repeat(auto-fit,minmax(300px,1fr))] lg:grid-cols-[repeat(auto-fit,minmax(300px,400px))]">
             {matches.map((match) => (
               <div
                 key={match.id}
