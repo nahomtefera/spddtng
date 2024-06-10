@@ -4,7 +4,7 @@ import { Switch } from "@/components/ui/switch"
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select"
 import { AlertDialog, AlertDialogTrigger, AlertDialogContent, AlertDialogHeader, AlertDialogTitle, AlertDialogDescription, AlertDialogFooter, AlertDialogCancel, AlertDialogAction } from "@/components/ui/alert-dialog"
 // custom icons
-import {ChromeIcon, FacebookIcon, TwitterIcon} from '../_components/customIcons';
+import {ChromeIcon, FacebookIcon, TwitterIcon} from '@/lib/customIcons';
 
 export default function Component() {
   return (

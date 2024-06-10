@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input"
 import Link from "next/link"
 import { useMemo, useState } from "react"
 // custom icons
-import {HeartIcon, LocateIcon, FilterIcon, ListOrderedIcon, MessageCircleIcon} from '../_components/customIcons'
+import {HeartIcon, LocateIcon, FilterIcon, ListOrderedIcon, MessageCircleIcon} from '@/lib/customIcons'
 export default function Component() {
     const [filters, setFilters] = useState({
         age: [18, 50],

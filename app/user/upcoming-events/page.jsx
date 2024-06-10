@@ -8,7 +8,7 @@ import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuRad
 import { Checkbox } from "@/components/ui/checkbox"
 import { useMemo, useState } from "react"
 // Custom icons
-import {CalendarIcon, ClockIcon, DollarSignIcon, InfoIcon, LocateIcon, MailIcon, MapPinIcon, PhoneIcon, ShirtIcon, StarIcon, TagIcon, UserIcon, UsersIcon, XIcon, FilterIcon, ListOrderedIcon} from '../_components/customIcons'
+import {CalendarIcon, ClockIcon, DollarSignIcon, InfoIcon, LocateIcon, MailIcon, MapPinIcon, PhoneIcon, ShirtIcon, StarIcon, TagIcon, UserIcon, UsersIcon, XIcon, FilterIcon, ListOrderedIcon} from '../../../lib/customIcons'
 
 export default function Component() {
   const [filters, setFilters] = useState({

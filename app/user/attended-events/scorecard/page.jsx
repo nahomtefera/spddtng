@@ -7,7 +7,7 @@ import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "@
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
 import { Slider } from "@/components/ui/slider"
 // custom icons
-import {HeartCrackIcon, HeartIcon} from '../../_components/customIcons'
+import {HeartCrackIcon, HeartIcon} from '@/lib/customIcons'
 
 export default function Component() {
   return (

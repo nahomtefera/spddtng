@@ -6,7 +6,7 @@ import Link from "next/link";
 import { usePathname } from 'next/navigation';
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import './styles.css'
-import {CalendarCheckIcon, CalendarIcon, HomeIcon, MenuIcon, XIcon, SettingsIcon, UserIcon, MountainIcon, HeartIcon} from './_components/customIcons'
+import {CalendarCheckIcon, CalendarIcon, HomeIcon, MenuIcon, XIcon, SettingsIcon, UserIcon, MountainIcon, HeartIcon} from '@/lib/customIcons'
 
 const MarketingLayout = ({children}) => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
