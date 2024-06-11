@@ -4,28 +4,18 @@ import { createClient } from '@/app/utils/supabase';
 // components
 import Sidebar from '@/components/sidebar';
 import { userLinks } from '@/lib/sidebarLinks';
-import {
-  CalendarCheckIcon,
-  CalendarIcon,
-  HomeIcon,
-  MenuIcon,
-  SettingsIcon,
-  UserIcon,
-  HeartIcon,
-} from '@/lib/customIcons';
 import './styles.css';
 import { redirect } from 'next/navigation';
 
 const MarketingLayout = async ({ children }) => {
   // subase auth
   const supabase = createClient()
-  // sidebar
-
+  // user
   const { data: { user } } = await supabase.auth.getUser();
-
   if(!user) {
     redirect('/login')
   }
+
   console.log('user? ', user)
   return (
     <div className="dark:dark-background">
