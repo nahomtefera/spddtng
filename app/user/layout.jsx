@@ -153,8 +153,8 @@ const MarketingLayout = ({children}) => {
                 </div>
 
                 {/* Content */}
-                <div className="flex-1 bg-[#fbfbfb] dark:bg-gray-950 md:pt-20 py-6 px-4 md:px-6 lg:px-8 overflow-y-auto">
-                  <section className="w-full py-6 md:py-6 lg:py-6">
+                <div className="flex-1 bg-[#fbfbfb] dark:bg-gray-950 md:pt-10 py-6 px-4 md:px-6 lg:px-8 overflow-y-auto">
+                  <section className="w-full">
                     <div className="container px-4 md:px-6">
                       {children}
                     </div>

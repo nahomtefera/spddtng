@@ -75,7 +75,7 @@ const Component = ({children}) => {
                             // prefetch={false}
                         >
                             <CalendarIcon className="w-5 h-5" />
-                            <span className="text-white">Events</span>
+                            <span className="text-white">Event Manager</span>
                         </Link>
                         {/* <Link
                             href="/admin/users"

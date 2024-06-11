@@ -108,7 +108,7 @@ export default function Component() {
         </header>
         <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-6">
           <div className="flex items-center justify-between mb-6">
-            <h1 className="text-2xl font-bold">Events</h1>
+            <h1 className="text-2xl font-bold">Event Manager</h1>
             <Button onClick={() => setShowModal(true)}>Create Event</Button>
           </div>
 
