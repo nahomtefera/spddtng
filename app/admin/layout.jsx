@@ -44,7 +44,7 @@ const Component = ({children}) => {
                         <XIcon className="w-6 h-6" /> {/* Replace with an appropriate close icon */}
                     </Button>
                     <div className="flex h-[60px] items-center border-b border-[#222783] px-6">
-                        <Link href="#" className="flex items-center gap-2" prefetch={false}>
+                        <Link href="/admin" className="flex items-center gap-2" prefetch={false}>
                         {/* <CalendarIcon className="h-6 w-6" /> */}
                         <span className="text-white font-light tracking-widest">Admin Panel</span>
                         </Link>
@@ -69,7 +69,7 @@ const Component = ({children}) => {
                             <span className="text-white">Overview</span>
                         </Link>
                         <Link
-                            href="/admin/upcoming-events"
+                            href="/admin/events"
                             className={`flex items-center gap-2 px-3 py-2 rounded-md hover:bg-[#222783] transition-colors ${isActive('/admin/events') ? 'bg-[#222783]' : 'hover:bg-[#222783]'}`}
                             onClick={() => setIsSidebarOpen(false)}
                             // prefetch={false}
@@ -77,7 +77,7 @@ const Component = ({children}) => {
                             <CalendarIcon className="w-5 h-5" />
                             <span className="text-white">Events</span>
                         </Link>
-                        <Link
+                        {/* <Link
                             href="/admin/users"
                             className={`flex items-center gap-2 px-3 py-2 rounded-md hover:bg-[#222783] transition-colors ${isActive('/admin/users') ? 'bg-[#222783]' : 'hover:bg-[#222783]'}`}
                             onClick={() => setIsSidebarOpen(false)}
@@ -85,12 +85,12 @@ const Component = ({children}) => {
                         >
                             <UsersIcon className="w-5 h-5" />
                             <span className="text-white">Users</span>
-                        </Link>
+                        </Link> */}
                     </nav>
                 </div>
 
                 {/* Content */}
-                <div className="flex-1 bg-[#fbfbfb] dark:bg-gray-950">
+                <div className="flex-1 bg-[#fbfbfb] dark:bg-gray-950 overflow-y-auto">
                   <section className="w-full">
                     <div className="">
                       {children}
