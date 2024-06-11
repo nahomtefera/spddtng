@@ -2,36 +2,15 @@
 
 import React, { useState } from 'react';
 import Sidebar from '@/components/sidebar';
+import { createAdminLinks } from '@/lib/sidebarLinks'
+import { MenuIcon } from '@/lib/customIcons';
 import './styles.css';
-import {
-  CalendarIcon,
-  HomeIcon,
-  MenuIcon,
-} from '@/lib/customIcons';
+
 
 const Component = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  const links = [
-    {
-      href: '/admin',
-      className:
-        'flex items-center gap-2 px-3 py-2 rounded-md hover:bg-[#222783] transition-colors',
-      onClick: () => setIsSidebarOpen(false),
-      prefetch: false,
-      icon: <HomeIcon className="w-5 h-5" />,
-      label: 'Overview',
-    },
-    {
-      href: '/admin/events',
-      className:
-        'flex items-center gap-2 px-3 py-2 rounded-md hover:bg-[#222783] transition-colors',
-      onClick: () => setIsSidebarOpen(false),
-      prefetch: false,
-      icon: <CalendarIcon className="w-5 h-5" />,
-      label: 'Event Manager',
-    },
-  ];
+  const adminLinks = createAdminLinks(isSidebarOpen)
   
   return (
     <div className="dark:dark-background">
@@ -48,7 +27,7 @@ const Component = ({ children }) => {
         </div>
         {/* Sidebar */}
         <Sidebar
-          links={links}
+          links={adminLinks}
           isSidebarOpen={isSidebarOpen}
           setIsSidebarOpen={setIsSidebarOpen}
           isAdminDashboard={true}

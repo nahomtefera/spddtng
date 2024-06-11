@@ -76,7 +76,7 @@ export default function Sidebar({ links, isSidebarOpen, setIsSidebarOpen, isAdmi
 
       {/* Sidebar Links */}
       <nav className="flex flex-col gap-2 mt-5">
-        {links.map((link) => {
+        {links?.map((link) => {
           return (
             <Link
               href={link.href}
