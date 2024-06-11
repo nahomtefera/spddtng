@@ -1,29 +1,16 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import Link from 'next/link';
 import Sidebar from '@/components/sidebar';
-import { usePathname } from 'next/navigation';
-import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import './styles.css';
 import {
-  CalendarCheckIcon,
   CalendarIcon,
   HomeIcon,
   MenuIcon,
-  XIcon,
-  SettingsIcon,
-  UserIcon,
-  MountainIcon,
-  HeartIcon,
-  UsersIcon,
 } from '@/lib/customIcons';
 
 const Component = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const pathname = usePathname();
-  const isActive = (path) => pathname === path;
 
   const links = [
     {
@@ -45,6 +32,7 @@ const Component = ({ children }) => {
       label: 'Event Manager',
     },
   ];
+  
   return (
     <div className="dark:dark-background">
       <div className="flex min-h-screen max-h-screen">

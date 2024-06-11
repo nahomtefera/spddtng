@@ -2,24 +2,19 @@
 
 import React, { useState } from 'react';
 import Sidebar from '@/components/sidebar';
-import { usePathname } from 'next/navigation';
 import './styles.css';
 import {
   CalendarCheckIcon,
   CalendarIcon,
   HomeIcon,
   MenuIcon,
-  XIcon,
   SettingsIcon,
   UserIcon,
-  MountainIcon,
   HeartIcon,
 } from '@/lib/customIcons';
 
 const MarketingLayout = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const pathname = usePathname();
-  const isActive = (path) => pathname === path;
 
   const links = [
     {

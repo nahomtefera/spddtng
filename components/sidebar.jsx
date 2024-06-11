@@ -4,15 +4,8 @@ import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 
 import {
-  CalendarCheckIcon,
-  CalendarIcon,
-  HomeIcon,
-  MenuIcon,
   XIcon,
-  SettingsIcon,
-  UserIcon,
   MountainIcon,
-  HeartIcon,
 } from '@/lib/customIcons';
 
 export default function Sidebar({ links, isSidebarOpen, setIsSidebarOpen, isAdminDashboard, isUserDashboard }) {
@@ -38,7 +31,7 @@ export default function Sidebar({ links, isSidebarOpen, setIsSidebarOpen, isAdmi
         {/* Replace with an appropriate close icon */}
       </Button>
 
-      {/* Admin Header */}
+      {/* Admin Header - ADMIN DASHBOARD ONLY */}
       {isAdminDashboard && (
         <div className="flex h-[60px] items-center border-b border-[#222783] px-6">
           <Link
@@ -46,7 +39,6 @@ export default function Sidebar({ links, isSidebarOpen, setIsSidebarOpen, isAdmi
             className="flex items-center gap-2"
             prefetch={false}
           >
-            {/* <CalendarIcon className="h-6 w-6" /> */}
             <span className="text-white font-light tracking-widest">
               Admin Panel
             </span>
@@ -66,7 +58,7 @@ export default function Sidebar({ links, isSidebarOpen, setIsSidebarOpen, isAdmi
         </Link>
       </div>
 
-      {/* User Image / Logout btn */}
+      {/* User Image / Logout btn - USER DASHBOARD ONLY*/}
       {isUserDashboard && (
         <div className="flex flex-col items-center gap-4">
           <Avatar className="w-[150px] h-[150px] rounded-lg border">
