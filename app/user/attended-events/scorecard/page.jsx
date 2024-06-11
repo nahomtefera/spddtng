@@ -1,13 +1,15 @@
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/3kV5tUBglQU
- * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
- */
-import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "@/components/ui/table"
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
-import { Slider } from "@/components/ui/slider"
+import {
+  Table,
+  TableHeader,
+  TableRow,
+  TableHead,
+  TableBody,
+  TableCell,
+} from '@/components/ui/table';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import { Slider } from '@/components/ui/slider';
 // custom icons
-import {HeartCrackIcon, HeartIcon} from '@/lib/customIcons'
+import { HeartCrackIcon, HeartIcon } from '@/lib/customIcons';
 
 export default function Component() {
   return (
@@ -37,9 +39,15 @@ export default function Component() {
               </TableCell>
               <TableCell>
                 <div className="flex items-center gap-2">
-                 <span className="text-3xl">😒</span>
-                  <Slider defaultValue={[80]} min={0} max={100} step={1} className="flex-1" />
-                  <span className="text-3xl">😍</span>                  
+                  <span className="text-3xl">😒</span>
+                  <Slider
+                    defaultValue={[80]}
+                    min={0}
+                    max={100}
+                    step={1}
+                    className="flex-1"
+                  />
+                  <span className="text-3xl">😍</span>
                 </div>
               </TableCell>
               <TableCell />
@@ -57,9 +65,15 @@ export default function Component() {
               </TableCell>
               <TableCell>
                 <div className="flex items-center gap-2">
-                 <span className="text-3xl">😒</span>
-                  <Slider defaultValue={[80]} min={0} max={100} step={1} className="flex-1" />
-                  <span className="text-3xl">😍</span>                  
+                  <span className="text-3xl">😒</span>
+                  <Slider
+                    defaultValue={[80]}
+                    min={0}
+                    max={100}
+                    step={1}
+                    className="flex-1"
+                  />
+                  <span className="text-3xl">😍</span>
                 </div>
               </TableCell>
               <TableCell />
@@ -77,9 +91,15 @@ export default function Component() {
               </TableCell>
               <TableCell>
                 <div className="flex items-center gap-2">
-                 <span className="text-3xl">😒</span>
-                  <Slider defaultValue={[80]} min={0} max={100} step={1} className="flex-1" />
-                  <span className="text-3xl">😍</span>                  
+                  <span className="text-3xl">😒</span>
+                  <Slider
+                    defaultValue={[80]}
+                    min={0}
+                    max={100}
+                    step={1}
+                    className="flex-1"
+                  />
+                  <span className="text-3xl">😍</span>
                 </div>
               </TableCell>
               <TableCell />
@@ -97,9 +117,15 @@ export default function Component() {
               </TableCell>
               <TableCell>
                 <div className="flex items-center gap-2">
-                 <span className="text-3xl">😒</span>
-                  <Slider defaultValue={[80]} min={0} max={100} step={1} className="flex-1" />
-                  <span className="text-3xl">😍</span>                  
+                  <span className="text-3xl">😒</span>
+                  <Slider
+                    defaultValue={[80]}
+                    min={0}
+                    max={100}
+                    step={1}
+                    className="flex-1"
+                  />
+                  <span className="text-3xl">😍</span>
                 </div>
               </TableCell>
               <TableCell />
@@ -117,9 +143,15 @@ export default function Component() {
               </TableCell>
               <TableCell>
                 <div className="flex items-center gap-2">
-                 <span className="text-3xl">😒</span>
-                  <Slider defaultValue={[80]} min={0} max={100} step={1} className="flex-1" />
-                  <span className="text-3xl">😍</span>                  
+                  <span className="text-3xl">😒</span>
+                  <Slider
+                    defaultValue={[80]}
+                    min={0}
+                    max={100}
+                    step={1}
+                    className="flex-1"
+                  />
+                  <span className="text-3xl">😍</span>
                 </div>
               </TableCell>
               <TableCell />
@@ -128,5 +160,5 @@ export default function Component() {
         </Table>
       </div>
     </div>
-  )
+  );
 }

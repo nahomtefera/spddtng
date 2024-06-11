@@ -1,89 +1,102 @@
-"use client"
+'use client';
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog"
-import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "@/components/ui/table"
-import { Label } from "@/components/ui/label"
+import { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+} from '@/components/ui/dialog';
+import {
+  Table,
+  TableHeader,
+  TableRow,
+  TableHead,
+  TableBody,
+  TableCell,
+} from '@/components/ui/table';
+import { Label } from '@/components/ui/label';
 // custom icons
 import { CalendarIcon, SearchIcon } from '@/lib/customIcons';
-import Link from "next/link"
-import { Textarea } from "@/components/ui/textarea"
-
+import Link from 'next/link';
+import { Textarea } from '@/components/ui/textarea';
 
 export default function Component() {
   const [events, setEvents] = useState([
     {
       id: 1,
-      title: "Tech Meetup",
-      description: "A gathering of tech enthusiasts to discuss the latest trends",
-      date: "2023-06-15",
-      city: "San Francisco",
-      host: "John Doe",
-      address: "123 Main St, San Francisco, CA 94101",
-      age_range: "18-35",
-      img_src: "/images/app/restaurant1.webp",
-      created_at: "2023-05-01",
+      title: 'Tech Meetup',
+      description:
+        'A gathering of tech enthusiasts to discuss the latest trends',
+      date: '2023-06-15',
+      city: 'San Francisco',
+      host: 'John Doe',
+      address: '123 Main St, San Francisco, CA 94101',
+      age_range: '18-35',
+      img_src: '/images/app/restaurant1.webp',
+      created_at: '2023-05-01',
     },
     {
       id: 2,
-      title: "Art Exhibition",
-      description: "Showcase of local artists and their works",
-      date: "2023-07-01",
-      city: "New York",
-      host: "Jane Smith",
-      address: "456 Broadway, New York, NY 10001",
-      age_range: "16+",
-      img_src: "/images/app/restaurant2.webp",
-      created_at: "2023-05-15",
+      title: 'Art Exhibition',
+      description: 'Showcase of local artists and their works',
+      date: '2023-07-01',
+      city: 'New York',
+      host: 'Jane Smith',
+      address: '456 Broadway, New York, NY 10001',
+      age_range: '16+',
+      img_src: '/images/app/restaurant2.webp',
+      created_at: '2023-05-15',
     },
     {
       id: 3,
-      title: "Cooking Class",
-      description: "Learn to make delicious meals from a professional chef",
-      date: "2023-08-20",
-      city: "Chicago",
-      host: "Alex Johnson",
-      address: "789 Michigan Ave, Chicago, IL 60601",
-      age_range: "12-65",
-      img_src: "/images/app/restaurant3.webp",
-      created_at: "2023-06-01",
+      title: 'Cooking Class',
+      description: 'Learn to make delicious meals from a professional chef',
+      date: '2023-08-20',
+      city: 'Chicago',
+      host: 'Alex Johnson',
+      address: '789 Michigan Ave, Chicago, IL 60601',
+      age_range: '12-65',
+      img_src: '/images/app/restaurant3.webp',
+      created_at: '2023-06-01',
     },
-  ])
-  const [showModal, setShowModal] = useState(false)
+  ]);
+  const [showModal, setShowModal] = useState(false);
   const [newEvent, setNewEvent] = useState({
-    title: "",
-    description: "",
-    date: "",
-    city: "",
-    host: "",
-    address: "",
-    age_range: "",
-    img_src: "",
-  })
+    title: '',
+    description: '',
+    date: '',
+    city: '',
+    host: '',
+    address: '',
+    age_range: '',
+    img_src: '',
+  });
   const handleInputChange = (e) => {
-    setNewEvent({ ...newEvent, [e.target.name]: e.target.value })
-  }
+    setNewEvent({ ...newEvent, [e.target.name]: e.target.value });
+  };
   const handleCreateEvent = () => {
     const event = {
       id: events.length + 1,
       ...newEvent,
       created_at: new Date().toISOString(),
-    }
-    setEvents([...events, event])
-    setShowModal(false)
+    };
+    setEvents([...events, event]);
+    setShowModal(false);
     setNewEvent({
-      title: "",
-      description: "",
-      date: "",
-      city: "",
-      host: "",
-      address: "",
-      age_range: "",
-      img_src: "",
-    })
-  }
+      title: '',
+      description: '',
+      date: '',
+      city: '',
+      host: '',
+      address: '',
+      age_range: '',
+      img_src: '',
+    });
+  };
 
   return (
     <>
@@ -131,11 +144,11 @@ export default function Component() {
                 {events.map((event) => (
                   <TableRow key={event.id}>
                     <TableCell>
-                      <img 
-                        src={event.img_src} 
-                        width={80} 
-                        height={80} 
-                        alt={event.title} 
+                      <img
+                        src={event.img_src}
+                        width={80}
+                        height={80}
+                        alt={event.title}
                         className="rounded-md aspect-square object-cover object-center"
                       />
                     </TableCell>
@@ -161,39 +174,80 @@ export default function Component() {
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <Label htmlFor="title">Title</Label>
-                    <Input id="title" name="title" value={newEvent.title} onChange={handleInputChange} />
+                    <Input
+                      id="title"
+                      name="title"
+                      value={newEvent.title}
+                      onChange={handleInputChange}
+                    />
                   </div>
                   <div>
                     <Label htmlFor="date">Date</Label>
-                    <Input id="date" name="date" type="date" value={newEvent.date} onChange={handleInputChange} />
+                    <Input
+                      id="date"
+                      name="date"
+                      type="date"
+                      value={newEvent.date}
+                      onChange={handleInputChange}
+                    />
                   </div>
                 </div>
                 <div>
                   <Label htmlFor="description">Description</Label>
-                  <Textarea id="description" name="description" value={newEvent.description} onChange={handleInputChange} />
+                  <Textarea
+                    id="description"
+                    name="description"
+                    value={newEvent.description}
+                    onChange={handleInputChange}
+                  />
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <Label htmlFor="city">City</Label>
-                    <Input id="city" name="city" value={newEvent.city} onChange={handleInputChange} />
+                    <Input
+                      id="city"
+                      name="city"
+                      value={newEvent.city}
+                      onChange={handleInputChange}
+                    />
                   </div>
                   <div>
                     <Label htmlFor="host">Host</Label>
-                    <Input id="host" name="host" value={newEvent.host} onChange={handleInputChange} />
+                    <Input
+                      id="host"
+                      name="host"
+                      value={newEvent.host}
+                      onChange={handleInputChange}
+                    />
                   </div>
                 </div>
                 <div>
                   <Label htmlFor="address">Address</Label>
-                  <Input id="address" name="address" value={newEvent.address} onChange={handleInputChange} />
+                  <Input
+                    id="address"
+                    name="address"
+                    value={newEvent.address}
+                    onChange={handleInputChange}
+                  />
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <Label htmlFor="age_range">Age Range</Label>
-                    <Input id="age_range" name="age_range" value={newEvent.age_range} onChange={handleInputChange} />
+                    <Input
+                      id="age_range"
+                      name="age_range"
+                      value={newEvent.age_range}
+                      onChange={handleInputChange}
+                    />
                   </div>
                   <div>
                     <Label htmlFor="img_src">Image URL</Label>
-                    <Input id="img_src" name="img_src" value={newEvent.img_src} onChange={handleInputChange} />
+                    <Input
+                      id="img_src"
+                      name="img_src"
+                      value={newEvent.img_src}
+                      onChange={handleInputChange}
+                    />
                   </div>
                 </div>
               </div>
@@ -208,5 +262,5 @@ export default function Component() {
         </main>
       </div>
     </>
-  )
+  );
 }
