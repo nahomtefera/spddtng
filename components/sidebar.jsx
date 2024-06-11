@@ -107,6 +107,7 @@ export default function Sidebar({ links, isAdminDashboard, isUserDashboard }) {
           {links?.map((link) => {
             return (
               <Link
+                key={link.href}
                 href={link.href}
                 className={`flex items-center gap-2 px-3 py-2 rounded-md hover:bg-[#222783] transition-colors ${
                   isActive(link.href) ? 'bg-[#222783]' : 'hover:bg-[#222783]'

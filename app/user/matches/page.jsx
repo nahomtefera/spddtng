@@ -58,7 +58,7 @@ export default function Component() {
       image: '/images/users/user1.webp',
     },
     {
-      id: 1,
+      id: 4,
       name: 'Emily Wilkins',
       age: 28,
       location: 'New York, NY',
@@ -68,7 +68,7 @@ export default function Component() {
       image: '/images/users/user3.webp',
     },
     {
-      id: 2,
+      id: 5,
       name: 'Michael Johnson',
       age: 32,
       location: 'Los Angeles, CA',
@@ -78,7 +78,7 @@ export default function Component() {
       image: '/images/users/user5.webp',
     },
     {
-      id: 3,
+      id: 6,
       name: 'Sarah Lee',
       age: 25,
       location: 'Chicago, IL',
