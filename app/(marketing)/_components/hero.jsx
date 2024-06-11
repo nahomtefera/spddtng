@@ -20,9 +20,7 @@ export default function Hero() {
         setCurrent(api.selectedScrollSnap())
     
         api.on("select", () => {
-            console.log('api slidesInView: ', api.slidesInView())
             setCurrent(api.selectedScrollSnap())
-            console.log('api: ', api.selectedScrollSnap())
         })
     }, [api])
 
