@@ -14,7 +14,6 @@ export default function Sidebar({ links, isAdminDashboard, isUserDashboard }) {
   const isActive = (path) => pathname === path;
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-
   return (
     <>
       {/* Toggle Sidebar button */}
@@ -80,10 +79,13 @@ export default function Sidebar({ links, isAdminDashboard, isUserDashboard }) {
               <img src="/images/users/user3.webp" alt="@username" />
               <AvatarFallback>JD</AvatarFallback>
             </Avatar>
-            {/* Logout Button */}
-            <LogoutButton />
           </div>
         )}
+
+        {/* Logout Button */}
+        <div className="flex flex-col items-center gap-4 my-4">
+          <LogoutButton />
+        </div>
 
         {/* Sidebar Links */}
         <nav className="flex flex-col gap-2 mt-5">
