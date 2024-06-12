@@ -13,9 +13,26 @@ const Component = async ({ children }) => {
     data: { user },
   } = await supabase.auth.getUser();
 
-  if (!user) {
+  if(user) {
+    console.log('there is a user, getting user data from users table\n')
+    console.log('user id is: ', user.id, "\n\n\n")
+
+    const { data, error } = await supabase
+      .from('users')
+      .select('role')
+      .eq('id', user.id)
+      .single();
+
+    const userRole = data?.role;
+    console.log('user role is: ', userRole, typeof userRole)
+    if (userRole !== "admin") {
+      return redirect('/user')
+    }
+  } else {
     return redirect('/login');
   }
+  
+
 
 
   return (
