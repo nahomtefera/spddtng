@@ -5,13 +5,18 @@ import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { LockIcon, MountainIcon } from '@/lib/customIcons'
+import Link from 'next/link'
 
 export default function LoginPage() {
     return (
         <div className="flex min-h-screen items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
             <div className="w-full max-w-md space-y-8">
                 <div>
-                    <MountainIcon className="mx-auto h-12 w-auto" />
+                    <Link href="/"
+                        prefetch={false}
+                    >
+                        <MountainIcon stroke="black" className="mx-auto h-12 w-auto" />
+                    </Link>
                     <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">Sign in to your account</h2>
                 </div>
                 <form className="mt-8 space-y-6" action="#" method="POST">

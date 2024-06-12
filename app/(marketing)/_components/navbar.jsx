@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import AuthButton from "@/components/authButton";
 
 export default function Navbar() {
     return (
@@ -23,11 +24,9 @@ export default function Navbar() {
                 Events
               </Link>
             </nav>
-            <div className="flex gap-2">
-              <Link href="/user" className="text-md font-semibold hover:text-[#bd744b]" prefetch={false}>
-                <Button variant="default">Login</Button>
-              </Link>
-              <Button variant="outline">Get Started</Button>
+            <div className="flex gap-2 items-center">
+              <AuthButton />
+              {/* <Button variant="outline">Get Started</Button> */}
             </div>
         </div>
       </header>

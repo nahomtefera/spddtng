@@ -1,31 +1,19 @@
 'use client';
 
 import React, { useState } from 'react';
-// supabase
-import { createClient } from '@/app/utils/supabase/client';
-
 import Link from 'next/link';
-import { useRouter, usePathname } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
+import LogoutButton from '@/components/logoutButton';
 
 import { XIcon, MountainIcon, MenuIcon } from '@/lib/customIcons';
 
 export default function Sidebar({ links, isAdminDashboard, isUserDashboard }) {
   const pathname = usePathname();
-  const router = useRouter(); // Use useRouter for client-side navigation
   const isActive = (path) => pathname === path;
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const supabase = createClient();
 
-  const handleLogout = async () => {
-    const { error } = await supabase.auth.signOut();
-    if (error) {
-      console.error('Error logging out:', error.message);
-    } else {
-      router.push('/'); // Use router.push for client-side redirection
-    }
-  };
 
   return (
     <>
@@ -92,13 +80,8 @@ export default function Sidebar({ links, isAdminDashboard, isUserDashboard }) {
               <img src="/images/users/user3.webp" alt="@username" />
               <AvatarFallback>JD</AvatarFallback>
             </Avatar>
-            <Button
-              variant="ghost"
-              className="rounded text-white hover:bg-red-600 hover:text-white"
-              onClick={handleLogout}
-            >
-              Logout
-            </Button>
+            {/* Logout Button */}
+            <LogoutButton />
           </div>
         )}
 

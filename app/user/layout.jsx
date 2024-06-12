@@ -1,22 +1,26 @@
 import React from 'react';
-// Supabase
-import { createClient } from '@/app/utils/supabase';
+// supabase
+import { createClient } from "@/utils/supabase/server";
+
 // components
+import { redirect } from "next/navigation";
 import Sidebar from '@/components/sidebar';
 import { userLinks } from '@/lib/sidebarLinks';
 import './styles.css';
-import { redirect } from 'next/navigation';
 
-const MarketingLayout = async ({ children }) => {
-  // subase auth
-  const supabase = createClient()
-  // user
-  const { data: { user } } = await supabase.auth.getUser();
-  if(!user) {
-    redirect('/login')
+const UserLayout = async ({ children }) => {
+
+  const supabase = createClient();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    return redirect("/login");
   }
 
-  console.log('user? ', user)
+
   return (
     <div className="dark:dark-background">
       <div className="flex min-h-screen max-h-screen">
@@ -36,4 +40,4 @@ const MarketingLayout = async ({ children }) => {
   );
 };
 
-export default MarketingLayout;
+export default UserLayout;
