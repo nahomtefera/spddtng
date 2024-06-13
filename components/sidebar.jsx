@@ -1,18 +1,56 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import LogoutButton from '@/components/logoutButton';
-
 import { XIcon, MountainIcon, MenuIcon } from '@/lib/customIcons';
+// supabase
+import { createClient } from '@/utils/supabase/client';
 
 export default function Sidebar({ links, isAdminDashboard, isUserDashboard }) {
   const pathname = usePathname();
   const isActive = (path) => pathname === path;
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [userName, setUserName] = useState('');
+  const [userProfilePicture, setUserProfilePicture] = useState('/images/app/placeholder-user.jpg');
+
+  // supabase
+  useEffect(() => {
+    async function fetchUserProfile() {
+      const supabase = createClient();
+
+      const {
+        data: { user },
+        error: userError,
+      } = await supabase.auth.getUser();
+
+      if (userError) {
+        console.error('Error fetching user:', userError.message);
+        return;
+      }
+
+      if (user) {
+        const { data, error } = await supabase
+          .from('users')
+          .select('first_name, profile_picture')
+          .eq('id', user.id)
+          .single();
+
+        if (error) {
+          console.error('Error fetching user details:', error.message);
+        } else {
+          setUserName(data?.first_name || '');
+          setUserProfilePicture(data?.profile_picture || '/images/app/placeholder-user.jpg');
+        }
+      }
+    }
+
+    fetchUserProfile();
+  }, []);
+
 
   return (
     <>
@@ -76,7 +114,7 @@ export default function Sidebar({ links, isAdminDashboard, isUserDashboard }) {
         {isUserDashboard && (
           <div className="flex flex-col items-center gap-4">
             <Avatar className="w-[150px] h-[150px] rounded-lg border">
-              <img src="/images/users/user3.webp" alt="@username" />
+              <img src={userProfilePicture} alt="@username" />
               <AvatarFallback>JD</AvatarFallback>
             </Avatar>
           </div>

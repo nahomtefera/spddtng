@@ -16,6 +16,7 @@ import { LogOutIcon, UserIcon } from '@/lib/customIcons';
 export default async function AuthButton() {
   const supabase = createClient();
   let userName = '';
+  let userProfilePicture = '';
 
   const {
     data: { user },
@@ -24,10 +25,11 @@ export default async function AuthButton() {
   if (user) {
     const { data, error } = await supabase
       .from('users')
-      .select('first_name')
+      .select('first_name, profile_picture')
       .eq('id', user.id)
       .single();
     userName = data?.first_name;
+    userProfilePicture = data?.profile_picture;
   }
 
   const signOut = async () => {
@@ -52,7 +54,7 @@ export default async function AuthButton() {
         <DropdownMenu modal={false}>
           <DropdownMenuTrigger asChild className="cursor-pointer">
             <Avatar className="h-9 w-9">
-              <AvatarImage src="/images/app/placeholder-user.jpg" />
+              <AvatarImage src={userProfilePicture || "/images/app/placeholder-user.jpg"} />
               <AvatarFallback>JP</AvatarFallback>
               <span className="sr-only">Toggle user menu</span>
             </Avatar>
