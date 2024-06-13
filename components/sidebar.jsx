@@ -6,26 +6,28 @@ import { usePathname } from 'next/navigation';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import LogoutButton from '@/components/logoutButton';
-import { XIcon, MountainIcon, MenuIcon } from '@/lib/customIcons';
-// supabase
+import {
+  XIcon,
+  MountainIcon,
+  MenuIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+} from '@/lib/customIcons';
 import { createClient } from '@/utils/supabase/client';
 
 export default function Sidebar({ links, isAdminDashboard, isUserDashboard }) {
   const pathname = usePathname();
-  const isActive = (path) => pathname === path;
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [userName, setUserName] = useState('');
   const [userProfilePicture, setUserProfilePicture] = useState('/images/app/placeholder-user.jpg');
 
-  // supabase
+  const isActive = (path) => pathname === path;
+
   useEffect(() => {
     async function fetchUserProfile() {
       const supabase = createClient();
-
-      const {
-        data: { user },
-        error: userError,
-      } = await supabase.auth.getUser();
+      const { data: { user }, error: userError } = await supabase.auth.getUser();
 
       if (userError) {
         console.error('Error fetching user:', userError.message);
@@ -51,7 +53,6 @@ export default function Sidebar({ links, isAdminDashboard, isUserDashboard }) {
     fetchUserProfile();
   }, []);
 
-
   return (
     <>
       {/* Toggle Sidebar button */}
@@ -64,13 +65,12 @@ export default function Sidebar({ links, isAdminDashboard, isUserDashboard }) {
           <span className="sr-only">Toggle navigation</span>
         </button>
       </div>
+
       {/* Sidebar */}
-      <div
-        className={`sidebar-background shadow-[-5px_0px_20px_12px_rgba(157,157,157,0)] bg-primary text-gray-900 py-6 px-4 md:px-6 lg:px-10 flex flex-col gap-6 z-10 shadow-gray-400/50 transition-all duration-300 ${
-          isSidebarOpen
-            ? 'fixed z-50 w-full h-full sm:block sm:w-full sm:h-full md:static md:w-auto md:h-auto'
-            : 'hidden sm:hidden md:block'
-        }`}
+      <aside
+        className={`sidebar-background  bg-primary text-gray-900 py-6 px-4 md:px-6 lg:px-10 flex flex-col gap-6 z-10 shadow-gray-400/50 transition-all duration-100 group
+          ${isSidebarOpen ? 'fixed z-50 w-full h-full sm:block sm:w-full sm:h-full md:static md:w-auto md:h-auto' : 'hidden sm:hidden md:block'}
+          ${isSidebarCollapsed ? 'translate-x-0 md:px-2 lg:px-3' : 'translate-x-0'}`}
       >
         {/* Close sidebar */}
         <Button
@@ -79,72 +79,76 @@ export default function Sidebar({ links, isAdminDashboard, isUserDashboard }) {
           className="rounded-full md:hidden absolute top-1 right-1"
           onClick={() => setIsSidebarOpen(false)}
         >
-          <XIcon className="w-6 h-6" />{' '}
-          {/* Replace with an appropriate close icon */}
+          <XIcon className="w-6 h-6" />
         </Button>
 
+        {/* Collapse Sidebar */}
+        <div 
+          className={`
+            absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300
+            ${isSidebarCollapsed && '-right-4 opacity-100'}  
+          `}
+        >
+          <Button
+            variant="ghost"
+            size="icon"
+            className={`
+              text-white hover:text-white hover:bg-gray-900 rounded
+              ${isSidebarCollapsed && 'bg-black hover:bg-black text-white rounded-full'}  
+            `}
+            onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
+          >
+            {isSidebarCollapsed ? <ChevronRightIcon stroke="white" className="h-6 w-6" /> : <ChevronLeftIcon className="h-6 w-6" />}
+            <span className="sr-only">Toggle sidebar</span>
+          </Button>
+        </div>
+          
         {/* Admin Header - ADMIN DASHBOARD ONLY */}
         {isAdminDashboard && (
-          <div className="flex h-[60px] items-center border-b border-[#222783] px-6">
-            <Link
-              href="/admin"
-              className="flex items-center gap-2"
-              prefetch={false}
-            >
-              <span className="text-white font-light tracking-widest">
-                Admin Panel
-              </span>
+          <div className="flex h-[60px] items-center border-b border-[#1a1c4b] px-6">
+            <Link href="/admin" className="flex items-center gap-2" prefetch={false}>
+              <span className="text-white font-light tracking-widest">Admin Panel</span>
             </Link>
           </div>
         )}
 
         {/* Logo */}
         <div className="flex items-center justify-center gap-4 md:mt-10 mb-5">
-          <Link
-            href="/"
-            className="flex items-center gap-2 font-bold text-lg"
-            prefetch={false}
-          >
+          <Link href="/" className="flex items-center gap-2 font-bold text-lg" prefetch={false}>
             <MountainIcon className="h-6 w-6" />
-            <span className="text-light text-white">Speed</span>
+            {!isSidebarCollapsed && <span className="text-light text-white">Speed</span>}
           </Link>
         </div>
 
         {/* User Image / Logout btn - USER DASHBOARD ONLY*/}
         {isUserDashboard && (
-          <div className="flex flex-col items-center gap-4">
-            <Avatar className="w-[150px] h-[150px] rounded-lg border">
+          <div className="flex flex-col items-center gap-4 cursor-pointer">
+            <Avatar className={`
+              rounded-lg
+              ${isSidebarCollapsed ? 'w-[45px] h-[45px]' : 'w-[150px] h-[150px]'} 
+            `}>
               <img src={userProfilePicture} alt="@username" />
               <AvatarFallback>JD</AvatarFallback>
             </Avatar>
           </div>
         )}
 
-        {/* Logout Button */}
-        <div className="flex flex-col items-center gap-4 my-4">
-          <LogoutButton />
-        </div>
-
         {/* Sidebar Links */}
         <nav className="flex flex-col gap-2 mt-5">
-          {links?.map((link) => {
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`flex items-center gap-2 px-3 py-2 rounded-md hover:bg-[#222783] transition-colors ${
-                  isActive(link.href) ? 'bg-[#222783]' : 'hover:bg-[#222783]'
-                }`}
-                onClick={() => setIsSidebarOpen(false)}
-                prefetch={link.prefetch}
-              >
-                {link.icon}
-                <span className="text-white">{link.label}</span>
-              </Link>
-            );
-          })}
+          {links?.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className={`flex items-center gap-2 px-3 py-2 rounded-md hover:bg-[#202135] transition-colors ${isActive(link.href) && 'bg-[#202135]'}`}
+              onClick={() => setIsSidebarOpen(false)}
+              prefetch={link.prefetch}
+            >
+              {link.icon}
+              {!isSidebarCollapsed && <span className="text-white">{link.label}</span>}
+            </Link>
+          ))}
         </nav>
-      </div>
+      </aside>
     </>
   );
 }
