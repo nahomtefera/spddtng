@@ -11,16 +11,16 @@ export default function Navbar() {
               <span className="sr-only">Acme Inc</span>
             </Link>
             <nav className="hidden lg:flex gap-4 sm:gap-6">
-              <Link href="#" className="text-md font-semibold hover:text-[#bd744b]" prefetch={false}>
+              <Link href="#hero" className="text-md font-semibold hover:text-[#bd744b]" prefetch={false}>
                 Home
               </Link>
-              <Link href="#" className="text-md font-semibold hover:text-[#bd744b]" prefetch={false}>
+              <Link href="#how-it-works" className="text-md font-semibold hover:text-[#bd744b]" prefetch={false}>
                 How it works
               </Link>
-              <Link href="#" className="text-md font-semibold hover:text-[#bd744b]" prefetch={false}>
+              {/* <Link href="#features" className="text-md font-semibold hover:text-[#bd744b]" prefetch={false}>
                 About us
-              </Link>
-              <Link href="#" className="text-md font-semibold hover:text-[#bd744b]" prefetch={false}>
+              </Link> */}
+              <Link href="#upcoming-events" className="text-md font-semibold hover:text-[#bd744b]" prefetch={false}>
                 Events
               </Link>
             </nav>
