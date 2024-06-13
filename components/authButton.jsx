@@ -7,10 +7,20 @@ import { Button } from './ui/button';
 
 export default async function AuthButton() {
   const supabase = createClient();
+  let userName = '';
 
   const {
     data: { user },
   } = await supabase.auth.getUser();
+
+  if (user) {
+    const { data, error } = await supabase
+      .from('users')
+      .select('first_name')
+      .eq('id', user.id)
+      .single();
+    userName = data?.first_name;
+  }
 
   const signOut = async () => {
     'use server';
@@ -19,10 +29,15 @@ export default async function AuthButton() {
     await supabase.auth.signOut();
     return redirect('/login');
   };
-
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
   return user ? (
     <div className="flex items-center gap-4">
-      Hey, {user.email}!
+      <div>
+      Hey,
+      <span className='font-bold'> {capitalizeFirstLetter(userName)}</span>!
+      </div>
       <form action={signOut}>
         <Button variant="destructive">Logout</Button>
       </form>
