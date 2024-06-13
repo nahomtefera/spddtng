@@ -1,5 +1,5 @@
 // supabase login
-import { login, signup } from './actions'
+import { login } from './actions'
 // components
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
@@ -20,7 +20,7 @@ export default function LoginPage() {
                     <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">Sign in to your account</h2>
                 </div>
                 <form className="mt-8 space-y-6" action="#" method="POST">
-                    <div className="-space-y-px rounded-md shadow-sm">
+                    <div className="-space-y-px rounded-md shadow-sm flex flex-col gap-3">
                         <div>
                             <Label htmlFor="email" className="sr-only">
                                 Email address
@@ -82,13 +82,12 @@ export default function LoginPage() {
                 </form>
                 <div className="text-center">
                     <span className="text-sm text-gray-500">Don't have an account?</span>
-                    <Button
-                        formAction={signup}
-                        variant="ghost"
+                    <Link
+                        href="/signup"
                         className="relative ml-2 inline-block text-sm font-medium text-indigo-600 hover:text-indigo-500"
                     >
-                        Sign up
-                    </Button>
+                        <Button variant="ghost">Sign up</Button>
+                    </Link>
 
                 </div>
             </div>
