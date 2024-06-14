@@ -350,7 +350,7 @@ export default function Component() {
           <div className="flex flex-wrap items-center gap-4 mt-4 md:mt-0">
             <Input
               type="text"
-              placeholder="Search matches..."
+              placeholder="Search events..."
               className="w-full md:w-96"
             />
             <DropdownMenu>
