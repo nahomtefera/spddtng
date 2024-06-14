@@ -128,7 +128,7 @@ export default function Sidebar({ links, isAdminDashboard, isUserDashboard }) {
               rounded-lg
               ${isSidebarCollapsed ? 'w-[45px] h-[45px]' : 'w-[150px] h-[150px]'} 
             `}>
-              <Image src={userProfilePicture} alt="@username" />
+              <Image  layout="fill" objectFit="contain"  src={userProfilePicture} alt="@username" />
               <AvatarFallback>JD</AvatarFallback>
             </Avatar>
           </div>

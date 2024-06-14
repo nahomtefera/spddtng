@@ -548,7 +548,7 @@ export default function Component() {
                   {selectedEvent.attendees.map((attendee) => (
                     <div key={attendee.id} className="flex items-center gap-2">
                       <Avatar>
-                        <Image src={attendee.image} alt={attendee.name} />
+                        <Image width={50} height={50} src={attendee.image} alt={attendee.name} />
                         <AvatarFallback>
                           {attendee.name.charAt(0).toUpperCase()}
                         </AvatarFallback>

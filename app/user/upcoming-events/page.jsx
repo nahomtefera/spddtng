@@ -471,6 +471,67 @@ export default function Component() {
             </div>
           ))}
         </div>
+        
+        <div>
+          <h1 className="text-2xl font-bold tracking-tight">
+            Upcoming Events in your area
+          </h1>
+        </div>
+
+        <div
+          className={`${
+            selectedEvent && 'w-1/3'
+          } transition-all ease-in-out grid w-full gap-4 gap-y-12 grid-cols-[repeat(auto-fit,minmax(300px,1fr))] lg:grid-cols-[repeat(auto-fit,minmax(300px,400px))]`}
+        >
+          {events.slice(2, events.length).map((event) => (
+            <div
+              key={event.id}
+              className="bg-white dark:bg-gray-950 rounded-lg overflow-hidden shadow-lg cursor-pointer hover:shadow-xl transition-shadow"
+              onClick={() => handleEventClick(event)}
+            >
+              <div className="relative">
+                <div className="absolute top-4 right-4 flex items-center gap-4">
+                  <div className=" bg-[#fff] font-semibold text-black px-3 py-1 rounded-md text-sm  dark:bg-gray-50 dark:text-gray-900">
+                    {event.city}
+                  </div>
+                  <div className="flex items-center gap-2 bg-[#fff]  text-black font-semibold px-3 py-1 rounded-md text-sm  dark:bg-gray-50 dark:text-gray-900">
+                    <UserIcon className="h-4 w-4" />
+                    {event.ageRange}
+                  </div>
+                </div>
+                <Image
+                  src={event.image}
+                  alt={event.title}
+                  width={400}
+                  height={225}
+                  className="w-full h-48 object-cover"
+                />
+              </div>
+
+              <div className="p-4">
+                <h2 className="text-lg font-bold mb-2">{event.title}</h2>
+                <div className="flex items-center mb-2">
+                  <CalendarIcon className="w-4 h-4 mr-2" />
+                  <span>{event.date}</span>
+                </div>
+                <div className="flex items-center mb-2">
+                  <ClockIcon className="w-4 h-4 mr-2" />
+                  <span>{event.time}</span>
+                </div>
+                <div className="flex items-center mb-2">
+                  <MapPinIcon className="w-4 h-4 mr-2" />
+                  <span>{event.city}</span>
+                </div>
+                <div className="flex items-center">
+                  <LocateIcon className="w-4 h-4 mr-2" />
+                  <span>{event.address}</span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        
+        {/* Event info sidebar */}
         {selectedEvent && (
           <div
             className="fixed top-0 right-0 w-full md:w-1/2 h-full bg-white dark:bg-gray-950 shadow-lg overflow-y-auto flex flex-col "
@@ -549,7 +610,7 @@ export default function Component() {
                   {selectedEvent.attendees.map((attendee) => (
                     <div key={attendee.id} className="flex items-center gap-2">
                       <Avatar>
-                        <Image src={attendee.image} alt={attendee.name} />
+                        <Image layout="fill" objectFit="contain" src={attendee.image} alt={attendee.name} />
                         <AvatarFallback>
                           {attendee.name.charAt(0).toUpperCase()}
                         </AvatarFallback>
@@ -569,65 +630,6 @@ export default function Component() {
             </div>
           </div>
         )}
-
-        <div>
-          <h1 className="text-2xl font-bold tracking-tight">
-            Upcoming Events in your area
-          </h1>
-        </div>
-
-        <div
-          className={`${
-            selectedEvent && 'w-1/3'
-          } transition-all ease-in-out grid w-full gap-4 gap-y-12 grid-cols-[repeat(auto-fit,minmax(300px,1fr))] lg:grid-cols-[repeat(auto-fit,minmax(300px,400px))]`}
-        >
-          {events.slice(2, events.length).map((event) => (
-            <div
-              key={event.id}
-              className="bg-white dark:bg-gray-950 rounded-lg overflow-hidden shadow-lg cursor-pointer hover:shadow-xl transition-shadow"
-              onClick={() => handleEventClick(event)}
-            >
-              <div className="relative">
-                <div className="absolute top-4 right-4 flex items-center gap-4">
-                  <div className=" bg-[#fff] font-semibold text-black px-3 py-1 rounded-md text-sm  dark:bg-gray-50 dark:text-gray-900">
-                    {event.city}
-                  </div>
-                  <div className="flex items-center gap-2 bg-[#fff]  text-black font-semibold px-3 py-1 rounded-md text-sm  dark:bg-gray-50 dark:text-gray-900">
-                    <UserIcon className="h-4 w-4" />
-                    {event.ageRange}
-                  </div>
-                </div>
-                <Image
-                  src={event.image}
-                  alt={event.title}
-                  width={400}
-                  height={225}
-                  className="w-full h-48 object-cover"
-                />
-              </div>
-
-              <div className="p-4">
-                <h2 className="text-lg font-bold mb-2">{event.title}</h2>
-                <div className="flex items-center mb-2">
-                  <CalendarIcon className="w-4 h-4 mr-2" />
-                  <span>{event.date}</span>
-                </div>
-                <div className="flex items-center mb-2">
-                  <ClockIcon className="w-4 h-4 mr-2" />
-                  <span>{event.time}</span>
-                </div>
-                <div className="flex items-center mb-2">
-                  <MapPinIcon className="w-4 h-4 mr-2" />
-                  <span>{event.city}</span>
-                </div>
-                <div className="flex items-center">
-                  <LocateIcon className="w-4 h-4 mr-2" />
-                  <span>{event.address}</span>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
       </div>
     </>
   );

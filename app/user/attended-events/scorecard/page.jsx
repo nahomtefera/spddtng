@@ -33,7 +33,7 @@ export default function Component() {
               </TableCell>
               <TableCell>
                 <Avatar className="my-4">
-                  <Image src="/images/users/user1.webp" alt="Alexa R." />
+                  <Image layout="fill" objectFit="contain" src="/images/users/user1.webp" alt="Alexa R." />
                   <AvatarFallback>AR</AvatarFallback>
                 </Avatar>
                 Alexa R.
@@ -59,7 +59,7 @@ export default function Component() {
               </TableCell>
               <TableCell>
                 <Avatar className="my-4">
-                  <Image src="/images/users/user2.webp" alt="Jordan K." />
+                  <Image layout="fill" objectFit="contain" src="/images/users/user2.webp" alt="Jordan K." />
                   <AvatarFallback>JK</AvatarFallback>
                 </Avatar>
                 Jordan K.
@@ -85,7 +85,7 @@ export default function Component() {
               </TableCell>
               <TableCell>
                 <Avatar className="my-4">
-                  <Image src="/images/users/user3.webp" alt="Casey L." />
+                  <Image layout="fill" objectFit="contain" src="/images/users/user3.webp" alt="Casey L." />
                   <AvatarFallback>CL</AvatarFallback>
                 </Avatar>
                 Casey L.
@@ -111,7 +111,7 @@ export default function Component() {
               </TableCell>
               <TableCell>
                 <Avatar className="my-4">
-                  <Image src="/images/users/user4.webp" alt="Quinn M." />
+                  <Image layout="fill" objectFit="contain" src="/images/users/user4.webp" alt="Quinn M." />
                   <AvatarFallback>QM</AvatarFallback>
                 </Avatar>
                 Quinn M.
@@ -137,7 +137,7 @@ export default function Component() {
               </TableCell>
               <TableCell>
                 <Avatar className="my-4">
-                  <Image src="/images/users/user5.webp" alt="Taylor S." />
+                  <Image layout="fill" objectFit="contain" src="/images/users/user5.webp" alt="Taylor S." />
                   <AvatarFallback>TS</AvatarFallback>
                 </Avatar>
                 Taylor S.

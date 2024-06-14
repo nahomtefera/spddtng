@@ -20,7 +20,7 @@ export default function Component() {
         <div className="grid gap-4">
           <div className="flex items-center justify-center">
             <Avatar className="h-32 w-32">
-              <Image src="/images/users/user3.webp" alt="Avatar" />
+              <Image layout="fill" objectFit="contain" src="/images/users/user3.webp" alt="Avatar" />
               <AvatarFallback>JS</AvatarFallback>
             </Avatar>
           </div>

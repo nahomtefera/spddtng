@@ -22,7 +22,7 @@ export default function Component() {
             <div className="grid gap-4">
               <div className="flex items-center gap-4">
                 <Avatar className="w-16 h-16 rounded-lg border">
-                  <Image src="/images/users/user2.webp" alt="@username" />
+                  <Image layout="fill" objectFit="contain" src="/images/users/user2.webp" alt="@username" />
                   <AvatarFallback>JD</AvatarFallback>
                 </Avatar>
                 <div className="flex-1">
@@ -34,7 +34,7 @@ export default function Component() {
               </div>
               <div className="flex items-center gap-4">
                 <Avatar className="w-16 h-16 rounded-lg border">
-                  <Image src="/images/users/user4.webp" alt="@username" />
+                  <Image layout="fill" objectFit="contain" src="/images/users/user4.webp" alt="@username" />
                   <AvatarFallback>JS</AvatarFallback>
                 </Avatar>
                 <div className="flex-1">
@@ -46,7 +46,7 @@ export default function Component() {
               </div>
               <div className="flex items-center gap-4">
                 <Avatar className="w-16 h-16 rounded-lg border">
-                  <Image src="/images/users/user1.webp" alt="@username" />
+                  <Image layout="fill" objectFit="contain" src="/images/users/user1.webp" alt="@username" />
                   <AvatarFallback>JS</AvatarFallback>
                 </Avatar>
                 <div className="flex-1">
@@ -73,8 +73,8 @@ export default function Component() {
               <div className="flex items-center gap-4">
                 <Image
                   src="/images/app/restaurant2.webp"
-                  width="64"
-                  height="64"
+                  layout="fill" 
+                  objectFit="contain"
                   className="object-cover rounded-md w-16 h-16"
                   alt="Event"
                 />
@@ -88,8 +88,8 @@ export default function Component() {
               <div className="flex items-center gap-4">
                 <Image
                   src="/images/app/restaurant1.webp"
-                  width="64"
-                  height="64"
+                  layout="fill" 
+                  objectFit="contain"
                   className="object-cover rounded-md w-16 h-16"
                   alt="Event"
                 />
@@ -103,8 +103,8 @@ export default function Component() {
               <div className="flex items-center gap-4">
                 <Image
                   src="/images/app/restaurant3.webp"
-                  width="64"
-                  height="64"
+                  layout="fill" 
+                  objectFit="contain"
                   className="object-cover rounded-md w-16 h-16"
                   alt="Event"
                 />
@@ -132,8 +132,8 @@ export default function Component() {
               <div className="flex items-center gap-4">
                 <Image
                   src="/images/app/restaurant4.webp"
-                  width="64"
-                  height="64"
+                  layout="fill" 
+                  objectFit="contain"
                   className="object-cover rounded-md w-16 h-16"
                   alt="Event"
                 />
@@ -147,8 +147,8 @@ export default function Component() {
               <div className="flex items-center gap-4">
                 <Image
                   src="/images/app/restaurant5.webp"
-                  width="64"
-                  height="64"
+                  layout="fill" 
+                  objectFit="contain"
                   className="object-cover rounded-md w-16 h-16"
                   alt="Event"
                 />
@@ -162,8 +162,8 @@ export default function Component() {
               <div className="flex items-center gap-4">
                 <Image
                   src="/images/app/restaurant2.webp"
-                  width="64"
-                  height="64"
+                  layout="fill" 
+                  objectFit="contain"
                   className="object-cover rounded-md w-16 h-16"
                   alt="Event"
                 />
@@ -191,8 +191,8 @@ export default function Component() {
               <div className="flex items-center gap-4">
                 <Image
                   src="/images/marketing/couple1.webp"
-                  width="64"
-                  height="64"
+                  layout="fill" 
+                  objectFit="contain"
                   className="object-cover rounded-md w-16 h-16"
                   alt="Advice"
                 />
@@ -208,8 +208,8 @@ export default function Component() {
               <div className="flex items-center gap-4">
                 <Image
                   src="/images/marketing/couple2.webp"
-                  width="64"
-                  height="64"
+                  layout="fill" 
+                  objectFit="contain"                  
                   className="object-cover rounded-md w-16 h-16"
                   alt="Advice"
                 />
