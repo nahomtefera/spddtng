@@ -45,7 +45,7 @@ export default function Hero() {
                 className={`carousel-background absolute w-full h-full inset-0 bg-cover bg-center blur-[15px]`}
                 style={{ backgroundImage: `url(${images[current].src})`, backgroundColor: images[current].bgColor }}
             >
-                <img
+                <Image
                     // src={images[current].src}
                     alt="Carousel background"
                     width={800}
@@ -66,7 +66,7 @@ export default function Hero() {
                         {images.map((image, i) => (
                         <CarouselItem key={i}>
                             <div className="flex flex-col items-center justify-center h-[500px] sm:h-[600px] rounded-lg rounded-b-none overflow-hidden">
-                            <img
+                            <Image
                                 src={image.src}
                                 alt={`Carousel image ${i + 1}`}
                                 width={800}

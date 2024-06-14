@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
@@ -21,7 +22,7 @@ export default function Component() {
             <div className="grid gap-4">
               <div className="flex items-center gap-4">
                 <Avatar className="w-16 h-16 rounded-lg border">
-                  <img src="/images/users/user2.webp" alt="@username" />
+                  <Image src="/images/users/user2.webp" alt="@username" />
                   <AvatarFallback>JD</AvatarFallback>
                 </Avatar>
                 <div className="flex-1">
@@ -33,7 +34,7 @@ export default function Component() {
               </div>
               <div className="flex items-center gap-4">
                 <Avatar className="w-16 h-16 rounded-lg border">
-                  <img src="/images/users/user4.webp" alt="@username" />
+                  <Image src="/images/users/user4.webp" alt="@username" />
                   <AvatarFallback>JS</AvatarFallback>
                 </Avatar>
                 <div className="flex-1">
@@ -45,7 +46,7 @@ export default function Component() {
               </div>
               <div className="flex items-center gap-4">
                 <Avatar className="w-16 h-16 rounded-lg border">
-                  <img src="/images/users/user1.webp" alt="@username" />
+                  <Image src="/images/users/user1.webp" alt="@username" />
                   <AvatarFallback>JS</AvatarFallback>
                 </Avatar>
                 <div className="flex-1">
@@ -70,7 +71,7 @@ export default function Component() {
           <CardContent>
             <div className="grid gap-4">
               <div className="flex items-center gap-4">
-                <img
+                <Image
                   src="/images/app/restaurant2.webp"
                   width="64"
                   height="64"
@@ -85,7 +86,7 @@ export default function Component() {
                 </div>
               </div>
               <div className="flex items-center gap-4">
-                <img
+                <Image
                   src="/images/app/restaurant1.webp"
                   width="64"
                   height="64"
@@ -100,7 +101,7 @@ export default function Component() {
                 </div>
               </div>
               <div className="flex items-center gap-4">
-                <img
+                <Image
                   src="/images/app/restaurant3.webp"
                   width="64"
                   height="64"
@@ -129,7 +130,7 @@ export default function Component() {
           <CardContent>
             <div className="grid gap-4">
               <div className="flex items-center gap-4">
-                <img
+                <Image
                   src="/images/app/restaurant4.webp"
                   width="64"
                   height="64"
@@ -144,7 +145,7 @@ export default function Component() {
                 </div>
               </div>
               <div className="flex items-center gap-4">
-                <img
+                <Image
                   src="/images/app/restaurant5.webp"
                   width="64"
                   height="64"
@@ -159,7 +160,7 @@ export default function Component() {
                 </div>
               </div>
               <div className="flex items-center gap-4">
-                <img
+                <Image
                   src="/images/app/restaurant2.webp"
                   width="64"
                   height="64"
@@ -188,7 +189,7 @@ export default function Component() {
           <CardContent>
             <div className="grid gap-4">
               <div className="flex items-center gap-4">
-                <img
+                <Image
                   src="/images/marketing/couple1.webp"
                   width="64"
                   height="64"
@@ -205,7 +206,7 @@ export default function Component() {
                 </div>
               </div>
               <div className="flex items-center gap-4">
-                <img
+                <Image
                   src="/images/marketing/couple2.webp"
                   width="64"
                   height="64"

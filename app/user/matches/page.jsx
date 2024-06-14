@@ -18,6 +18,7 @@ import {
   FilterIcon,
   ListOrderedIcon,
 } from '@/lib/customIcons';
+import Image from 'next/image';
 export default function Component() {
   const [filters, setFilters] = useState({
     age: [18, 50],
@@ -202,7 +203,7 @@ export default function Component() {
                 <span className="sr-only">View Profile</span>
               </Link>
               <div className="relative">
-                <img
+                <Image
                   src={match.image}
                   alt={match.name}
                   width={500}

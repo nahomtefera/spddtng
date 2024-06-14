@@ -3,6 +3,7 @@ import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import Image from 'next/image';
 
 export default function Component() {
   return (
@@ -19,7 +20,7 @@ export default function Component() {
         <div className="grid gap-4">
           <div className="flex items-center justify-center">
             <Avatar className="h-32 w-32">
-              <img src="/images/users/user3.webp" alt="Avatar" />
+              <Image src="/images/users/user3.webp" alt="Avatar" />
               <AvatarFallback>JS</AvatarFallback>
             </Avatar>
           </div>
