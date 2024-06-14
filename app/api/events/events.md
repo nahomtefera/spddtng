@@ -32,7 +32,7 @@ Example Response:
 # Event Management Endpoints
 ## Create Event
 ### Method: PUT
-### Endpoint: /api/admin/events
+### Endpoint: /api/events
 ### Request Body:
 ```json
     {
@@ -63,7 +63,7 @@ Example response
 
 ## Update Event
 ### Method: PUT
-### Endpoint: /api/admin/events/:eventId
+### Endpoint: /api/events/:eventId
 ### Request Body:
 ```json
     {
@@ -93,7 +93,7 @@ Example response
 
 ## Delete Event
 ### Method: DELETE
-### Endpoint: /api/admin/events/:eventId
+### Endpoint: /api/events/:eventId
 Example response
 
 ```json
@@ -104,7 +104,7 @@ Example response
 
 ## Get All Events
 ### Method: GET
-### Endpoint: /api/admin/events/
+### Endpoint: /api/events/
 Example response
 
 ```json
@@ -137,7 +137,7 @@ Example response
 
 ## Get Event Details
 ### Method: GET
-### Endpoint: /api/admin/events/:eventId
+### Endpoint: /api/events/:eventId
 Example response
 
 ```json

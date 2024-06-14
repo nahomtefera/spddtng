@@ -2,7 +2,7 @@
 # Admin Dashboard API Endpoints - Attendees Management
 ## Get All Attendees
 ### Method: GET
-### Endpoint: /api/admin/events/:eventId/attendees
+### Endpoint: /api/events/:eventId/attendees
 ### Example response:
 ```json
     [
@@ -23,7 +23,7 @@
 
 ## Add Attendee to Event
 ### Method: POST
-### Endpoint: /api/admin/events/:eventId/attendees
+### Endpoint: /api/events/:eventId/attendees
 ### Request Body:
 ```json
     {
@@ -39,7 +39,7 @@ Example response:
 
 ## Remove Attendee to Event
 ### Method: DELETE
-### Endpoint: /api/admin/events/:eventId/attendees/:attendeeId
+### Endpoint: /api/events/:eventId/attendees/:attendeeId
 ### Request Body:
 ```json
     {
@@ -55,7 +55,7 @@ Example response:
 
 ## Move Attendee to Another Event
 ### Method: POST
-### Endpoint: /api/admin/events/:fromEventId/attendees/:attendeeId/move
+### Endpoint: /api/events/:fromEventId/attendees/:attendeeId/move
 ### Request Body:
 ```json
     {
