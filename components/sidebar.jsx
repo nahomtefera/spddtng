@@ -14,6 +14,7 @@ import {
   ChevronRightIcon,
 } from '@/lib/customIcons';
 import { createClient } from '@/utils/supabase/client';
+import Image from 'next/image';
 
 export default function Sidebar({ links, isAdminDashboard, isUserDashboard }) {
   const pathname = usePathname();
@@ -127,7 +128,7 @@ export default function Sidebar({ links, isAdminDashboard, isUserDashboard }) {
               rounded-lg
               ${isSidebarCollapsed ? 'w-[45px] h-[45px]' : 'w-[150px] h-[150px]'} 
             `}>
-              <img src={userProfilePicture} alt="@username" />
+              <Image src={userProfilePicture} alt="@username" />
               <AvatarFallback>JD</AvatarFallback>
             </Avatar>
           </div>

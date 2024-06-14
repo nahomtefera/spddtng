@@ -10,6 +10,7 @@ import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Slider } from '@/components/ui/slider';
 // custom icons
 import { HeartCrackIcon, HeartIcon } from '@/lib/customIcons';
+import Image from 'next/image';
 
 export default function Component() {
   return (
