@@ -23,6 +23,7 @@ import { Label } from '@/components/ui/label';
 import { CalendarIcon, SearchIcon } from '@/lib/customIcons';
 import Link from 'next/link';
 import { Textarea } from '@/components/ui/textarea';
+import Image from 'next/image';
 
 export default function Component() {
   const [events, setEvents] = useState([
@@ -144,7 +145,7 @@ export default function Component() {
                 {events.map((event) => (
                   <TableRow key={event.id}>
                     <TableCell>
-                      <img
+                      <Image
                         src={event.img_src}
                         width={80}
                         height={80}

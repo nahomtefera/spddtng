@@ -10,6 +10,7 @@ import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Slider } from '@/components/ui/slider';
 // custom icons
 import { HeartCrackIcon, HeartIcon } from '@/lib/customIcons';
+import Image from 'next/image';
 
 export default function Component() {
   return (
@@ -32,7 +33,7 @@ export default function Component() {
               </TableCell>
               <TableCell>
                 <Avatar className="my-4">
-                  <img src="/images/users/user1.webp" alt="Alexa R." />
+                  <Image src="/images/users/user1.webp" alt="Alexa R." />
                   <AvatarFallback>AR</AvatarFallback>
                 </Avatar>
                 Alexa R.
@@ -58,7 +59,7 @@ export default function Component() {
               </TableCell>
               <TableCell>
                 <Avatar className="my-4">
-                  <img src="/images/users/user2.webp" alt="Jordan K." />
+                  <Image src="/images/users/user2.webp" alt="Jordan K." />
                   <AvatarFallback>JK</AvatarFallback>
                 </Avatar>
                 Jordan K.
@@ -84,7 +85,7 @@ export default function Component() {
               </TableCell>
               <TableCell>
                 <Avatar className="my-4">
-                  <img src="/images/users/user3.webp" alt="Casey L." />
+                  <Image src="/images/users/user3.webp" alt="Casey L." />
                   <AvatarFallback>CL</AvatarFallback>
                 </Avatar>
                 Casey L.
@@ -110,7 +111,7 @@ export default function Component() {
               </TableCell>
               <TableCell>
                 <Avatar className="my-4">
-                  <img src="/images/users/user4.webp" alt="Quinn M." />
+                  <Image src="/images/users/user4.webp" alt="Quinn M." />
                   <AvatarFallback>QM</AvatarFallback>
                 </Avatar>
                 Quinn M.
@@ -136,7 +137,7 @@ export default function Component() {
               </TableCell>
               <TableCell>
                 <Avatar className="my-4">
-                  <img src="/images/users/user5.webp" alt="Taylor S." />
+                  <Image src="/images/users/user5.webp" alt="Taylor S." />
                   <AvatarFallback>TS</AvatarFallback>
                 </Avatar>
                 Taylor S.

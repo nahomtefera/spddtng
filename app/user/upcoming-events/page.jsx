@@ -25,6 +25,7 @@ import {
   FilterIcon,
   ListOrderedIcon,
 } from '../../../lib/customIcons';
+import Image from 'next/image';
 
 export default function Component() {
   const [filters, setFilters] = useState({
@@ -439,7 +440,7 @@ export default function Component() {
                     {event.ageRange}
                   </div>
                 </div>
-                <img
+                <Image
                   src={event.image}
                   alt={event.title}
                   width={400}
@@ -476,7 +477,7 @@ export default function Component() {
             style={{ marginTop: 0 }}
           >
             <div>
-              <img
+              <Image
                 src={selectedEvent.image}
                 alt={selectedEvent.title}
                 width={600}
@@ -548,7 +549,7 @@ export default function Component() {
                   {selectedEvent.attendees.map((attendee) => (
                     <div key={attendee.id} className="flex items-center gap-2">
                       <Avatar>
-                        <img src={attendee.image} alt={attendee.name} />
+                        <Image src={attendee.image} alt={attendee.name} />
                         <AvatarFallback>
                           {attendee.name.charAt(0).toUpperCase()}
                         </AvatarFallback>
@@ -596,7 +597,7 @@ export default function Component() {
                     {event.ageRange}
                   </div>
                 </div>
-                <img
+                <Image
                   src={event.image}
                   alt={event.title}
                   width={400}
