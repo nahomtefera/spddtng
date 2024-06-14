@@ -11,7 +11,7 @@ import {
   DropdownMenuItem,
 } from '@/components/ui/dropdown-menu';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
-import { LogOutIcon, UserIcon } from '@/lib/customIcons';
+import { LogOutIcon, UserIcon, HeartIcon } from '@/lib/customIcons';
 
 export default async function AuthButton() {
   const supabase = createClient();
@@ -82,11 +82,29 @@ export default async function AuthButton() {
       </div>
     </div>
   ) : (
-    <Link
-      href="/login"
-      className="py-2 px-3 flex rounded-md no-underline bg-btn-background hover:bg-btn-background-hover"
-    >
-      <Button variant="default">Login</Button>
-    </Link>
+    <div className='flex gap-3'>
+      <Link
+        href="/login"
+        className="flex rounded-md no-underline"
+      >
+        <Button 
+          className='backdrop-blur-md	bg-[#2c2c2c4f] text-white hover:bg-[#2c2c2c7d] font-semibold' 
+          variant="default"
+        >
+            Login
+        </Button>
+      </Link>
+      <Link
+        href="/signup"
+        className="backgropd flex rounded-md no-underline bg-btn-background hover:bg-btn-background-hover"
+      >
+        <Button
+          className='fil flex gap-2 items-center justify-center font-semibold px-4 backdrop-blur-md	bg-[#000000d3] hover:bg-[#000]' 
+          variant="default"
+        >
+          <HeartIcon size="16" fill="#fff" stroke="#fff" /> Sign Up
+        </Button>
+      </Link>
+    </div>
   );
 }
