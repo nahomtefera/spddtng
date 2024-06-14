@@ -6,11 +6,14 @@ import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import Image from 'next/image';
+import { toast } from "sonner"
 // mock profile
 import { mockProfile } from './mockProfile';
 
 export default function Component() {
   const [loading, setLoading] = useState(true);
+  const [originalProfile, setOriginalProfile] = useState({});
+  const [isChanged, setIsChanged] = useState(false); //
   const [profile, setProfile] = useState({
     firstName: '',
     lastName: '',
@@ -24,10 +27,11 @@ export default function Component() {
   // Keep track of input changes
   const handleChange = (e) => {
     const { id, value } = e.target;
-    setProfile((prevProfile) => ({
-      ...prevProfile,
-      [id]: value,
-    }));
+    setProfile((prevProfile) => {
+      const updatedProfile = { ...prevProfile, [id]: value };
+      setIsChanged(JSON.stringify(updatedProfile) !== JSON.stringify(originalProfile));
+      return updatedProfile;
+    });
   };
 
   // Fetch user profile information
@@ -37,6 +41,7 @@ export default function Component() {
         // Simulating a network request with a timeout
         setTimeout(() => {
           setProfile(mockProfile);
+          setOriginalProfile(mockProfile);
           setLoading(false);
         }, 1000); // 1-second delay
       } catch (error) {
@@ -51,7 +56,9 @@ export default function Component() {
     try {
       // Simulating a network request with a timeout
       setTimeout(() => {
-        alert('Profile updated successfully');
+        setOriginalProfile(profile);
+        setIsChanged(false);
+        toast.success('Profile updated successfully 😍');
       }, 500); // 0.5-second delay
     } catch (error) {
       console.error('Error updating profile:', error);
@@ -133,7 +140,12 @@ export default function Component() {
           </div>
         </div>
         <div className="flex justify-end">
-          <Button onClick={handleSave}>Save Changes</Button>
+          <Button
+            disabled={!isChanged} 
+            onClick={handleSave}
+          >
+            Save Changes
+          </Button>
         </div>
       </div>
     </>
