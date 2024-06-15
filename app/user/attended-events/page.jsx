@@ -472,7 +472,7 @@ export default function Component() {
         </div>
         {selectedEvent && (
           <div
-            className="fixed top-0 right-0 w-full md:w-1/2 h-full bg-white dark:bg-gray-950 shadow-lg overflow-y-auto flex flex-col "
+            className="z-50 fixed top-0 right-0 w-full md:w-1/2 h-full bg-white dark:bg-gray-950 shadow-lg overflow-y-auto flex flex-col "
             style={{ marginTop: 0 }}
           >
             <div>
@@ -485,7 +485,7 @@ export default function Component() {
               />
               <Button
                 variant="secondary"
-                className="fixed right-8 top-5"
+                className="fixed right-8 top-5 bg-gray-800 hover:bg-gray-900"
                 size="icon"
                 onClick={() => setSelectedEvent(null)}
               >
