@@ -13,6 +13,7 @@ import {
 } from '@/lib/customIcons';
 
 import Image from 'next/image';
+import Link from 'next/link';
 
 const EventCard = ({ event, handleEventClick, attended}) => {
   function formatDate(dateString) {
@@ -78,10 +79,12 @@ const EventCard = ({ event, handleEventClick, attended}) => {
           <span className='text-base font-semibold'>{event.city}</span>
         </div>
         {!attended && (
-          <div className='flex items-center shadow-lg bg-[#0000007a] hover:bg-[#2e13417a] font-semibold backdrop-blur-sm text-white text-md absolute bottom-4 right-4 px-6 py-4 rounded'>
+          <Link onClick={(e)=>{e.stopPropagation()}} href={`/events/${event.id}`} className="text-primary" prefetch={false}>
+            <div className='flex items-center shadow-lg bg-[#0000007a] hover:bg-[#2e13417a] font-semibold backdrop-blur-sm text-white text-md absolute bottom-4 right-4 px-6 py-4 rounded'>
             {/* <TicketIcon stroke="white" className="w-6 h-6 mr-2" /> */}
-            Get Tickets
-          </div>
+              Get Tickets
+            </div>
+          </Link>
         )}
       </div>
     </div>
