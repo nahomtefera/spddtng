@@ -11,12 +11,29 @@ import {
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import Image from 'next/image';
+import { useEffect, useRef } from 'react';
 
 const EventCardSidebar = ({ selectedEvent, setSelectedEvent}) => {
+  const sidebarRef = useRef();
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
+        setSelectedEvent(null);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [setSelectedEvent]);
+  
   return (
     <div
-            className="z-50 fixed top-0 right-0 w-full md:w-1/2 h-full bg-white dark:bg-gray-950 shadow-lg overflow-y-auto flex flex-col "
-            style={{ marginTop: 0 }}
+      ref={sidebarRef}
+      className="z-50 fixed top-0 right-0 w-full md:w-1/2 h-full bg-white dark:bg-gray-950 shadow-lg overflow-y-auto flex flex-col "
+      style={{ marginTop: 0 }}
           >
             <div>
               <Image
