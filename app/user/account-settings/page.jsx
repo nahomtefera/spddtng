@@ -48,7 +48,7 @@ export default function Component() {
                 id="email"
                 type="email"
                 defaultValue="john@example.com"
-                className="block w-full border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
+                className="text-base block w-full border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
               />
             </div>
             <div>
@@ -62,7 +62,7 @@ export default function Component() {
                 id="phone"
                 type="tel"
                 defaultValue="+1 (555) 555-5555"
-                className="block w-full border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
+                className="text-base block w-full border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
               />
             </div>
             <div>
@@ -75,7 +75,7 @@ export default function Component() {
               <Input
                 id="current-password"
                 type="password"
-                className="block w-full border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
+                className="text-base block w-full border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
               />
             </div>
             <div>
@@ -88,7 +88,7 @@ export default function Component() {
               <Input
                 id="new-password"
                 type="password"
-                className="block w-full border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
+                className="text-base block w-full border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
               />
             </div>
             <Button className="w-full">Change Password</Button>
@@ -100,19 +100,19 @@ export default function Component() {
           </h2>
           <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 space-y-6">
             <div className="flex items-center justify-between">
-              <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+              <span className="text-base font-medium text-gray-700 dark:text-gray-300">
                 Email Notifications
               </span>
               <Switch />
             </div>
             <div className="flex items-center justify-between">
-              <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+              <span className="text-base font-medium text-gray-700 dark:text-gray-300">
                 SMS Notifications
               </span>
               <Switch />
             </div>
             <div className="flex items-center justify-between">
-              <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+              <span className="text-base font-medium text-gray-700 dark:text-gray-300">
                 Event Notifications
               </span>
               <Switch />
@@ -127,7 +127,7 @@ export default function Component() {
             <div>
               <label
                 htmlFor="profile-visibility"
-                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                className="block text-base font-medium text-gray-700 dark:text-gray-300 mb-2"
               >
                 Profile Visibility
               </label>
@@ -143,13 +143,13 @@ export default function Component() {
               </Select>
             </div>
             <div className="flex items-center justify-between">
-              <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+              <span className="text-base font-medium text-gray-700 dark:text-gray-300">
                 Search Privacy
               </span>
               <Switch />
             </div>
             <div className="flex items-center justify-between">
-              <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+              <span className="text-base font-medium text-gray-700 dark:text-gray-300">
                 Data Sharing
               </span>
               <Switch />
@@ -163,7 +163,7 @@ export default function Component() {
           <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 space-y-6">
             <AlertDialog>
               <AlertDialogTrigger asChild>
-                <Button variant="outline" className="w-full">
+                <Button variant="outline" className="text-base w-full">
                   Deactivate Account
                 </Button>
               </AlertDialogTrigger>
@@ -185,7 +185,7 @@ export default function Component() {
             </AlertDialog>
             <AlertDialog>
               <AlertDialogTrigger asChild>
-                <Button variant="outline" className="w-full">
+                <Button variant="outline" className="text-base w-full">
                   Delete Account
                 </Button>
               </AlertDialogTrigger>

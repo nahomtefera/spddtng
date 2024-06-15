@@ -89,19 +89,19 @@ export default function Component() {
         <div className="grid grid-cols-2 gap-4 mt-6">
           <div className="grid gap-2">
             <Label htmlFor="firstName">First Name</Label>
-            <Input id="firstName" value={profile.firstName} onChange={handleChange} defaultValue="Jane" />
+            <Input className='text-base' id="firstName" value={profile.firstName} onChange={handleChange} defaultValue="Jane" />
           </div>
           <div className="grid gap-2">
             <Label htmlFor="lastName">Last Name</Label>
-            <Input id="lastName" value={profile.lastName} onChange={handleChange} defaultValue="Smith" />
+            <Input className='text-base' id="lastName" value={profile.lastName} onChange={handleChange} defaultValue="Smith" />
           </div>
           <div className="grid gap-2">
             <Label htmlFor="email">Email</Label>
-            <Input id="email" value={profile.email} onChange={handleChange} defaultValue="jane@example.com" type="email" />
+            <Input className='text-base' id="email" value={profile.email} onChange={handleChange} defaultValue="jane@example.com" type="email" />
           </div>
           <div className="grid gap-2">
             <Label htmlFor="phone">Phone Number</Label>
-            <Input id="phone" value={profile.phone} onChange={handleChange}  defaultValue="+1 (555) 555-5555" />
+            <Input className='text-base' id="phone" value={profile.phone} onChange={handleChange}  defaultValue="+1 (555) 555-5555" />
           </div>
         </div>
         <div className="grid gap-4">
@@ -109,6 +109,7 @@ export default function Component() {
             <Label htmlFor="bio">Bio</Label>
             <Textarea
               id="bio"
+              className="text-base"
               value={profile.bio} onChange={handleChange} 
               defaultValue="Hi there! I'm Jane, a friendly and outgoing person who loves trying new things. In my free time, I enjoy hiking, reading, and exploring new restaurants with friends."
               rows={4}
@@ -117,7 +118,7 @@ export default function Component() {
           <div className="grid grid-cols-2 gap-2">
             <div>
               <Label htmlFor="interests">Interests</Label>
-              <Input
+              <Input className='text-base'
                 id="interests"
                 value={profile.interests} onChange={handleChange} 
                 defaultValue="Hiking, Reading, Cooking, Travel"
@@ -125,13 +126,13 @@ export default function Component() {
             </div>
             <div>
               <Label htmlFor="occupation">Occupation</Label>
-              <Input id="occupation" value={profile.occupation} onChange={handleChange}  defaultValue="Software Engineer" />
+              <Input className='text-base' id="occupation" value={profile.occupation} onChange={handleChange}  defaultValue="Software Engineer" />
             </div>
           </div>
           <div className="grid grid-cols-2 gap-2">
             <div>
               <Label htmlFor="education">Education</Label>
-              <Input
+              <Input className='text-base'
                 id="education"
                 value={profile.education} onChange={handleChange} 
                 defaultValue="Bachelor's in Computer Science"
@@ -139,14 +140,19 @@ export default function Component() {
             </div>
           </div>
         </div>
-        <div className="flex justify-end">
-          <Button
-            disabled={!isChanged} 
-            onClick={handleSave}
-          >
-            Save Changes
-          </Button>
-        </div>
+        {
+          isChanged && (
+            <div className="flex justify-end fixed bottom-5 right-8">
+              <Button
+                disabled={!isChanged} 
+                onClick={handleSave}
+              >
+                Save Changes
+              </Button>
+            </div>
+          )
+        }
+        
       </div>
     </>
   );
