@@ -2,21 +2,18 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel"
+import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel"
 import Autoplay from "embla-carousel-autoplay";
-import useEmblaCarousel from "embla-carousel-react";
 
 export default function Hero() {
-    const [api, setApi] = React.useState(null)
-    const [current, setCurrent] = React.useState(0)
-    const [count, setCount] = React.useState(0)
+    const [api, setApi] = useState(null)
+    const [current, setCurrent] = useState(0)
     
-    React.useEffect(() => {
+    useEffect(() => {
         if (!api) {
             return
         }
     
-        setCount(api.scrollSnapList().length)
         setCurrent(api.selectedScrollSnap())
     
         api.on("select", () => {
