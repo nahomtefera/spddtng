@@ -1,87 +1,37 @@
+'use client';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { mockMatches, mockUpcomingEvents, mockAttendedEvents, mockAdviceItems } from './mockData'
+import { useEffect, useState } from 'react';
 
 export default function Component() {
-  const matches = [
-    {
-      id: 1,
-      name: 'Jada Doe',
-      matchedOn: 'June 1, 2023',
-      imageUrl: '/images/users/user2.webp',
-      fallback: 'JD'
-    },
-    {
-      id: 2,
-      name: 'Jane Smith',
-      matchedOn: 'May 15, 2023',
-      imageUrl: '/images/users/user4.webp',
-      fallback: 'JS'
-    },
-    {
-      id: 3,
-      name: 'Sara Smith',
-      matchedOn: 'May 15, 2023',
-      imageUrl: '/images/users/user1.webp',
-      fallback: 'SS'
+
+  const [matches, setMatches] = useState([])
+  const [upcomingEvents, setUpcomingEvents] = useState([])
+  const [attendedEvents, setAttendedEvents] = useState([])
+  const [adviceItems, setAdviceItems] = useState([])
+
+  // Fetch user dashboard information
+  useEffect(() => {
+    async function fetchDashboardData() {
+      try {
+        // Simulating a network request with a timeout
+        setTimeout(() => {
+          setMatches(mockMatches);
+          setUpcomingEvents(mockUpcomingEvents);
+          setAttendedEvents(mockAttendedEvents);
+          setAdviceItems(mockAdviceItems);
+        }, 1000); // 1-second delay
+      } catch (error) {
+        console.error('Error fetching profile:', error);
+      }
     }
-  ];
-  const upcomingEvents = [
-    {
-      id: 1,
-      title: 'Speed Dating Event',
-      date: 'June 15, 2023 - 7:00 PM',
-      imageUrl: '/images/app/restaurant2.webp',
-    },
-    {
-      id: 2,
-      title: 'Cocktail Mixer',
-      date: 'July 1, 2023 - 8:00 PM',
-      imageUrl: '/images/app/restaurant1.webp',
-    },
-    {
-      id: 3,
-      title: 'Rooftop Mixer',
-      date: 'July 20, 2023 - 8:00 PM',
-      imageUrl: '/images/app/restaurant3.webp',
-    },
-  ];
-  const attendedEvents = [
-    {
-      id: 1,
-      title: 'Rooftop Mixer',
-      date: 'May 20, 2023',
-      imageUrl: '/images/app/restaurant4.webp',
-    },
-    {
-      id: 2,
-      title: 'Wine Tasting',
-      date: 'April 10, 2023',
-      imageUrl: '/images/app/restaurant5.webp',
-    },
-    {
-      id: 3,
-      title: 'Wine Tasting',
-      date: 'March 12, 2023',
-      imageUrl: '/images/app/restaurant2.webp',
-    },
-  ];
-  const adviceItems = [
-    {
-      id: 1,
-      title: 'How to Make a Great First Impression',
-      description: 'Tips for a successful first date',
-      imageUrl: '/images/marketing/couple1.webp',
-    },
-    {
-      id: 2,
-      title: 'Navigating the Modern Dating Landscape',
-      description: 'Advice for finding love in the digital age',
-      imageUrl: '/images/marketing/couple2.webp',
-    },
-  ];
+    fetchDashboardData();
+  }, []);
+
   return (
     <>
       <div className="flex items-center justify-between mb-6">
