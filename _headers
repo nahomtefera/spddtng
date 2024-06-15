@@ -1,0 +1,9 @@
+/* 
+  Content-Encoding: gzip
+  Cache-Control: max-age=31536000, public
+
+/_next/static/*
+  Cache-Control: max-age=31536000, immutable
+
+/images/*
+  Cache-Control: max-age=31536000, public
