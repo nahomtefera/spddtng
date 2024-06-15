@@ -54,7 +54,7 @@ const EventCard = ({ event, handleEventClick}) => {
         />
       </div>
 
-      <div className="p-4 py-8 absolute bottom-0 bg-white w-full backdrop-blur-sm text-white bg-[#00000072]">
+      <div className="p-4 py-8 absolute bottom-0 w-full backdrop-blur-sm text-white bg-[#00000072]">
         <h2 className="text-2xl font-semibold mb-2">{event.title}</h2>
         <div className="flex items-center mb-2">
           <UserIcon stroke="white" className="w-4 h-4 mr-2" />
