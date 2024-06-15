@@ -32,7 +32,7 @@ export default function SignupPage() {
                   type="text"
                   required
                   placeholder="First name"
-                  className="rounded-t-md"
+                  className="text-base rounded-t-md"
                 />
               </div>
               <div className="w-1/2">
@@ -44,6 +44,7 @@ export default function SignupPage() {
                   name="last_name"
                   type="text"
                   required
+                  className="text-base"
                   placeholder="Last name"
                 />
               </div>
@@ -58,6 +59,7 @@ export default function SignupPage() {
                 type="email"
                 autoComplete="email"
                 required
+                className="text-base"
                 placeholder="Email address"
               />
             </div>
@@ -71,6 +73,7 @@ export default function SignupPage() {
                 type="password"
                 autoComplete="current-password"
                 required
+                className="text-base"
                 placeholder="Password"
               />
             </div>
@@ -83,7 +86,7 @@ export default function SignupPage() {
                 name="phone_number"
                 type="tel"
                 placeholder="Phone number (Optional)"
-                className="rounded-b-md"
+                className="text-base rounded-b-md"
               />
             </div>
           </div>
