@@ -54,7 +54,7 @@ export default function Component() {
 
         <div className={`${selectedEvent && 'w-1/3'} transition-all ease-in-out grid w-full gap-4 gap-y-12 grid-cols-[repeat(auto-fit,minmax(300px,1fr))] lg:grid-cols-[repeat(auto-fit,minmax(300px,400px))]`}>
           {events.slice(0, 2).map(event => (
-            <EventCard key={event.id} event={event} handleEventClick={handleEventClick} />
+            <EventCard key={event.id} attended={true} event={event} handleEventClick={handleEventClick} />
           ))}
         </div>
         
