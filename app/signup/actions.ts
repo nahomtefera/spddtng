@@ -30,6 +30,6 @@ export async function signup(formData: FormData) {
     return { error: error.message }
   }
 
-  revalidatePath('/', 'layout')
-  redirect('/')
+  revalidatePath('/signup/confirmation', 'layout')
+  redirect('/signup/confirmation')
 }
