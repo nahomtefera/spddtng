@@ -40,7 +40,7 @@ export default function Hero() {
             />
             <div 
                 className={`carousel-background absolute w-full h-full inset-0 bg-cover bg-center blur-[15px]`}
-                style={{ backgroundImage: `url(${images[current].src})`, backgroundColor: images[current].bgColor }}
+                style={{ backgroundColor: images[current].bgColor }}
             >
                 <Image
                     // src={images[current].src}
