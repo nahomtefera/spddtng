@@ -1,3 +1,4 @@
+'use client'
 // supabase login
 import { signup } from './actions';
 // components
@@ -6,8 +7,23 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { LockIcon, MountainIcon } from '@/lib/customIcons';
 import Link from 'next/link';
+import { useState } from 'react';
 
 export default function SignupPage() {
+
+  const [error, setError] = useState(null);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const result = await signup(formData);
+    if (result.error) {
+      setError(result.error);
+    } else {
+      window.location.href = '/signup/confirmation';
+    }
+  };
+
   return (
     <div className="flex min-h-screen items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="w-full max-w-md space-y-8">
@@ -19,7 +35,7 @@ export default function SignupPage() {
             Sign in to your account
           </h2>
         </div>
-        <form className="mt-8 space-y-6" action="#" method="POST">
+        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           <div className="-space-y-px rounded-md shadow-sm flex flex-col gap-3">
             <div className="flex gap-4">
               <div className="w-1/2">
@@ -90,9 +106,10 @@ export default function SignupPage() {
               />
             </div>
           </div>
+          {error && <p className="text-red-500">{error}</p>}
           <div>
             <Button
-              formAction={signup}
+              // formAction={signup}
               type="submit"
               className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
