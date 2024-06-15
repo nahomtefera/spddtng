@@ -6,8 +6,6 @@ import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import Sidebar from '@/components/sidebar';
 import { userLinks } from '@/lib/sidebarLinks';
-// toaster for sonner
-import { Toaster } from "@/components/ui/sonner"
 import './styles.css';
 
 const UserLayout = async ({ children }) => {
@@ -35,7 +33,6 @@ const UserLayout = async ({ children }) => {
         <div className="flex-1 bg-[#fbfbfb] dark:bg-gray-950 md:pt-10 py-6 px-4 md:px-6 lg:px-8 overflow-y-auto">
           <section className="w-full">
             <div className="container px-4 md:px-6">{children}</div>
-            <Toaster position="top-right"/>
           </section>
         </div>
       </div>
