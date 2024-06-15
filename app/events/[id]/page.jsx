@@ -34,7 +34,7 @@ export default function EventPage() {
   if (!event) return <div>Event not found</div>;
 
   const handleCheckout = () => {
-    router.push(`/checkout?eventId=${event.id}`);
+    router.push(`/checkout_sessions?eventId=${event.id}`);
   };
 
   return (
