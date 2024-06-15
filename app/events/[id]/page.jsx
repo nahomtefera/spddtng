@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import events from '@/lib/mockEvents';
 import { Button } from "@/components/ui/button"
@@ -15,6 +15,7 @@ import Loading from '@/components/loading'
 
 export default function EventPage() {
   const { id } = useParams();
+  const router = useRouter();
   const [event, setEvent] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -30,8 +31,11 @@ export default function EventPage() {
   }, [id]);
 
   if (loading) return <Loading />;
-
   if (!event) return <div>Event not found</div>;
+
+  const handleCheckout = () => {
+    router.push(`/checkout?eventId=${event.id}`);
+  };
 
   return (
     <div className="flex flex-col min-h-screen justify-center">
@@ -79,19 +83,14 @@ export default function EventPage() {
                 </p>
 
               </div>
-              <Button className='hidden lg:block'>Get Tickets</Button>
+              <Button className='hidden lg:block' onClick={handleCheckout}>Get Tickets</Button>
             </div>
           </div>
         </div>
       </section>
       <div className="lg:hidden sticky bottom-0 bg-white p-4 dark:bg-gray-800">
-        <Button className="w-full">Checkout</Button>
+        <Button className="w-full" onClick={handleCheckout}>Checkout</Button>
       </div>
     </div>
   );
 }
-
-const handleCheckout = (event) => {
-  // Handle the checkout process
-  console.log('Proceeding to checkout for event:', event);
-};
