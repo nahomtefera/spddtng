@@ -77,26 +77,23 @@ export default function Sidebar({ links, isAdminDashboard, isUserDashboard }) {
         <Button
           variant="ghost"
           size="icon"
-          className="rounded-full md:hidden absolute top-1 right-1"
+          className="bg-gray-900 rounded md:hidden absolute top-4 right-4"
           onClick={() => setIsSidebarOpen(false)}
         >
-          <XIcon className="w-6 h-6" />
+          <XIcon className="w-8 h-8" />
         </Button>
 
         {/* Collapse Sidebar */}
         <div 
           className={`
-            absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300
+            hidden md:block absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300
             ${isSidebarCollapsed && '-right-4 opacity-100'}  
           `}
         >
           <Button
             variant="ghost"
             size="icon"
-            className={`
-              text-white hover:text-white hover:bg-gray-900 rounded
-              ${isSidebarCollapsed && 'bg-black hover:bg-black text-white rounded-full'}  
-            `}
+            className="text-white hover:text-white hover:bg-gray-900 rounded"
             onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
           >
             {isSidebarCollapsed ? <ChevronRightIcon stroke="white" className="h-6 w-6" /> : <ChevronLeftIcon className="h-6 w-6" />}
