@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { LockIcon, MountainIcon, ChromeIcon, AppleIcon } from '@/lib/customIcons'
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function LoginPage() {
     return (
@@ -113,7 +114,7 @@ export default function LoginPage() {
             </div>
 
             <div className="hidden shadow-lg bg-gray-100 lg:block dark:bg-gray-800">
-                <img src="/images/marketing/couple1.webp" alt="Image" width="1920" height="1080" className="h-full w-full object-cover" />
+                <Image src="/images/marketing/couple1.webp" alt="Image" width={1920} height={1080} className="h-full w-full object-cover" />
             </div>
         </div>
     )

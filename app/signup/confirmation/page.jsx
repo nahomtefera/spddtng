@@ -7,7 +7,7 @@ export default function Component() {
         <div className="mx-auto max-w-md text-center">
           <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Thank you for signing up!</h1>
           <p className="mt-4 text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-            We've sent a confirmation email to your inbox. Please click the link in the email to complete your
+            We sent a confirmation email to your inbox. Please click the link in the email to complete your
             registration.
           </p>
           <div className="mt-6">
