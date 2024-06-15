@@ -1,14 +1,14 @@
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import dynamic from 'next/dynamic';
 // _components
 import Navbar from "./_components/navbar";
-import Footer from "./_components/footer";
 import Hero from "./_components/hero";
-import HowItWorks from "./_components/howItWorks";
-import UpcomingEvents from "./_components/upcomingEvents";
 //styles
 import "./_components/custom-css.css";
+
+// Dynamic imports
+const Footer = dynamic(() => import('./_components/footer'), { ssr: false });
+const HowItWorks = dynamic(() => import('./_components/howItWorks'), { ssr: false });
+const UpcomingEvents = dynamic(() => import('./_components/upcomingEvents'), { ssr: false });
 
 export default function Component() {
   return (
