@@ -46,14 +46,26 @@ export default async function AuthButton() {
 
   return user ? (
     <div className="flex items-center gap-4">
-      <div>
-        Hey,
-        <span className="font-bold"> {capitalizeFirstLetter(userName)}</span>!
-      </div>
-      <div className="ml-auto flex gap-2">
+      <div className="ml-auto flex gap-4 items-center">
+        {/* <div>
+          Hey,
+          <span className="font-bold"> {capitalizeFirstLetter(userName)}</span>!
+        </div> */}
+        
+        <Link
+          href="/user/matches"
+          className="backgropd flex rounded-md no-underline bg-btn-background hover:bg-btn-background-hover"
+        >
+          <Button
+            className='fil flex gap-2 shadow-md border-black items-center justify-center px-4 backdrop-blur-md	bg-[#eaeaea21] text-black hover:bg-[#ffffff7d] font-medium' 
+            variant="default"
+          >
+            <HeartIcon size="16" fill="#d62020d3" stroke="#d62020d3" /> See Matches
+          </Button>
+        </Link>
         <DropdownMenu modal={false}>
           <DropdownMenuTrigger asChild className="cursor-pointer">
-            <Avatar className="h-9 w-9">
+            <Avatar className="h-[42px] w-[42px] shadow-md">
               <AvatarImage src={userProfilePicture || "/images/app/placeholder-user.jpg"} />
               <AvatarFallback>JP</AvatarFallback>
               <span className="sr-only">Toggle user menu</span>
@@ -76,9 +88,6 @@ export default async function AuthButton() {
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
-        <Link href="/user" prefetch={false} variant="secondary">
-          <Button variant="secondary">Dashboard</Button>
-        </Link>
       </div>
     </div>
   ) : (
