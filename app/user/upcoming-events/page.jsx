@@ -436,7 +436,7 @@ export default function Component() {
                     {event.city}
                   </div>
                   <div className="flex items-center gap-2 bg-[#fff]  text-black font-semibold px-3 py-1 rounded-md text-sm  dark:bg-gray-50 dark:text-gray-900">
-                    <UserIcon className="h-4 w-4" />
+                    <UserIcon stroke="black" className="h-4 w-4" />
                     {event.ageRange}
                   </div>
                 </div>
@@ -452,19 +452,19 @@ export default function Component() {
               <div className="p-4">
                 <h2 className="text-lg font-bold mb-2">{event.title}</h2>
                 <div className="flex items-center mb-2">
-                  <CalendarIcon className="w-4 h-4 mr-2" />
+                  <CalendarIcon stroke="black" className="w-4 h-4 mr-2" />
                   <span>{event.date}</span>
                 </div>
                 <div className="flex items-center mb-2">
-                  <ClockIcon className="w-4 h-4 mr-2" />
+                  <ClockIcon stroke="black" className="w-4 h-4 mr-2" />
                   <span>{event.time}</span>
                 </div>
                 <div className="flex items-center mb-2">
-                  <MapPinIcon className="w-4 h-4 mr-2" />
+                  <MapPinIcon stroke="black" className="w-4 h-4 mr-2" />
                   <span>{event.city}</span>
                 </div>
                 <div className="flex items-center">
-                  <LocateIcon className="w-4 h-4 mr-2" />
+                  <LocateIcon stroke="black" className="w-4 h-4 mr-2" />
                   <span>{event.address}</span>
                 </div>
               </div>
@@ -495,7 +495,7 @@ export default function Component() {
                     {event.city}
                   </div>
                   <div className="flex items-center gap-2 bg-[#fff]  text-black font-semibold px-3 py-1 rounded-md text-sm  dark:bg-gray-50 dark:text-gray-900">
-                    <UserIcon className="h-4 w-4" />
+                    <UserIcon stroke="black" className="h-4 w-4" />
                     {event.ageRange}
                   </div>
                 </div>
@@ -511,19 +511,19 @@ export default function Component() {
               <div className="p-4">
                 <h2 className="text-lg font-bold mb-2">{event.title}</h2>
                 <div className="flex items-center mb-2">
-                  <CalendarIcon className="w-4 h-4 mr-2" />
+                  <CalendarIcon stroke="black" className="w-4 h-4 mr-2" />
                   <span>{event.date}</span>
                 </div>
                 <div className="flex items-center mb-2">
-                  <ClockIcon className="w-4 h-4 mr-2" />
+                  <ClockIcon stroke="black" className="w-4 h-4 mr-2" />
                   <span>{event.time}</span>
                 </div>
                 <div className="flex items-center mb-2">
-                  <MapPinIcon className="w-4 h-4 mr-2" />
+                  <MapPinIcon stroke="black" className="w-4 h-4 mr-2" />
                   <span>{event.city}</span>
                 </div>
                 <div className="flex items-center">
-                  <LocateIcon className="w-4 h-4 mr-2" />
+                  <LocateIcon stroke="black" className="w-4 h-4 mr-2" />
                   <span>{event.address}</span>
                 </div>
               </div>
@@ -562,27 +562,27 @@ export default function Component() {
                 <div>
                   <div className="flex justify-space-around gap-x-6 flex-wrap mb-6">
                     <div className="flex items-center mb-2">
-                      <CalendarIcon className="w-4 h-4 mr-2" />
+                      <CalendarIcon stroke="black" className="w-4 h-4 mr-2" />
                       <span>{selectedEvent.date}</span>
                     </div>
                     <div className="flex items-center mb-2">
-                      <ClockIcon className="w-4 h-4 mr-2" />
+                      <ClockIcon stroke="black" className="w-4 h-4 mr-2" />
                       <span>{selectedEvent.time}</span>
                     </div>
                     <div className="flex items-center mb-2">
-                      <MapPinIcon className="w-4 h-4 mr-2" />
+                      <MapPinIcon stroke="black" className="w-4 h-4 mr-2" />
                       <span>{selectedEvent.city}</span>
                     </div>
                     <div className="flex items-center mb-2">
-                      <LocateIcon className="w-4 h-4 mr-2" />
+                      <LocateIcon stroke="black" className="w-4 h-4 mr-2" />
                       <span>{selectedEvent.address}</span>
                     </div>
                     <div className="flex items-center mb-2">
-                      <UserIcon className="w-4 h-4 mr-2" />
+                      <UserIcon stroke="black" className="w-4 h-4 mr-2" />
                       <span>Hosted by {selectedEvent.host}</span>
                     </div>
                     <div className="flex items-center mb-2">
-                      <UsersIcon className="w-4 h-4 mr-2" />
+                      <UsersIcon stroke="black" className="w-4 h-4 mr-2" />
                       <span>{selectedEvent.ageRange}</span>
                     </div>
                   </div>
@@ -590,7 +590,7 @@ export default function Component() {
                     <p>{selectedEvent.description}</p>
                   </div>
                   <div className="flex items-center mb-2">
-                    <TagIcon className="w-4 h-4 mr-2" />
+                    <TagIcon stroke="black" className="w-4 h-4 mr-2" />
                     <div className="flex flex-wrap gap-2">
                       {selectedEvent.tags.map((tag, index) => (
                         <span
