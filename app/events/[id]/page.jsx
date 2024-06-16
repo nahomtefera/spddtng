@@ -21,7 +21,7 @@ export default function EventPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const eventId = parseInt(id, 10); // Convert id to an integer
+    const eventId = parseIntn(id, 10); // Convert id to an integer
     const foundEvent = events.find(event => event.id === eventId);
     if (foundEvent) {
       setEvent(foundEvent);

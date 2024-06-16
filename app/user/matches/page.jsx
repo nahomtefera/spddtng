@@ -19,6 +19,8 @@ import {
   ListOrderedIcon,
 } from '@/lib/customIcons';
 import Image from 'next/image';
+import matches from './mockMatches';
+
 export default function Component() {
   const [filters, setFilters] = useState({
     age: [18, 50],
@@ -27,68 +29,7 @@ export default function Component() {
   });
   const [sortBy, setSortBy] = useState('newest');
 
-  const matches = [
-    {
-      id: 1,
-      name: 'Emily Wilkins',
-      age: 28,
-      location: 'New York, NY',
-      bio: "Adventurous and outgoing, I love exploring new places and trying new things. Let's connect!",
-      interests: ['Travel', 'Cooking', 'Hiking'],
-      match: 90,
-      image: '/images/users/user2.webp',
-    },
-    {
-      id: 2,
-      name: 'Michael Johnson',
-      age: 32,
-      location: 'Los Angeles, CA',
-      bio: "I'm a passionate entrepreneur looking to meet someone who shares my drive and ambition.",
-      interests: ['Startups', 'Technology', 'Fitness'],
-      match: 85,
-      image: '/images/users/user4.webp',
-    },
-    {
-      id: 3,
-      name: 'Sarah Lee',
-      age: 25,
-      location: 'Chicago, IL',
-      bio: "I love the arts and culture. Let's explore the city together and see where it takes us.",
-      interests: ['Art', 'Music', 'Museums'],
-      match: 92,
-      image: '/images/users/user1.webp',
-    },
-    {
-      id: 4,
-      name: 'Emily Wilkins',
-      age: 28,
-      location: 'New York, NY',
-      bio: "Adventurous and outgoing, I love exploring new places and trying new things. Let's connect!",
-      interests: ['Travel', 'Cooking', 'Hiking'],
-      match: 90,
-      image: '/images/users/user3.webp',
-    },
-    {
-      id: 5,
-      name: 'Michael Johnson',
-      age: 32,
-      location: 'Los Angeles, CA',
-      bio: "I'm a passionate entrepreneur looking to meet someone who shares my drive and ambition.",
-      interests: ['Startups', 'Technology', 'Fitness'],
-      match: 85,
-      image: '/images/users/user5.webp',
-    },
-    {
-      id: 6,
-      name: 'Sarah Lee',
-      age: 25,
-      location: 'Chicago, IL',
-      bio: "I love the arts and culture. Let's explore the city together and see where it takes us.",
-      interests: ['Art', 'Music', 'Museums'],
-      match: 92,
-      image: '/images/users/user6.webp',
-    },
-  ];
+
 
   const filteredMatches = useMemo(() => {
     return matches

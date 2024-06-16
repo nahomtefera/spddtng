@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { LockIcon, MountainIcon } from '@/lib/customIcons';
 import Link from 'next/link';
 import { useState } from 'react';
+import Image from 'next/image';
 
 export default function SignupPage() {
 
@@ -17,7 +18,7 @@ export default function SignupPage() {
     event.preventDefault();
     const formData = new FormData(event.target);
     const result = await signup(formData);
-    if (result.error) {
+    if (result?.error) {
       setError(result.error);
     } else {
       window.location.href = '/signup/confirmation';
@@ -25,9 +26,12 @@ export default function SignupPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="w-full max-w-md space-y-8">
-        <div>
+    <div className="w-full lg:grid lg:min-h-screen lg:grid-cols-2 xl:min-h-[800px]">
+      <div className="hidden shadow-lg bg-gray-100 lg:block dark:bg-gray-800">
+          <Image src="/images/marketing/couple5.webp" alt="Image" width={1920} height={1080} className="h-full w-full object-cover" />
+      </div>
+      <div className="flex flex-col min-h-screen items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+      <div>
           <Link href="/" prefetch={false}>
             <MountainIcon stroke="black" className="mx-auto h-12 w-auto" />
           </Link>

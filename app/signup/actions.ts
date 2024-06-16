@@ -31,5 +31,5 @@ export async function signup(formData: FormData) {
   }
 
   revalidatePath('/signup/confirmation', 'layout')
-  redirect('/signup/confirmation')
+  redirect(`/signup/confirmation?email=${encodeURIComponent(data.email)}`)
 }
