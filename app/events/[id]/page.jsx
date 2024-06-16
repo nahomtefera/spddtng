@@ -21,7 +21,7 @@ export default function EventPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const eventId = parseIntn(id, 10); // Convert id to an integer
+    const eventId = parseInt(id, 10); // Convert id to an integer
     const foundEvent = events.find(event => event.id === eventId);
     if (foundEvent) {
       setEvent(foundEvent);
@@ -35,7 +35,7 @@ export default function EventPage() {
   if (!event) return <div>Event not found</div>;
 
   const handleCheckout = () => {
-    router.push('https://buy.stripe.com/7sI4jvb6B9NPe887ss');
+    router.push('https://buy.stripe.com/test_4gw14vbMZccG52g5kk');
   };
 
   const handleBack = () => {
