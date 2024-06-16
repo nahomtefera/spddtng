@@ -34,7 +34,7 @@ export default function EventPage() {
   if (!event) return <div>Event not found</div>;
 
   const handleCheckout = () => {
-    router.push(`/checkout_sessions?eventId=${event.id}`);
+    router.push('https://buy.stripe.com/7sI4jvb6B9NPe887ss');
   };
 
   return (
