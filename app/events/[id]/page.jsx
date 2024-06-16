@@ -6,6 +6,7 @@ import Image from 'next/image';
 import events from '@/lib/mockEvents';
 import { Button } from "@/components/ui/button"
 import {
+    ArrowLeftIcon,
     CalendarIcon,
     ClockIcon,
     MapPinIcon,
@@ -37,6 +38,10 @@ export default function EventPage() {
     router.push('https://buy.stripe.com/7sI4jvb6B9NPe887ss');
   };
 
+  const handleBack = () => {
+    router.back();
+  };
+
   return (
     <div className="flex flex-col min-h-screen justify-center">
       <section className="w-full py-0 pb-12 lg:pb-0">
@@ -51,7 +56,10 @@ export default function EventPage() {
                     className="shadow-xl mx-auto w-full h-full aspect-video overflow-hidden lg:rounded-none  object-cover sm:w-full lg:order-last"
                 />
             </div>
-            <div className="flex flex-col justify-center space-y-4 m-auto md:px-6 px-8">
+            <div className="relative h-full flex flex-col justify-center space-y-4 m-auto md:px-6 px-8">
+                <div className="absolute top-5 left-3 lg:top-10 lg:-left-5 cursor-pointer">
+                    <ArrowLeftIcon onClick={handleBack} className="w-10 h-10" />
+                </div>
               <div className="space-y-5">
                 <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
                   {event.title}

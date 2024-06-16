@@ -54,38 +54,39 @@ const EventCard = ({ event, handleEventClick, attended}) => {
           height={400}
           className="w-full aspect-square object-cover"
         />
-      </div>
-
-      <div className="p-4 py-8 absolute bottom-0 w-full backdrop-blur-sm text-white bg-[#00000072]">
-        <h2 className="text-2xl font-semibold mb-2">{event.title}</h2>
-        <div className="flex items-center mb-2">
-          <UserIcon stroke="white" className="w-4 h-4 mr-2" />
-          <span className='text-base font-semibold'>Ages {event.ageRange}</span>
-        </div>
-        {/* <div className="flex items-center mb-2">
-          <CalendarIcon stroke="white" className="w-4 h-4 mr-2" />
-          <span className='text-base font-semibold'>{event.date}</span>
-        </div> */}
-        <div className="flex items-center mb-2">
-          <ClockIcon stroke="white" className="w-4 h-4 mr-2" />
-          <span className='text-base font-semibold'>{event.time}</span>
-        </div>
-        {/* <div className="flex items-center mb-2">
-          <MapPinIcon stroke="white" className="w-4 h-4 mr-2" />
-          <span className='text-base font-semibold'>{event.city}</span>
-        </div> */}
-        <div className="flex items-center">
-          <LocateIcon stroke="white" className="w-4 h-4 mr-2" />
-          <span className='text-base font-semibold'>{event.city}</span>
-        </div>
         {!attended && (
           <Link onClick={(e)=>{e.stopPropagation()}} href={`/events/${event.id}`} className="text-primary" prefetch={false}>
-            <div className='flex items-center shadow-lg bg-[#0000007a] hover:bg-[#2e13417a] font-semibold backdrop-blur-sm text-white text-md absolute bottom-4 right-4 px-6 py-4 rounded'>
-            {/* <TicketIcon stroke="white" className="w-6 h-6 mr-2" /> */}
+            <div className='flex items-center shadow-lg bg-[#ffffff] hover:bg-[#4a1c64] hover:text-white font-semibold backdrop-blur-sm text-black text-md absolute bottom-4 right-4 px-4 py-2 rounded'>
+            {/* <TicketIcon stroke="black" className="w-6 h-6 mr-2" /> */}
               Get Tickets
             </div>
           </Link>
         )}
+      </div>
+
+      <div className="p-4 py-8 bottom-0 w-full backdrop-blur-sm text-black bg-[#ffffffb7]">
+        <h2 className="text-2xl font-semibold mb-2">{event.title}</h2>
+        <div className="flex items-center mb-2">
+          <UserIcon stroke="black" className="w-4 h-4 mr-2" />
+          <span className='text-base font-semibold'>Ages {event.ageRange}</span>
+        </div>
+        {/* <div className="flex items-center mb-2">
+          <CalendarIcon stroke="black" className="w-4 h-4 mr-2" />
+          <span className='text-base font-semibold'>{event.date}</span>
+        </div> */}
+        <div className="flex items-center mb-2">
+          <ClockIcon stroke="black" className="w-4 h-4 mr-2" />
+          <span className='text-base font-semibold'>{event.time}</span>
+        </div>
+        {/* <div className="flex items-center mb-2">
+          <MapPinIcon stroke="black" className="w-4 h-4 mr-2" />
+          <span className='text-base font-semibold'>{event.city}</span>
+        </div> */}
+        <div className="flex items-center">
+          <LocateIcon stroke="black" className="w-4 h-4 mr-2" />
+          <span className='text-base font-semibold'>{event.city}</span>
+        </div>
+        
       </div>
     </div>
   );
