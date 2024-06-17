@@ -13,12 +13,14 @@ import {
     UsersIcon
 } from '@/lib/customIcons'
 import Loading from '@/components/loading'
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select"
 
 export default function EventPage() {
   const { id } = useParams();
   const router = useRouter();
   const [event, setEvent] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [gender, setGender] = useState('');
 
   useEffect(() => {
     const eventId = parseInt(id, 10); // Convert id to an integer
@@ -35,7 +37,11 @@ export default function EventPage() {
   if (!event) return <div>Event not found</div>;
 
   const handleCheckout = () => {
-    router.push(`https://buy.stripe.com/test_4gw14vbMZccG52g5kk?client_reference_id=${event.title}`);
+    router.push(`https://buy.stripe.com/test_4gw14vbMZccG52g5kk?client_reference_id=${event.title}-${gender}`);
+  };
+
+  const handleGenderChange = (value) => {
+    setGender(value);
   };
 
   const handleBack = () => {
@@ -91,7 +97,22 @@ export default function EventPage() {
                 </p>
 
               </div>
-              <Button className='hidden lg:block' onClick={handleCheckout}>Get Tickets</Button>
+              <div className="flex items-center space-x-4">
+                <div className="flex-shrink-0">
+                  <Select onValueChange={handleGenderChange}>
+                    <SelectTrigger id="gender" aria-label="Gender">
+                      <SelectValue placeholder="Select Gender" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="male">Male</SelectItem>
+                      <SelectItem value="female">Female</SelectItem>
+                      <SelectItem value="other">Other</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <Button disabled={gender === ''} className="hidden lg:block flex-grow" onClick={handleCheckout}>Get Tickets</Button>
+              </div>
+
             </div>
           </div>
         </div>
