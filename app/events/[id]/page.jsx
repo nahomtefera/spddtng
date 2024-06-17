@@ -35,7 +35,7 @@ export default function EventPage() {
   if (!event) return <div>Event not found</div>;
 
   const handleCheckout = () => {
-    router.push('https://buy.stripe.com/test_4gw14vbMZccG52g5kk');
+    router.push(`https://buy.stripe.com/test_4gw14vbMZccG52g5kk?client_reference_id=${event.title}`);
   };
 
   const handleBack = () => {
