@@ -37,6 +37,7 @@ const EventCardSidebar = ({ selectedEvent, setSelectedEvent}) => {
           >
             <div>
               <Image
+                unoptimized
                 src={selectedEvent.logo.url}
                 alt={selectedEvent.name.text}
                 width={600}
@@ -108,7 +109,7 @@ const EventCardSidebar = ({ selectedEvent, setSelectedEvent}) => {
                   {selectedEvent.attendees?.map((attendee) => (
                     <div key={attendee.id} className="flex items-center gap-2">
                       <Avatar>
-                        <Image layout="fill" objectFit="contain" src={attendee.image} alt={attendee.name} />
+                        <Image unoptimized layout="fill" objectFit="contain" src={attendee.image} alt={attendee.name} />
                         <AvatarFallback>
                           {attendee.name.charAt(0).toUpperCase()}
                         </AvatarFallback>

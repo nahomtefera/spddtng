@@ -60,6 +60,7 @@ export default function EventPage() {
                     width={550}
                     height={550}
                     alt="Hero"
+                    unoptimized
                     className="shadow-xl mx-auto w-full h-full aspect-video overflow-hidden lg:rounded-none  object-cover sm:w-full lg:order-last"
                 />
             </div>

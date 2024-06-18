@@ -53,6 +53,7 @@ const EventCard = ({ event, handleEventClick, attended}) => {
           width={400}
           height={400}
           className="w-full aspect-square object-cover"
+          unoptimized
         />
         {!attended && (
           <Link onClick={(e)=>{e.stopPropagation()}} href={`/events/${event.id}`} className="text-primary" prefetch={false}>
