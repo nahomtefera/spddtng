@@ -2,12 +2,6 @@ import { headers } from 'next/headers';
 import Stripe from 'stripe';
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-export const config = {
-  api: {
-    bodyParser: false, // Disabling the body parser so we can handle the raw request body
-  },
-};
-
 export const POST = async (req, res) => {
   console.log('// NEW POST REQ //')
   const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET;
