@@ -1,17 +1,24 @@
 'use client';
 
 import { useRouter, useSearchParams } from 'next/navigation';
-import Link from "next/link"
-import { useEffect } from 'react';
+import Link from 'next/link';
+import { Suspense, useEffect } from 'react';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { CircleCheckIcon, InfoIcon, MailIcon } from '@/lib/customIcons';
-
+import Loading from '@/components/loading';
 export default function Component() {
+  return (
+    <Suspense fallback={<Loading />}>
+      <ConfirmationPage />
+    </Suspense>
+  );
+}
+
+const ConfirmationPage = () => {
   const searchParams = useSearchParams();
   const email = searchParams.get('email');
-  const emailProviderUrl = getEmailProviderUrl(email);
+  const emailProviderUrl = email && getEmailProviderUrl(email);
   const router = useRouter();
-
 
   useEffect(() => {
     if (!email) {
@@ -22,19 +29,25 @@ export default function Component() {
   return (
     <section className="w-full py-12 md:py-24 lg:py-32">
       <div className="container px-4 md:px-6">
-      <Card className="mx-auto max-w-md">
-      <CardHeader>
-        <CircleCheckIcon className="h-12 w-12 text-green-500" stroke="green" />
-      </CardHeader>
-      <CardContent className="space-y-4 p-6">
-        <div className="space-y-2">
-          <h3 className="text-2xl font-bold">Thank you for signing up!</h3><br />
-          <p className="text-gray-500 dark:text-gray-400">
-          A confirmation email has been sent to {email ? <strong>{email}</strong> : 'your email'}. Please check your inbox and follow the instructions to complete your signup.          
-          </p>
-        </div>
-        <br />
-        <div className="mt-6">
+        <Card className="mx-auto max-w-md">
+          <CardHeader>
+            <CircleCheckIcon
+              className="h-12 w-12 text-green-500"
+              stroke="green"
+            />
+          </CardHeader>
+          <CardContent className="space-y-4 p-6">
+            <div className="space-y-2">
+              <h3 className="text-2xl font-bold">Thank you for signing up!</h3>
+              <br />
+              <p className="text-gray-500 dark:text-gray-400">
+                A confirmation email has been sent to{' '}
+                {email ? <strong>{email}</strong> : 'your email'}. Please check
+                your inbox and follow the instructions to complete your signup.
+              </p>
+            </div>
+            <br />
+            <div className="mt-6">
               {emailProviderUrl ? (
                 <p className="text-left">
                   <Link
@@ -57,25 +70,24 @@ export default function Component() {
                 </p>
               )}
             </div>
-      </CardContent>
-              </Card>
+          </CardContent>
+        </Card>
       </div>
     </section>
-  )
-}
+  );
+};
 
-// 
 const getEmailProviderUrl = (email) => {
   const domain = email.split('@')[1];
   switch (domain) {
     case 'gmail.com':
-      return {href: 'https://mail.google.com', provider: 'Gmail'};
+      return { href: 'https://mail.google.com', provider: 'Gmail' };
     case 'yahoo.com':
-      return {href: 'https://mail.yahoo.com', provider: 'Yahoo Mail'};
+      return { href: 'https://mail.yahoo.com', provider: 'Yahoo Mail' };
     case 'outlook.com':
-      return {href: 'https://outlook.live.com', provider: 'Outlook'};
+      return { href: 'https://outlook.live.com', provider: 'Outlook' };
     case 'hotmail.com':
-      return {href: 'https://outlook.live.com', provider: 'Hotmail'};
+      return { href: 'https://outlook.live.com', provider: 'Hotmail' };
     // Add more email providers as needed
     default:
       return null;
