@@ -17,11 +17,6 @@ export async function GET(req, res) {
   }
   const data = await response.json();
   const {events} = data;
-  console.log('\n\n\n');
-  events.map(event => {
-    console.log('name:', event.name, event.id);
-  })
-  console.log('\n\n\n');
   
   const nextResponse = NextResponse.json(data);
   nextResponse.headers.set('Cache-Control', 'no-cache, no-store, must-revalidate, max-age=0');

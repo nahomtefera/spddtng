@@ -25,7 +25,7 @@ const EventCard = ({ event, handleEventClick, attended}) => {
     return {day, month};
   }
   
-  const {day, month} = formatDate(event.date);
+  const {day, month} = formatDate(event.start.local);
 
   return (
     <div
@@ -44,12 +44,12 @@ const EventCard = ({ event, handleEventClick, attended}) => {
           </div>
           <div className="flex items-center gap-2 bg-[#fff]  text-black font-semibold px-3 py-1 rounded-md text-sm  dark:bg-gray-50 dark:text-gray-900">
             <UserIcon stroke="black" className="h-4 w-4" />
-            {event.ageRange}
+            {event.ageRange || '+18'}
           </div>
         </div>
         <Image
-          src={event.image}
-          alt={event.title}
+          src={event.logo.url}
+          alt={event.name.text}
           width={400}
           height={400}
           className="w-full aspect-square object-cover"
@@ -65,10 +65,10 @@ const EventCard = ({ event, handleEventClick, attended}) => {
       </div>
 
       <div className="p-4 py-8 bottom-0 w-full backdrop-blur-sm text-black bg-[#ffffffb7]">
-        <h2 className="text-2xl font-semibold mb-2">{event.title}</h2>
+        <h2 className="text-2xl font-semibold mb-2">{event.name.text}</h2>
         <div className="flex items-center mb-2">
           <UserIcon stroke="black" className="w-4 h-4 mr-2" />
-          <span className='text-base font-semibold'>Ages {event.ageRange}</span>
+          <span className='text-base font-semibold'>Ages {event.ageRange || '+18'}</span>
         </div>
         {/* <div className="flex items-center mb-2">
           <CalendarIcon stroke="black" className="w-4 h-4 mr-2" />
@@ -76,7 +76,7 @@ const EventCard = ({ event, handleEventClick, attended}) => {
         </div> */}
         <div className="flex items-center mb-2">
           <ClockIcon stroke="black" className="w-4 h-4 mr-2" />
-          <span className='text-base font-semibold'>{event.time}</span>
+          <span className='text-base font-semibold'>{event.time || "8PM"}</span>
         </div>
         {/* <div className="flex items-center mb-2">
           <MapPinIcon stroke="black" className="w-4 h-4 mr-2" />
@@ -84,7 +84,7 @@ const EventCard = ({ event, handleEventClick, attended}) => {
         </div> */}
         <div className="flex items-center">
           <LocateIcon stroke="black" className="w-4 h-4 mr-2" />
-          <span className='text-base font-semibold'>{event.city}</span>
+          <span className='text-base font-semibold'>{event.city || "New York"}</span>
         </div>
         
       </div>

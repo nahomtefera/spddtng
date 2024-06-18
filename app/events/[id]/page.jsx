@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Image from 'next/image';
-import events from '@/lib/mockEvents';
+// import events from '@/lib/mockEvents';
 import { Button } from "@/components/ui/button"
 import {
     ArrowLeftIcon,
@@ -16,28 +16,29 @@ import Loading from '@/components/loading'
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select"
 
 export default function EventPage() {
+    const [event, setEvent] = useState([]);
+
   const { id } = useParams();
   const router = useRouter();
-  const [event, setEvent] = useState(null);
   const [loading, setLoading] = useState(true);
   const [gender, setGender] = useState('');
 
   useEffect(() => {
-    const eventId = parseInt(id, 10); // Convert id to an integer
-    const foundEvent = events.find(event => event.id === eventId);
-    if (foundEvent) {
-      setEvent(foundEvent);
-      setLoading(false);
-    } else {
-      setLoading(false);
-    }
-  }, [id]);
+    fetch(`/api/eventbrite/events/${id}`, { cache: 'no-store' })
+      .then(data => data.json())
+      .then(event=> {
+        console.log('event', event)
+        setEvent(event)
+        setLoading(false)
+      });
+
+  }, []);
 
   if (loading) return <Loading />;
   if (!event) return <div>Event not found</div>;
 
   const handleCheckout = () => {
-    router.push(`https://buy.stripe.com/test_4gw14vbMZccG52g5kk?client_reference_id=${event.title}-${gender}`);
+    router.push(`https://www.eventbrite.com/e/${id}`);
   };
 
   const handleGenderChange = (value) => {
@@ -55,7 +56,7 @@ export default function EventPage() {
           <div className="min-h-screen grid lg:grid-cols-[1fr_1fr]  xl:grid-cols-[1fr_1fr]">
             <div>
                 <Image
-                    src={event.image}
+                    src={event.logo.url}
                     width={550}
                     height={550}
                     alt="Hero"
@@ -63,12 +64,12 @@ export default function EventPage() {
                 />
             </div>
             <div className="relative h-full flex flex-col justify-center space-y-4 m-auto md:px-6 px-8">
-                <div className="absolute top-5 left-3 lg:top-10 lg:-left-5 cursor-pointer">
+                <div className="absolute top-1 left-1 lg:top-5 lg:left-5 cursor-pointer">
                     <ArrowLeftIcon onClick={handleBack} className="w-10 h-10" />
                 </div>
               <div className="space-y-5">
                 <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
-                  {event.title}
+                  {event.name.text}
                 </h1>
                 <div className="flex flex-col gap-1">
                   <div className="flex flex-col lg:flex-row gap-1 lg:gap-4">
@@ -93,24 +94,12 @@ export default function EventPage() {
                   </div>
                 </div>
                 <p className="max-w-[600px] text-gray-500 md:text-xl dark:text-gray-400">
-                  {event.description}
+                  {event.summary}
                 </p>
 
               </div>
               <div className="flex items-center space-x-4">
-                <div className="flex-shrink-0">
-                  <Select onValueChange={handleGenderChange}>
-                    <SelectTrigger id="gender" aria-label="Gender">
-                      <SelectValue placeholder="Select Gender" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="male">Male</SelectItem>
-                      <SelectItem value="female">Female</SelectItem>
-                      <SelectItem value="other">Other</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                <Button disabled={gender === ''} className="hidden lg:block flex-grow" onClick={handleCheckout}>Get Tickets</Button>
+                <Button className="hidden lg:block flex-grow" onClick={handleCheckout}>Get Tickets</Button>
               </div>
 
             </div>

@@ -37,8 +37,8 @@ const EventCardSidebar = ({ selectedEvent, setSelectedEvent}) => {
           >
             <div>
               <Image
-                src={selectedEvent.image}
-                alt={selectedEvent.title}
+                src={selectedEvent.logo.url}
+                alt={selectedEvent.name.text}
                 width={600}
                 height={500}
                 className="w-full h-80 object-cover object-center"
@@ -54,43 +54,43 @@ const EventCardSidebar = ({ selectedEvent, setSelectedEvent}) => {
             </div>
             <div className="p-6 flex-grow flex flex-col">
               <div className="flex items-center justify-between mb-4">
-                <h2 className="text-2xl font-bold">{selectedEvent.title}</h2>
+                <h2 className="text-2xl font-bold">{selectedEvent.name.text}</h2>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-1 gap-6">
                 <div>
                   <div className="flex justify-space-around gap-x-6 flex-wrap mb-6">
                     <div className="flex items-center mb-2">
                       <CalendarIcon stroke="black" className="w-4 h-4 mr-2" />
-                      <span>{selectedEvent.date}</span>
+                      <span>{selectedEvent.date || 'today'}</span>
                     </div>
                     <div className="flex items-center mb-2">
                       <ClockIcon stroke="black" className="w-4 h-4 mr-2" />
-                      <span>{selectedEvent.time}</span>
+                      <span>{selectedEvent.time || '8pm'}</span>
                     </div>
                     <div className="flex items-center mb-2">
                       <MapPinIcon stroke="black" className="w-4 h-4 mr-2" />
-                      <span>{selectedEvent.city}</span>
+                      <span>{selectedEvent.city || 'New York'}</span>
                     </div>
                     <div className="flex items-center mb-2">
                       <LocateIcon stroke="black" className="w-4 h-4 mr-2" />
-                      <span>{selectedEvent.address}</span>
+                      <span>{selectedEvent.address || 'N/A'}</span>
                     </div>
                     <div className="flex items-center mb-2">
                       <UserIcon stroke="black" className="w-4 h-4 mr-2" />
-                      <span>Hosted by {selectedEvent.host}</span>
+                      <span>Hosted by {selectedEvent.host || 'n/a'}</span>
                     </div>
                     <div className="flex items-center mb-2">
                       <UsersIcon stroke="black" className="w-4 h-4 mr-2" />
-                      <span>{selectedEvent.ageRange}</span>
+                      <span>{selectedEvent.ageRange || '+18'}</span>
                     </div>
                   </div>
                   <div className="mb-4">
-                    <p>{selectedEvent.description}</p>
+                    <p>{selectedEvent.summary}</p>
                   </div>
                   <div className="flex items-center mb-2">
                     <TagIcon stroke="black" className="w-4 h-4 mr-2" />
                     <div className="flex flex-wrap gap-2">
-                      {selectedEvent.tags.map((tag, index) => (
+                      {selectedEvent.tags?.map((tag, index) => (
                         <span
                           key={index}
                           className="bg-gray-200 dark:bg-gray-800 px-2 py-1 rounded-md text-sm"
@@ -105,7 +105,7 @@ const EventCardSidebar = ({ selectedEvent, setSelectedEvent}) => {
               <div className="mt-6">
                 <h3 className="text-xl font-bold mb-4">Attendees</h3>
                 <div className="flex flex-wrap gap-4">
-                  {selectedEvent.attendees.map((attendee) => (
+                  {selectedEvent.attendees?.map((attendee) => (
                     <div key={attendee.id} className="flex items-center gap-2">
                       <Avatar>
                         <Image layout="fill" objectFit="contain" src={attendee.image} alt={attendee.name} />

@@ -15,6 +15,9 @@ const nextConfig = {
         },
       ];
     },
+    images: {
+      domains: ['img.evbuc.com'],
+    }
   };
     
 
