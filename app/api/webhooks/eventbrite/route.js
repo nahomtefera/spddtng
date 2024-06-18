@@ -6,11 +6,13 @@ export async function POST(req) {
   try {
     const event = await req.json();
 
-    // Handle the webhook event
-    console.log('Received Eventbrite webhook event:', event);
+    // Log the received webhook event
+    console.log('Received Eventbrite webhook event 😊');
 
+    // Extract the action from the event config
+    const action = event.config.action;
     // Process the event (e.g., update your database, trigger other actions)
-    switch (event.config.action) {
+    switch (action) {
       case 'order.placed':
         // Handle order placed event
         console.log('Order placed:', event);
@@ -29,7 +31,7 @@ export async function POST(req) {
         break;
       // Add other event types as needed
       default:
-        console.log(`Unhandled event type: ${event.config.action}`);
+        console.log(`Unhandled event type: ${action}`);
     }
 
     return NextResponse.json({ received: true }, { status: 200 });
