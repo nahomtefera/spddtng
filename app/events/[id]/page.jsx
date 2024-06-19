@@ -124,7 +124,7 @@ export default function EventPage() {
     <div className="grid md:grid-cols-2 min-h-screen">
       <div className="relative">
         <Image
-          src={event.logo.url}
+          src={event?.logo?.url || '/images/app/image-not-found.png'}
           width={550}
           height={550}
           alt="Hero"
@@ -184,7 +184,7 @@ const EventDetails = ({ event, setShowCheckoutPage, handleBack }) => {
           <div className="inline-block rounded-lg bg-primary px-3 py-1 text-sm text-primary-foreground">
             Speed Dating
           </div>
-          <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl">
+          <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl break-words">
             {event.name.text}
           </h1>
           <p className="text-muted-foreground md:text-xl lg:text-base/relaxed xl:text-xl/relaxed">

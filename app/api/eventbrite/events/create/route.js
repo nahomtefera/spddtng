@@ -26,7 +26,7 @@ export async function POST() {
       end: { timezone: 'America/New_York', utc: '2024-08-16T01:00:00Z' },
       currency: 'USD',
       online_event: false,
-      listed: true,
+      listed: false,
       shareable: false,
       invite_only: false,
       show_remaining: true,
@@ -118,7 +118,7 @@ export async function POST() {
     const eventId = eventData.id;
     const imagePath = path.join(
       process.cwd(),
-      'public/images/app/speeddantingg_promo_img_2.png'
+      'public/images/app/speeddantingg_promo_img.png'
     ); // Absolute path to the image file
 
     try {
@@ -162,7 +162,7 @@ const generateRandomName = () => {
   const randomAdjective =
     adjectives[Math.floor(Math.random() * adjectives.length)];
   const randomNoun = nouns[Math.floor(Math.random() * nouns.length)];
-  return `TEST_IMAGE_${randomAdjective} Speed Dating ${randomNoun}`;
+  return `API - ${randomAdjective} Speed Dating ${randomNoun}`;
 };
 
 const uploadImage = async (filePath, uploadData) => {

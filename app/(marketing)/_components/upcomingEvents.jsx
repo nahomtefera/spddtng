@@ -40,6 +40,7 @@ export default function UpcomingEvents() {
   }, []);
 
   console.log('upcoming events: ', events);
+  const liveEvents = events.filter(event => event.status === 'live')
 
   return (
     <div className="container px-4 md:px-6">
@@ -74,9 +75,8 @@ export default function UpcomingEvents() {
           selectedEvent && 'w-1/3'
         } transition-all ease-in-out grid w-full gap-4 gap-y-12 grid-cols-[repeat(auto-fit,minmax(300px,1fr))] lg:grid-cols-[repeat(auto-fit,minmax(300px,1fr))]`}
       >
-        {events.length > 0 ? (
-          events
-            .slice(2)
+        {liveEvents.length > 0 ? (
+          liveEvents
             .map((event) => (
               <EventCard
                 key={event.id}
