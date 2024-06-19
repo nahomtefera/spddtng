@@ -85,7 +85,7 @@ export default function UpcomingEvents() {
               />
             ))
         ) : (
-          <Loading />
+          <Loading color='f05537'/>
         )}
       </div>
 
