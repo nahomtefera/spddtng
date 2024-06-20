@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 
 export async function GET(req, { params }) {
+    console.log('publish requested')
     const { id } = params;
   
     const apiKey = process.env.EVENTBRITE_API_KEY;

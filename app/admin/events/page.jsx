@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import {
@@ -11,6 +11,17 @@ import {
   DialogFooter,
 } from '@/components/ui/dialog';
 import {
+  AlertDialog,
+  AlertDialogTrigger,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogCancel,
+  AlertDialogAction,
+} from '@/components/ui/alert-dialog';
+import {
   Table,
   TableHeader,
   TableRow,
@@ -20,52 +31,18 @@ import {
 } from '@/components/ui/table';
 import { Label } from '@/components/ui/label';
 // custom icons
-import { CalendarIcon, SearchIcon } from '@/lib/customIcons';
+import { CalendarIcon, SearchIcon, TrashIcon } from '@/lib/customIcons';
 import Link from 'next/link';
 import { Textarea } from '@/components/ui/textarea';
 import Image from 'next/image';
+import { Checkbox } from '@/components/ui/checkbox';
+import Loading from '@/components/loading';
+import axios from 'axios';
 
 export default function Component() {
-  const [events, setEvents] = useState([
-    {
-      id: 1,
-      title: 'Tech Meetup',
-      description:
-        'A gathering of tech enthusiasts to discuss the latest trends',
-      date: '2023-06-15',
-      city: 'San Francisco',
-      host: 'John Doe',
-      address: '123 Main St, San Francisco, CA 94101',
-      age_range: '18-35',
-      img_src: '/images/app/restaurant1.webp',
-      created_at: '2023-05-01',
-    },
-    {
-      id: 2,
-      title: 'Art Exhibition',
-      description: 'Showcase of local artists and their works',
-      date: '2023-07-01',
-      city: 'New York',
-      host: 'Jane Smith',
-      address: '456 Broadway, New York, NY 10001',
-      age_range: '16+',
-      img_src: '/images/app/restaurant2.webp',
-      created_at: '2023-05-15',
-    },
-    {
-      id: 3,
-      title: 'Cooking Class',
-      description: 'Learn to make delicious meals from a professional chef',
-      date: '2023-08-20',
-      city: 'Chicago',
-      host: 'Alex Johnson',
-      address: '789 Michigan Ave, Chicago, IL 60601',
-      age_range: '12-65',
-      img_src: '/images/app/restaurant3.webp',
-      created_at: '2023-06-01',
-    },
-  ]);
+  const [events, setEvents] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  
   const [newEvent, setNewEvent] = useState({
     title: '',
     description: '',
@@ -76,6 +53,90 @@ export default function Component() {
     age_range: '',
     img_src: '',
   });
+
+  const [filters, setFilters] = useState({
+    age: [18, 50],
+    distance: [0, 50],
+    interests: [],
+  });
+  const [sortBy, setSortBy] = useState('newest');
+  const [selectedEvent, setSelectedEvent] = useState(null);
+
+  const handleDeleteEvent = async (eventId) => {
+    console.log('handledelete called')
+    // setLoading(true);
+    try {
+      const response = await axios.post(`/api/eventbrite/events/delete/${eventId}`);
+      console.log('Event deleting:', response.data);
+      // Optionally, refresh the page or update the event state
+      // router.reload();
+    } catch (error) {
+      console.error('Error deleting event:', error.message);
+    } finally {
+      // setLoading(false);
+      fetch(`/api/eventbrite/events`, { cache: 'no-store' })
+        .then((data) => data.json())
+        .then((eventsResponse) => eventsResponse.events)
+        .then((events) => setEvents(events));
+    }
+  };
+
+  const handlePublish = async (eventId) => {
+    console.log('handlepublish called')
+    // setLoading(true);
+    try {
+      const response = await axios.post(`/api/eventbrite/events/publish/${eventId}`);
+      console.log('Event published:', response.data);
+      // Optionally, refresh the page or update the event state
+      // router.reload();
+    } catch (error) {
+      console.error('Error publishing event:', error.message);
+    } finally {
+      // setLoading(false);
+      fetch(`/api/eventbrite/events`, { cache: 'no-store' })
+        .then((data) => data.json())
+        .then((eventsResponse) => eventsResponse.events)
+        .then((events) => setEvents(events));
+    }
+  };
+
+  const handleUnPublish = async (eventId) => {
+    console.log('handlepublish called')
+    // setLoading(true);
+    try {
+      const response = await axios.post(`/api/eventbrite/events/unpublish/${eventId}`);
+      console.log('Event unpublished:', response.data);
+      // Optionally, refresh the page or update the event state
+      // router.reload();
+    } catch (error) {
+      console.error('Error unpublishing event:', error.message);
+    } finally {
+      // setLoading(false);
+      fetch(`/api/eventbrite/events`, { cache: 'no-store' })
+        .then((data) => data.json())
+        .then((eventsResponse) => eventsResponse.events)
+        .then((events) => setEvents(events));
+    }
+  };
+
+
+  useEffect(() => {
+    console.log('fetching events...');
+    fetch(`/api/eventbrite/events`, { cache: 'no-store' })
+      .then((data) => data.json())
+      .then((eventsResponse) => eventsResponse.events)
+      .then((events) => setEvents(events));
+  }, []);
+
+  console.log('events: ', events);
+
+  const handleRowClick = (event) => {
+    
+    setSelectedEvent(event);
+    setShowModal(true)
+
+  }
+
   const handleInputChange = (e) => {
     setNewEvent({ ...newEvent, [e.target.name]: e.target.value });
   };
@@ -127,40 +188,93 @@ export default function Component() {
           </div>
 
           <div className="border shadow-sm rounded-lg">
-            <Table>
+            <Table className='font-normal text-base'>
               <TableHeader>
                 <TableRow>
+                  <TableHead></TableHead>
                   <TableHead>Image</TableHead>
                   <TableHead>Title</TableHead>
-                  <TableHead>Description</TableHead>
                   <TableHead>Date</TableHead>
-                  <TableHead>City</TableHead>
-                  <TableHead>Host</TableHead>
-                  <TableHead>Address</TableHead>
-                  <TableHead>Age Range</TableHead>
-                  <TableHead>Created At</TableHead>
+                  <TableHead>Venue</TableHead>
+                  <TableHead> </TableHead>
+                  <TableHead> </TableHead>
+                  <TableHead> </TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
+                {/* {events.length == 0 && <TableCell><Loading /></TableCell>} */}
                 {events.map((event) => (
-                  <TableRow key={event.id}>
+                  <TableRow key={event.id} className='cursor-pointer' onClick={()=>{handleRowClick(event)}}>
+                    <TableCell></TableCell>
                     <TableCell>
                       <Image
-                        src={event.img_src}
+                        src={event.logo?.url || '/images/app/image-not-found.png'}
                         width={80}
                         height={80}
-                        alt={event.title}
+                        alt={event.name.text}
                         className="rounded-md aspect-square object-cover object-center"
                       />
                     </TableCell>
-                    <TableCell>{event.title}</TableCell>
-                    <TableCell>{event.description}</TableCell>
-                    <TableCell>{event.date}</TableCell>
-                    <TableCell>{event.city}</TableCell>
-                    <TableCell>{event.host}</TableCell>
-                    <TableCell>{event.address}</TableCell>
-                    <TableCell>{event.age_range}</TableCell>
-                    <TableCell>{event.created_at}</TableCell>
+                    <TableCell>{event.name.text}</TableCell>
+                    <TableCell>{event.start.local}</TableCell>
+                    <TableCell>{event.venue_id}</TableCell>
+                    <TableCell onClick={(e) => e.stopPropagation()}>
+                      <AlertDialog>
+                        <AlertDialogTrigger asChild>
+                          {
+                            event.status == 'live'
+                              ? <Button variant="destructive" className='w-full'>Pause</Button>
+                              : <Button className='bg-blue-600 w-full hover:bg-blue-700'>
+                                  Publish
+                                </Button>
+                          }
+                        </AlertDialogTrigger>
+                        <AlertDialogContent>
+                          <AlertDialogHeader>
+                          <AlertDialogTitle>
+                            {event.status == 'live' ? 'Are you sure you want to pause this event?' : 'Are you sure you want to publish this event?'}
+                          </AlertDialogTitle>
+                          <AlertDialogDescription>
+                            {event.status == 'live' ? 'This action will pause the event and it will no longer be publicly visible.' : 'This action will publish the event and it will become publicly visible.'}
+                          </AlertDialogDescription>
+                          </AlertDialogHeader>
+                          <AlertDialogFooter>
+                            <AlertDialogCancel>Cancel</AlertDialogCancel>
+                            <AlertDialogAction onClick={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation(); // Prevent click event from bubbling up
+                                event.status == 'live'
+                                  ? handleUnPublish(event.id)
+                                  : handlePublish(event.id)
+                              }}>
+                              {event.status == 'live' ? 'Pause' : 'Publish'}
+                            </AlertDialogAction>
+                          </AlertDialogFooter>
+                        </AlertDialogContent>
+                      </AlertDialog>
+                    </TableCell>
+                    <TableCell></TableCell>
+                    <TableCell onClick={(e) => e.stopPropagation()}>
+                      <AlertDialog>
+                        <AlertDialogTrigger asChild>
+                          <TrashIcon className="hover:text-red-600 w-7 h-7"/>
+                        </AlertDialogTrigger>
+                        <AlertDialogContent>
+                          <AlertDialogHeader>
+                            <AlertDialogTitle>
+                              Are you sure you want to delete this event?
+                            </AlertDialogTitle>
+                            <AlertDialogDescription>
+                              This action cannot be undone. This event and all its data will be permanently deleted.
+                            </AlertDialogDescription>
+                          </AlertDialogHeader>
+                          <AlertDialogFooter>
+                            <AlertDialogCancel>Cancel</AlertDialogCancel>
+                            <AlertDialogAction onClick={()=>{handleDeleteEvent(event.id)}}>Delete</AlertDialogAction>
+                          </AlertDialogFooter>
+                        </AlertDialogContent>
+                      </AlertDialog>
+                    </TableCell>
                   </TableRow>
                 ))}
               </TableBody>
@@ -169,7 +283,7 @@ export default function Component() {
           <Dialog open={showModal} onOpenChange={setShowModal}>
             <DialogContent className="sm:max-w-[600px]">
               <DialogHeader>
-                <DialogTitle>Create Event</DialogTitle>
+                <DialogTitle>{selectedEvent ? 'Edit Event' : 'Create Event'}</DialogTitle>
               </DialogHeader>
               <div className="grid gap-4 py-4">
                 <div className="grid grid-cols-2 gap-4">
@@ -178,7 +292,7 @@ export default function Component() {
                     <Input
                       id="title"
                       name="title"
-                      value={newEvent.title}
+                      value={selectedEvent ? selectedEvent.name.text : newEvent.title}
                       onChange={handleInputChange}
                     />
                   </div>
@@ -188,7 +302,7 @@ export default function Component() {
                       id="date"
                       name="date"
                       type="date"
-                      value={newEvent.date}
+                      value={selectedEvent ? selectedEvent.start.local.split('T')[0] : newEvent.date}
                       onChange={handleInputChange}
                     />
                   </div>
@@ -198,7 +312,7 @@ export default function Component() {
                   <Textarea
                     id="description"
                     name="description"
-                    value={newEvent.description}
+                    value={selectedEvent ? selectedEvent.summary : newEvent.description}
                     onChange={handleInputChange}
                   />
                 </div>
@@ -208,7 +322,7 @@ export default function Component() {
                     <Input
                       id="city"
                       name="city"
-                      value={newEvent.city}
+                      value={selectedEvent ? selectedEvent.venue_id : newEvent.city}
                       onChange={handleInputChange}
                     />
                   </div>
@@ -217,7 +331,7 @@ export default function Component() {
                     <Input
                       id="host"
                       name="host"
-                      value={newEvent.host}
+                      value={selectedEvent ? selectedEvent.host : newEvent.host}
                       onChange={handleInputChange}
                     />
                   </div>
@@ -227,7 +341,7 @@ export default function Component() {
                   <Input
                     id="address"
                     name="address"
-                    value={newEvent.address}
+                    value={selectedEvent ? selectedEvent.address : newEvent.address}
                     onChange={handleInputChange}
                   />
                 </div>
@@ -237,7 +351,7 @@ export default function Component() {
                     <Input
                       id="age_range"
                       name="age_range"
-                      value={newEvent.age_range}
+                      value={selectedEvent ? selectedEvent.age_range : newEvent.age_range}
                       onChange={handleInputChange}
                     />
                   </div>
@@ -246,7 +360,7 @@ export default function Component() {
                     <Input
                       id="img_src"
                       name="img_src"
-                      value={newEvent.img_src}
+                      value={selectedEvent ? selectedEvent.logo?.url : newEvent.img_src}
                       onChange={handleInputChange}
                     />
                   </div>
@@ -256,7 +370,7 @@ export default function Component() {
                 <Button variant="outline" onClick={() => setShowModal(false)}>
                   Cancel
                 </Button>
-                <Button onClick={handleCreateEvent}>Create Event</Button>
+                <Button onClick={handleCreateEvent}>{selectedEvent ? 'Update Event' : 'Create Event'}</Button>
               </DialogFooter>
             </DialogContent>
           </Dialog>

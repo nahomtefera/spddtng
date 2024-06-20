@@ -74,7 +74,7 @@ export default function Sidebar({ links, isAdminDashboard, isUserDashboard }) {
 
       {/* Sidebar */}
       <aside
-        className={`sidebar-background  bg-primary text-gray-900 py-6 px-4 md:px-6 lg:px-10 flex flex-col gap-6 z-10 shadow-gray-400/50 transition-all duration-100 group
+        className={`sidebar-background  bg-black text-gray-900 py-6 px-4 md:px-6 lg:px-10 flex flex-col gap-6 z-10 shadow-gray-400/50 transition-all duration-100 group
           ${isSidebarOpen ? 'fixed z-50 w-full h-full sm:block sm:w-full sm:h-full md:static md:w-auto md:h-auto' : 'hidden sm:hidden md:block'}
           ${isSidebarCollapsed ? 'translate-x-0 md:px-2 lg:px-3' : 'translate-x-0'}`}
       >
@@ -105,15 +105,6 @@ export default function Sidebar({ links, isAdminDashboard, isUserDashboard }) {
             <span className="sr-only">Toggle sidebar</span>
           </Button>
         </div>
-          
-        {/* Admin Header - ADMIN DASHBOARD ONLY */}
-        {isAdminDashboard && (
-          <div className="flex h-[60px] items-center border-b border-[#1a1c4b] px-6">
-            <Link href="/admin" className="flex items-center gap-2" prefetch={false}>
-              <span className="text-white font-light tracking-widest">Admin Panel</span>
-            </Link>
-          </div>
-        )}
 
         {/* Logo */}
         <div className="flex items-center justify-center gap-4 md:mt-10 mb-5">
@@ -122,7 +113,17 @@ export default function Sidebar({ links, isAdminDashboard, isUserDashboard }) {
             {!isSidebarCollapsed && <span className="text-light text-white">Speed</span>}
           </Link>
         </div>
-
+          
+        {/* Admin Header - ADMIN DASHBOARD ONLY */}
+        {isAdminDashboard && (
+          <div className="flex h-[60px] items-center border-b border-[#1a1c4b] mt-5 justify-center">
+            <Link href="/admin" className="flex items-center gap-2" prefetch={false}>
+              <span className="text-white font-normal tracking-widest">
+                {isSidebarCollapsed ? 'AP': 'Admin Panel'}
+              </span>
+            </Link>
+          </div>
+        )}
         {/* User Image / Logout btn - USER DASHBOARD ONLY*/}
         {isUserDashboard && (
           <div className="flex flex-col items-center gap-4 cursor-pointer">
