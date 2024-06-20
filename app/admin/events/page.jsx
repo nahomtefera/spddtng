@@ -213,6 +213,7 @@ export default function Component() {
                         height={80}
                         alt={event.name.text}
                         className="rounded-md aspect-square object-cover object-center"
+                        unoptimized
                       />
                     </TableCell>
                     <TableCell>{event.name.text}</TableCell>
