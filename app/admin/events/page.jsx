@@ -64,27 +64,40 @@ export default function Component() {
 
   const handleDrop = (e) => {
     e.preventDefault();
-    const newFiles = Array.from(e.dataTransfer.files).map((file) => ({
-      file,
-      url: URL.createObjectURL(file),
-    }));
-    setFiles([...files, ...newFiles]);
+    if (e.dataTransfer.files.length > 1) {
+      // Show an error message: "Only one file allowed"
+      return;
+    }
+  
+    const newFile = {
+      file: e.dataTransfer.files[0],
+      url: URL.createObjectURL(e.dataTransfer.files[0]),
+    };
+    setFiles([newFile]); // Replace or update the existing file array
   };
-
+  
   const handleFileSelect = (e) => {
-    const newFiles = Array.from(e.target.files).map((file) => ({
-      file,
-      url: URL.createObjectURL(file),
-    }));
-    setFiles([...files, ...newFiles]);
+    if (e.target.files.length > 1) {
+      // Show an error message: "Only one file allowed"
+      return;
+    }
+  
+    const newFile = {
+      file: e.target.files[0],
+      url: URL.createObjectURL(e.target.files[0]),
+    };
+    setFiles([newFile]); // Replace or update the existing file array
+  };
+  const handleRemoveFile = (index) => {
+    if (files.length > 0) {
+      URL.revokeObjectURL(files[0].url); // Revoke the URL to avoid memory leaks
+      setFiles([]);
+    }
   };
 
-  const handleRemoveFile = (index) => {
-    const newFiles = [...files];
-    URL.revokeObjectURL(newFiles[index].url); // Revoke the URL to avoid memory leaks
-    newFiles.splice(index, 1);
-    setFiles(newFiles);
-  };
+  useEffect(() => {
+    console.log('image added: ', files)
+  }, [files])
 
   const [newEvent, setNewEvent] = useState({
     name: '',
@@ -260,7 +273,7 @@ export default function Component() {
       summary: event.summary,
       date: moment(event.start.local).format("YYYY-MM-DD"),
       start_time: moment(event.start.local).format("HH:mm"),
-        end_time: moment(event.end.local).format("HH:mm"),
+      end_time: moment(event.end.local).format("HH:mm"),
       venue_id: event.venue.id,
       img_src: '',
     });
@@ -268,20 +281,6 @@ export default function Component() {
     setShowModal(true);
   };
 
-
-  const handleCreateEvent = () => {
-    setNewEvent({
-      title: '',
-      description: '',
-      date: '',
-      city: '',
-      host: '',
-      address: '',
-      age_range: '',
-      img_src: '',
-    });
-  };
- 
   // Search header
   const Header = () => {
     return (
@@ -461,9 +460,55 @@ export default function Component() {
     }
   };
 
-  const postCreateOrUpdateEvent = (newOrUpdate) => {
+  const postCreateOrUpdateEvent = async (newOrUpdate) => {
     if(newOrUpdate == 'new') {
-      console.log('newEvent: ', newEvent)  
+      console.log('create new event called');
+      console.log('newEvent: ', newEvent)
+    try {
+      const formatedEvent = {
+        ...newEvent, 
+        start: {
+          timezone: 'America/New_York', 
+          utc: moment(`${newEvent.date} ${newEvent.start_time}`, 'YYYY-MM-DD HH:mm').format('YYYY-MM-DDTHH:mm:ss[Z]')
+        },
+        end: {
+          timezone: 'America/New_York', 
+          utc: moment(`${newEvent.date} ${newEvent.end_time}`, 'YYYY-MM-DD HH:mm').format('YYYY-MM-DDTHH:mm:ss[Z]')
+        }
+      }
+      console.log("formatedEvent: " + formatedEvent);
+
+      const formData = new FormData();
+      formData.append('eventData', JSON.stringify(formatedEvent));
+      if (files.length > 0) {
+        formData.append('image', files[0].file);
+      }
+    
+
+      const response = await axios.post(
+        `/api/eventbrite/events/create/test`,
+        formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          }
+        }  
+      );
+
+      console.log('Creating event:', response.data);
+      setShowModal(false);
+      toast.success('Event CREATED successfully 😍');
+    } catch (error) {
+      console.error('Error creating event:', error.message);
+      setShowModal(false);
+      toast.error(`Error creating event: ${error.message}`);
+    } finally {
+      // refresh events
+      console.log('refresh events..');
+      fetch(`/api/eventbrite/events`, { cache: 'no-store' })
+        .then((data) => data.json())
+        .then((eventsResponse) => eventsResponse.events)
+        .then((events) => setEvents(events));
+    }
     } else {
       console.log('updatedEvent: ', updatedEvent)  
     }
@@ -536,7 +581,8 @@ export default function Component() {
                     <div className="w-full flex justify-center">
                       {files.map((fileData, index) => (
                         <div key={index} className="relative">
-                          <img
+                          <Image
+                            unoptimized
                             src={fileData.url}
                             alt={fileData.file.name}
                             className="h-40 aspect-square object-cover object-center rounded-lg"
@@ -595,7 +641,7 @@ export default function Component() {
                 <SelectContent>
                   {
                     venues?.map(venue => {
-                      return <SelectItem value={venue.id}>{venue.name}</SelectItem>
+                      return <SelectItem key={`venue${id}`} value={venue.id}>{venue.name}</SelectItem>
                     })
                   }
                 </SelectContent>

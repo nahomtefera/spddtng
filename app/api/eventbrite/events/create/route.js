@@ -4,9 +4,10 @@ import fs from 'fs';
 import FormData from 'form-data';
 import path from 'path';
 
-export async function POST() {
+export async function POST(req) {
   const organizationId = process.env.EVENTBRITE_ORGANIZATION_ID;
   const token = process.env.EVENTBRITE_API_KEY;
+
 
   if (!organizationId || !token) {
     return NextResponse.json(
@@ -16,14 +17,15 @@ export async function POST() {
   }
 
   const name = generateRandomName();
+  const body = await req.json();
 
   const eventBody = {
     event: {
       name: {
-        html: name,
+        html: body.name || name,
       },
-      start: { timezone: 'America/New_York', utc: '2024-08-15T22:00:00Z' },
-      end: { timezone: 'America/New_York', utc: '2024-08-16T01:00:00Z' },
+      start: body.start,
+      end: body.end,
       currency: 'USD',
       online_event: false,
       listed: false,
@@ -37,9 +39,9 @@ export async function POST() {
       show_seatmap_thumbnail: false,
       show_colors_in_seatmap_thumbnail: false,
       locale: 'en_US',
-      venue_id: '219129959',
+      venue_id: body.venue_id,
       capacity: 24,
-      summary:
+      summary: body.summary ||
         'Get ready to meet new people and potentially find a spark in just a few minutes at our Speed Dating event!',
     },
   };
