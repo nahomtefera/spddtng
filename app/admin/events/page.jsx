@@ -57,6 +57,7 @@ export default function Component() {
   const [showModal, setShowModal] = useState(false);
   const [publishAlertEventId, setPublishAlertEventId] = useState(null);
   const [deleteAlertEventId, setDeleteAlertEventId] = useState(null);
+  const [isLoadingCreateEvent, setIsLoadingCreateEvent] = useState(false)
   const [files, setFiles] = useState([]);
   const handleDragOver = (e) => {
     e.preventDefault();
@@ -465,6 +466,7 @@ export default function Component() {
       console.log('create new event called');
       console.log('newEvent: ', newEvent)
     try {
+      setIsLoadingCreateEvent(true)
       const formatedEvent = {
         ...newEvent, 
         start: {
@@ -497,6 +499,7 @@ export default function Component() {
       );
 
       console.log('Creating event:', response.data);
+      setIsLoadingCreateEvent(false);
       setShowModal(false);
       toast.success('Event CREATED successfully 😍');
     } catch (error) {
@@ -742,7 +745,13 @@ export default function Component() {
               Cancel
             </Button>
             <Button onClick={() => {selectedEvent ? postCreateOrUpdateEvent('update') : postCreateOrUpdateEvent('new')}}>
-              {selectedEvent ? 'Update Event' : 'Create Event'}
+              {
+                selectedEvent 
+                  ? 'Update Event' 
+                  : isLoadingCreateEvent 
+                    ? <><Loading width="5" height="5" border="2" noText={true}/> <span className='pl-4'>Creating Event</span></>
+                    : 'Create Event'
+              }
             </Button>
           </DialogFooter>
         </DialogContent>
