@@ -1,8 +1,7 @@
 import { NextResponse } from 'next/server';
 import axios from 'axios';
-import fs from 'fs';
 import FormData from 'form-data';
-import path from 'path';
+import { IncomingForm } from 'formidable';
 
 export async function POST(req) {
   const organizationId = process.env.EVENTBRITE_ORGANIZATION_ID;
@@ -16,8 +15,13 @@ export async function POST(req) {
     );
   }
 
+  const form = new IncomingForm({ keepExtensions: true });
+  console.log('formidable form: ', form);
+  const formData = await req.formData();
+  const body = JSON.parse(await formData.get('eventData')); // Parse event data
+  const imageFile = await formData.get('image'); // Get image file object
+
   const name = generateRandomName();
-  const body = await req.json();
 
   const eventBody = {
     event: {
@@ -116,27 +120,19 @@ export async function POST(req) {
     }
     console.log('ticket for women created successfully');
 
+  
     // Upload image to event
     const eventId = eventData.id;
-    const imagePath = path.join(
-      process.cwd(),
-      'public/images/app/speeddantingg_promo_img.png'
-    ); // Absolute path to the image file
 
     try {
-      console.log('eventId', eventId);
-      console.log('imagePath', imagePath);
       console.log('image upload ');
-
       // Step 1: Get upload token
       const uploadTokenData = await getUploadToken();
-      console.log('upload token data received');
       // Step 2: Upload the image
-      await uploadImage(imagePath, uploadTokenData);
+      await uploadImage(imageFile, uploadTokenData);
 
       // Step 3: Notify the API and get image ID
       const imageId = await notifyApi(uploadTokenData.upload_token);
-      console.log('image id: ', imageId);
 
       // Step 4: Link the image to the event
       const updatedEvent = await linkImageToEvent(eventId, imageId);
@@ -167,10 +163,10 @@ const generateRandomName = () => {
   return `API - ${randomAdjective} Speed Dating ${randomNoun}`;
 };
 
-const uploadImage = async (filePath, uploadData) => {
-  //   console.log('uploadData', uploadData);
+const uploadImage = async (file, uploadData) => {
+  const fileBuffer = Buffer.from(await file.arrayBuffer());
+
   try {
-    console.log('filePath', filePath);
     const formData = new FormData();
 
     for (const key in uploadData.upload_data) {
@@ -179,12 +175,8 @@ const uploadImage = async (filePath, uploadData) => {
 
     formData.append(
       uploadData.file_parameter_name,
-      fs.createReadStream(filePath)
-    );
-
-    console.log(
-      'uploadData.file_parameter_name: ',
-      uploadData.file_parameter_name
+      fileBuffer,
+      file.name
     );
 
     const response = await axios.post(uploadData.upload_url, formData, {

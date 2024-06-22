@@ -274,7 +274,7 @@ export default function Component() {
       date: moment(event.start.local).format("YYYY-MM-DD"),
       start_time: moment(event.start.local).format("HH:mm"),
       end_time: moment(event.end.local).format("HH:mm"),
-      venue_id: event.venue.id,
+      venue_id: event.venue?.id,
       img_src: '',
     });
     setSelectedEvent(event);
@@ -346,8 +346,8 @@ export default function Component() {
                 </TableCell>
                 <TableCell>{event.name.text}</TableCell>
                 <TableCell>{formatDate(event.start.local, 'long')}</TableCell>
-                <TableCell>{event.venue.name}</TableCell>
-                <TableCell>{event.venue.address.city}</TableCell>
+                <TableCell>{event.venue?.name}</TableCell>
+                <TableCell>{event.venue?.address.city}</TableCell>
                 <TableCell
                   onClick={(e) => {
                     e.preventDefault();
@@ -484,9 +484,11 @@ export default function Component() {
         formData.append('image', files[0].file);
       }
     
+      console.log('formData: ' + formData);
+
 
       const response = await axios.post(
-        `/api/eventbrite/events/create/test`,
+        `/api/eventbrite/events/create`,
         formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
@@ -583,6 +585,8 @@ export default function Component() {
                         <div key={index} className="relative">
                           <Image
                             unoptimized
+                            width={200}
+                            height={150}
                             src={fileData.url}
                             alt={fileData.file.name}
                             className="h-40 aspect-square object-cover object-center rounded-lg"
@@ -641,7 +645,7 @@ export default function Component() {
                 <SelectContent>
                   {
                     venues?.map(venue => {
-                      return <SelectItem key={`venue${id}`} value={venue.id}>{venue.name}</SelectItem>
+                      return <SelectItem key={`venue-${venue.id}`} value={venue.id}>{venue.name}</SelectItem>
                     })
                   }
                 </SelectContent>
