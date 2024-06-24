@@ -58,6 +58,9 @@ export default function Component() {
   const [publishAlertEventId, setPublishAlertEventId] = useState(null);
   const [deleteAlertEventId, setDeleteAlertEventId] = useState(null);
   const [isLoadingCreateEvent, setIsLoadingCreateEvent] = useState(false)
+  const [isLoadingPublishEvent, setIsLoadingPublishEvent] = useState(false)
+  const [isLoadingDeleteEvent, setIsLoadingDeleteEvent] = useState(false)
+  const [isLoadingUnPublishEvent, setIsLoadingUnPublishEvent] = useState(false)
   const [files, setFiles] = useState([]);
   const handleDragOver = (e) => {
     e.preventDefault();
@@ -174,15 +177,18 @@ export default function Component() {
   // Delete event
   const handleDeleteEvent = async (eventId) => {
     console.log('handledelete called');
+    setIsLoadingDeleteEvent(true)
     try {
       const response = await axios.post(
         `/api/eventbrite/events/delete/${eventId}`
       );
       console.log('Event deleting:', response.data);
+      setIsLoadingDeleteEvent(false)
       setDeleteAlertEventId(null);
       toast.success('Event DELETED successfully 😍');
     } catch (error) {
       console.error('Error deleting event:', error.message);
+      setIsLoadingDeleteEvent(false)
       setDeleteAlertEventId(null);
       toast.error(`Error deleting event: ${error.message}`);
     } finally {
@@ -199,14 +205,17 @@ export default function Component() {
   const handlePublish = async (eventId) => {
     console.log('handlepublish called');
     try {
+      setIsLoadingPublishEvent(true)
       const response = await axios.post(
         `/api/eventbrite/events/publish/${eventId}`
       );
       console.log('Event published:', response.data);
+      setIsLoadingPublishEvent(true)
       setPublishAlertEventId(null);
       toast.success('Event PUBLISHED successfully 😍');
     } catch (error) {
       console.error('Error publishing event:', error.message);
+      setIsLoadingPublishEvent(false)
       setPublishAlertEventId(null);
       toast.error(`Error publishing event: ${error.message}`);
     } finally {
@@ -223,15 +232,18 @@ export default function Component() {
   const handleUnPublish = async (eventId) => {
     console.log('handlepublish called');
     try {
+      setIsLoadingUnPublishEvent(true)
       const response = await axios.post(
         `/api/eventbrite/events/unpublish/${eventId}`
       );
       console.log('Event published:', response.data);
+      setIsLoadingUnPublishEvent(false)
       setPublishAlertEventId(null);
       toast.success('Event UNPUBLISHED successfully 😍');
     } catch (error) {
       console.error('Error unpublishing event:', error.message);
       setPublishAlertEventId(null);
+      setIsLoadingUnPublishEvent(false)
       toast.error(`Error unpublishing event: ${error.message}`);
     } finally {
       // refresh events
@@ -326,7 +338,7 @@ export default function Component() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {events.map((event) => (
+            {events.sort((a, b) => new Date(b.created) - new Date(a.created)).map((event) => (
               <TableRow
                 key={event.id}
                 className="cursor-pointer"
@@ -396,7 +408,16 @@ export default function Component() {
                               : handlePublish(event.id);
                           }}
                         >
-                          {event.status == 'live' ? 'Pause' : 'Publish'}
+                          {
+                            event.status == 'live' 
+                              ? isLoadingUnPublishEvent
+                                ? <><Loading width="5" height="5" border="2" noText={true}/> <span className='pl-4'>Pausing</span></>
+                                : 'Pause' 
+                              : isLoadingPublishEvent
+                                  ? <><Loading width="5" height="5" border="2" noText={true}/> <span className='pl-4'>Publishing</span></>
+                                  : 'Publish'
+                              
+                          }
                         </AlertDialogAction>
                       </AlertDialogFooter>
                     </AlertDialogContent>
@@ -426,11 +447,17 @@ export default function Component() {
                       <AlertDialogFooter>
                         <AlertDialogCancel>Cancel</AlertDialogCancel>
                         <AlertDialogAction
-                          onClick={() => {
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation(); // Prevent click event from bubbling up
                             handleDeleteEvent(event.id);
                           }}
                         >
-                          Delete
+                          {
+                            isLoadingDeleteEvent
+                              ? <><Loading width="5" height="5" border="2" noText={true}/> <span className='pl-4'>Deleting</span></>
+                              : 'Delete'
+                          }
                         </AlertDialogAction>
                       </AlertDialogFooter>
                     </AlertDialogContent>
