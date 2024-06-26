@@ -531,6 +531,7 @@ export default function Component() {
       toast.success('Event CREATED successfully 😍');
     } catch (error) {
       console.error('Error creating event:', error.message);
+      setIsLoadingCreateEvent(false);
       setShowModal(false);
       toast.error(`Error creating event: ${error.message}`);
     } finally {
