@@ -106,7 +106,7 @@ export default function Component() {
   const [newEvent, setNewEvent] = useState({
     name: '',
     summary: 'Get ready to meet new people and potentially find a spark in just a few minutes at our Speed Dating event!',
-    date: moment().format("YYYY-MM-DD"),
+    date: moment().add(15, 'days').format("YYYY-MM-DD"),
     start_time: '20:00',
     end_time: '22:00',
     venue_id: '',
@@ -132,8 +132,9 @@ export default function Component() {
   };
 
   // useEffect(() => {
-  //   console.log('New event after update:', newEvent);
-  // }, [newEvent]);
+  //   console.log('events:', events);
+  // }, [events]);
+
   // useEffect(() => {
   //   console.log('Updated event after update:', updatedEvent);
   // }, [updatedEvent]);
@@ -210,7 +211,7 @@ export default function Component() {
         `/api/eventbrite/events/publish/${eventId}`
       );
       console.log('Event published:', response.data);
-      setIsLoadingPublishEvent(true)
+      setIsLoadingPublishEvent(false)
       setPublishAlertEventId(null);
       toast.success('Event PUBLISHED successfully 😍');
     } catch (error) {

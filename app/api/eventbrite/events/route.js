@@ -4,7 +4,7 @@ export async function GET(req, res) {
   const apiKey = process.env.EVENTBRITE_API_KEY;
   const organizationId = process.env.EVENTBRITE_ORGANIZATION_ID;
 
-  const response = await fetch(`https://www.eventbriteapi.com/v3/organizations/${organizationId}/events/?expand=venue&token=${apiKey}`, { cache: 'no-store'});
+  const response = await fetch(`https://www.eventbriteapi.com/v3/organizations/${organizationId}/events/?expand=venue,organizer,ticket_availability&token=${apiKey}`, { cache: 'no-store'});
 
 
   if (!response.ok) {

@@ -15,10 +15,11 @@ export async function POST(req) {
     );
   }
 
-  const form = new IncomingForm({ keepExtensions: true });
-  console.log('formidable form: ', form);
+  // const form = new IncomingForm({ keepExtensions: true });
+  // console.log('formidable form: ', form);
   const formData = await req.formData();
   const body = JSON.parse(await formData.get('eventData')); // Parse event data
+  console.log('body: ', body);
   const imageFile = await formData.get('image'); // Get image file object
 
   const name = generateRandomName();
@@ -120,12 +121,11 @@ export async function POST(req) {
     }
     console.log('ticket for women created successfully');
 
-  
     // Upload image to event
     const eventId = eventData.id;
 
     try {
-      console.log('image upload ');
+      console.log('image upload started...');
       // Step 1: Get upload token
       const uploadTokenData = await getUploadToken();
       // Step 2: Upload the image
