@@ -10,7 +10,7 @@ import {
   DropdownMenuRadioItem,
 } from '@/components/ui/dropdown-menu';
 import { Checkbox } from '@/components/ui/checkbox';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 // Custom icons
 import {
   FilterIcon,
@@ -18,9 +18,10 @@ import {
 } from '@/lib/customIcons';
 import EventCard from '@/components/eventCard'
 import EventCardSidebar from '@/components/eventCardSidebar'
-import events from './eventsMockData'
 
 export default function Component() {
+  const [events, setEvents] = useState([]);
+
   const [filters, setFilters] = useState({
     age: [18, 50],
     distance: [0, 50],
@@ -32,6 +33,17 @@ export default function Component() {
   const handleEventClick = (event) => {
     setSelectedEvent(event);
   };
+
+  useEffect(() => {
+    fetch(`/api/eventbrite/events`, { cache: 'no-store' })
+      .then((data) => data.json())
+      .then((eventsResponse) => eventsResponse.events)
+      .then((events) => setEvents(events));
+  }, []);
+
+  useEffect(() => {
+    console.log('events: ', events);
+  }, [events])
 
   return (
     <>
@@ -52,7 +64,7 @@ export default function Component() {
           </div>
         </div>
 
-        <div className={`${selectedEvent && 'w-1/3'} transition-all ease-in-out grid w-full gap-4 gap-y-12 grid-cols-[repeat(auto-fit,minmax(300px,1fr))] lg:grid-cols-[repeat(auto-fit,minmax(300px,400px))]`}>
+        <div className={`${selectedEvent && 'w-1/3'} transition-all ease-in-out grid w-full gap-4 gap-y-12 grid-cols-[repeat(auto-fit,minmax(300px,1fr))] lg:grid-cols-[repeat(auto-fit,minmax(300px,24%))]`}>
           {events.slice(0, 2).map(event => (
             <EventCard key={event.id} attended={true} event={event} handleEventClick={handleEventClick} />
           ))}
@@ -65,7 +77,7 @@ export default function Component() {
           </h1>
         </div>
 
-        <div className={`${selectedEvent && 'w-1/3'} transition-all ease-in-out grid w-full gap-4 gap-y-12 grid-cols-[repeat(auto-fit,minmax(300px,1fr))] lg:grid-cols-[repeat(auto-fit,minmax(300px,400px))]`}>
+        <div className={`${selectedEvent && 'w-1/3'} transition-all ease-in-out grid w-full gap-4 gap-y-12 grid-cols-[repeat(auto-fit,minmax(300px,1fr))] lg:grid-cols-[repeat(auto-fit,minmax(300px,24%))]`}>
           {events.slice(2).map(event => (
             <EventCard key={event.id} handleEventClick={handleEventClick} event={event} />
           ))}
