@@ -58,7 +58,6 @@ const EventCard = ({ event, handleEventClick, attended}) => {
         {!attended && (
           <Link onClick={(e)=>{e?.stopPropagation()}} href={`/events/${event?.id}`} className="text-primary" prefetch={false}>
             <div className='flex items-center shadow-lg bg-[#ffffff] hover:bg-[#4a1c64] hover:text-white font-semibold backdrop-blur-sm text-black text-md absolute bottom-4 right-4 px-4 py-2 rounded'>
-            {/* <TicketIcon stroke="black" className="w-6 h-6 mr-2" /> */}
               Get Tickets
             </div>
           </Link>
@@ -71,18 +70,10 @@ const EventCard = ({ event, handleEventClick, attended}) => {
           <UserIcon stroke="black" className="w-4 h-4 mr-2" />
           <span className='text-base font-semibold'>Ages {event?.ageRange || '+18'}</span>
         </div>
-        {/* <div className="flex items-center mb-2">
-          <CalendarIcon stroke="black" className="w-4 h-4 mr-2" />
-          <span className='text-base font-semibold'>{event?.date}</span>
-        </div> */}
         <div className="flex items-center mb-2">
           <ClockIcon stroke="black" className="w-4 h-4 mr-2" />
           <span className='text-base font-semibold'>{event?.time || "8PM"}</span>
         </div>
-        {/* <div className="flex items-center mb-2">
-          <MapPinIcon stroke="black" className="w-4 h-4 mr-2" />
-          <span className='text-base font-semibold'>{event?.city}</span>
-        </div> */}
         <div className="flex items-center">
           <LocateIcon stroke="black" className="w-4 h-4 mr-2" />
           <span className='text-base font-semibold'>{event?.city || "New York"}</span>
