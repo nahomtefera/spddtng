@@ -22,14 +22,6 @@ import EventCardSidebar from '@/components/eventCardSidebar'
 export default function Component() {
   const [events, setEvents] = useState([]);
 
-  const [filters, setFilters] = useState({
-    age: [18, 50],
-    distance: [0, 50],
-    interests: [],
-  });
-  const [sortBy, setSortBy] = useState('newest');
-  const [selectedEvent, setSelectedEvent] = useState(null);
-
   const handleEventClick = (event) => {
     setSelectedEvent(event);
   };
